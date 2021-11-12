@@ -1,0 +1,286 @@
+---
+title: "Create Performance Table for your Prediction Model"
+description: |
+  How to create a Performance Table from scratch
+author:
+  - name: Uriah Finkel
+    url: https://example.com/norajones
+date: 2021-11-10
+output:
+  distill::distill_article:
+    md_extensions: +emoji
+    toc: true
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(ISLR)
+library(gt)
+library(rsample)
+```
+
+In the upcoming {rtichoke} Package there is a function that is dedicated for creation of a performance table from a combination of predictions and outcomes:
+
+`rtichoke::create_performance_table()`.
+
+--In the following post I'll show the different stages . -- TODO: add motivation for the post
+
+## Prepare Performance Data :dart:
+
+### Chop probabilities to binary predictions :knife:
+
+A basic problem in delivering performance metrics for predictions of binary outcome is that we are estimating a probability, which is in fact a continuous number **between 0 and 1** ( $0 \leq\hat{p} \leq 1$) while the outcome **must be 0 or 1** ( $y∈\{1, 0\}$ ).
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+performance_data <- tibble("Probability" = c(0.21, 0.45, 0.13, 0.02, 0.34),
+       "Outcome" =  c(0, 1, 0, 1, 0)) 
+
+performance_data %>% 
+  gt()
+
+```
+
+Most of Performance Metrics for probability estimation demand a threshold that will make the prediction also a binary. Generally speaking it's easier to grasp True or False in terms of predictions, even though it might come with a price (TODO: add link). Some performance metrics such as the Brier-Score (TODO: add link) or the C-Index (more familiar as the Area under the ROC curve, AUC or AUROC) (TODO: add link) do not demand dichotomy, but they might not be as intuitive as performance metrics that are based on dichotomisation of the predictions.
+
+Let's say that we chose a probability threshold of 0.15. In that case when the estimated probability is higher than 0.15 we will classify the prediction as *Positive* and if it's less or equal to 0.15 we will classify it as *Negative*:
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+performance_data <- performance_data %>% 
+  mutate(`Binary Prediction` = as.numeric(Probability > 0.15))
+
+performance_data %>% 
+  gt()
+
+```
+
+### Add Confusion Matrix :confused:
+
+Now we can classify each prediction to the appropriate case in what is known as the *Confusion Matrix*:
+
+```{r}
+library(gt)
+library(tidyverse)
+
+tribble(
+  ~" ", ~"Predicted Positive", ~"Predicted Negative",
+  "Real Positive", "TP", "FN",
+  "Real Negative", "FP", "TN"
+) %>%
+  gt::gt(rowname_col = " ") %>%
+  cols_align(
+    align = c("center"),
+    columns = c("Predicted Positive", "Predicted Negative")
+  ) %>%
+  tab_style(
+    style = cell_fill(color = "pink"),
+    locations = list(
+      cells_body(
+        columns = "Predicted Positive",
+        rows = "Real Negative"
+      ),
+      cells_body(
+        columns = "Predicted Negative",
+        rows = "Real Positive"
+      )
+    )
+  ) %>%
+  tab_style(
+    style = cell_fill(color = "lightgreen"),
+    locations = list(
+      cells_body(
+        columns = "Predicted Positive",
+        rows = "Real Positive"
+      ),
+      cells_body(
+        columns = "Predicted Negative",
+        rows = "Real Negative"
+      )
+    )
+  )
+```
+
+**TP** (True Positive) - when the prediction is 1 (*positive*) and the outcome is indeed 1.
+
+**TN** (True Negative) - when the prediction is 0 (*negative*) and the outcome is indeed 0.
+
+**FP** (False Positive) - when the prediction is 1 but the outcome is 0.
+
+**FN** (False Negative) - when the prediction is 0 but the outcome is 1.
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+
+predictions_and_outcomes <- predictions_and_outcomes %>% 
+  mutate("Confusion Matrix" = case_when(
+    Outcome == 1 & `Binary Prediction` == 1 ~ "TP",
+    Outcome == 0 & `Binary Prediction` == 0 ~ "TN",
+    Outcome == 1 & `Binary Prediction` == 0 ~ "FN",
+    Outcome == 0 & `Binary Prediction` == 1 ~ "FP"
+  ))
+
+predictions_and_outcomes %>% 
+  gt()
+
+```
+
+So far it all seems pretty straight forward, but usually we would like to see accuracy among many different Probability Thresholds. For our example we will use the `Carseats` data set from the `ISLR` package that provides a collection of data sets to the highly recommended [ISLR book](https://www.statlearning.com/).
+
+For this tutorial I will use the code from [ISLR tidymodels Labs](https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/index.html) (which is also highly recommended). We will try to predict high sales by dichotomising the `Sales` variable, and split the data to train and test set with the help of the `rsample` package:
+
+```{r}
+
+library(ISLR)
+data(Carseats)
+
+Carseats <- as_tibble(Carseats) %>%
+  mutate(High = as.numeric(Sales <= 8)) %>%
+  select(-Sales)
+
+set.seed(1234)
+Carseats_split <- initial_split(Carseats)
+Carseats_train <- training(Carseats_split)
+Carseats_test <- testing(Carseats_split)
+
+```
+
+We are ready to use our first model:
+
+### Logistic Regression :twisted_rightwards_arrows:
+
+Logistic Regression is the classic solution for prediction of binary outcome, it provides an explainable equation and [it is used for many years](https://papers.tinbergen.nl/02119.pdf).
+
+I'm a big fan of `tidymodels` because it provides a solution to the exhausting [syntactical diversity](https://www.tmwr.org/base-r.html#tidiness-modeling) for models in R, but sometimes it's an overkill for GLM models - so for this part I'll use some classic R code:
+
+```{r}
+
+logistic_regression_model <- glm(High ~ ., 
+                                 data = Carseats, 
+                                 family = "binomial")
+
+predictions_and_outcomes <- tibble(probs = predict(logistic_regression_model, 
+                                           type = "response"), 
+                           real = Carseats$High)
+
+
+predictions_and_outcomes %>% 
+  head() %>% 
+  gt()
+```
+
+TODO: maybe a better code? PURRR?
+
+Finally, we are ready to build our Performance Data: For each Probability Threshold we will calculate the confusion matrix:
+
+```{r}
+performance_data <- tibble(
+  threshold = seq(0, 1, by = 0.1)
+) %>% 
+  mutate(
+    TP = lapply(threshold, function(x) sum(predictions_and_outcomes$probs[predictions_and_outcomes$real == 1] > x)) %>%
+        unlist(),
+    TN = lapply(threshold, function(x) sum(probs[real == 0] <= x)) %>%
+      unlist(),
+    FP = sum(predictions_and_outcomes$real) - TP,
+    FN = length(predictions_and_outcomes$real) - sum(predictions_and_outcomes$real) - TN
+  )
+
+performance_data %>% 
+  head() %>% 
+  gt()
+
+```
+
+### Add Performance Metrics :straight_ruler:
+
+Now that we have a confusion matrix for each Probability Threshold / PPCR we can calculate the performance metrics. We will use common performance metrics that are used:
+
+-   **Sensitivity** and **Specificity** are extremely popular, but you should notice that in terms of prediction they are [conditional on the future.](https://www.fharrell.com/post/backwards-probs/)
+
+$$
+\text{Sensitivity} = \frac{\text{TP}}{\text{TP + FN}} = \frac{\text{TP}}{\text{Real Positives}} = \text{Prob( Predicted Positive | Real Positive )}
+$$
+
+$$
+Specificity = \frac{TN}{TN + FP} = \frac{TN}{RealNegatives} = Prob(PredictedPositives|RealPositive)
+$$ A variation of Specificity is called the False Positive Rate (FPR) and it is nothing more but \$\$1 - Specificity\$\$. It's is used in the ROC curve, but honestly I don't think that it's very useful. The thing that you do want to remember is that unlike Sensitivity and Specificity you want FPR to be as small as possible.
+
+-   **PPV** and **NPV** might be more suitable for prediction model because they are conditional on your predictions (and you can decide *now* how much observations you want to predict as positives):
+
+    $$
+    PPV = \frac{TP}{TP + FP} = \frac{TP}{PredictedPositives} = Prob(RealPositive|PredictedPositive)
+    $$
+
+    $$
+    NPV = \frac{TN}{TN + FN} = \frac{TN}{PredictedNegatives} = Prob(RealNegative|PredictedNegative)
+    $$
+
+-   **Lift** is the ratio between **PPV** and the Prevalence, or in other words - how much you model is better than a random guess?
+
+    $$
+    Lift = \frac{PPV}{Prevalence} = \frac{\cfrac{TP}{TP + FP}}{\cfrac{TP + FP}{TP + FP + TN + FN}} 
+    $$
+
+-   **Net-Benifit** is (by my view) an underused metric. I think it's a powerful way to derive Utility in a generic way. There is an assumption that says that your probability threshold in fact includes the exchange right between False Positives (FP) and False Negatives (FN).
+
+    \
+    :warning: **Warning: You don't want to use Net Benefit based on Predicted Positives Condition Rate!** **If you are using Net Benefit you must declare the explicit Probability Threshold, because it is part of the components of the metric!**\
+    \
+    Another Unique think about Net-Benefit is that it can be Negative or Positive. Negative means that you'd rather not use the model at all, and Positive means that you should use the model.
+
+    Also keep in mind that this performance metric also shows if your model is well-calibrated: You'll see that [when we will compare different models](#compare-models-⚖️) how Net-Benefit varies.
+
+    Any way I recommend on reading more about this performance metric.
+
+**by Probability Threshold or by Predicted Positives Condition Rate?**
+
+Sometimes you have a good reason to decide on a specific Probability Threshold, but sometimes you have some resource in scarce. Let's say that you have a specific constant amount of medicine that you can't give to everyone, but you want to identify the populations that are at the most risk.
+
+In that case you will not care much about the specific threshold, you would rather to see performance by The Predicted Positive Condition Rate (PPCR), which is the fraction of Predicted Positives if you were to pick them by their highest probability to have an event.
+
+### 
+
+## {gt} package for table creation :package:
+
+Now that our performance data is ready, we can render a table with the {gt} package.\
+There are many great packages for table creation available for r, but I think that {gt} is the most convenient one because I'm so used to the "grammer of graphics" from {ggplot2}. {gt} works in a similar way, you start from basic table and you can add all kinds of stuff along the way. If you are a {tidyverse} user {gt} should be very convenient to you two!
+
+## Compare Models :balance_scale:
+
+### Logistic Regression :twisted_rightwards_arrows:
+
+So far we examined the performance of a logistic regression for our population.
+
+### Tree Model :evergreen_tree:
+
+Tree Models are extremely popular in Machine Learning, generally they are all based on Decision Trees. These kind of models are considered to be "Black Boxes" because you don't really know (or even care) what they do, but you know that they are doing it well. How do you know that? You've guessed it - Performance Metrics!
+
+### Random Guess :see_no_evil:
+
+Maybe you are familiar with Emile Borel quote in his book ()
+
+> If an army of monkeys were strumming on typewriters they might write all the books in the British Museum.
+
+It doesn't mean that you want a monkey to make a prediction, but for education purposes we will give him (or for the `rbinom()` function) a chance to compete with our man-made model. In order to be fair we will tell the monkey the prevalence of the population and set it as the *p* parameter in the binomial distribution.
+
+## Add Colors to Title and Subtitle :art:
+
+## Background Bars
+
+## Several Populations 👩👨
+
+There are many reasons to explore results for different populations: The most common in Machine Learning models is when the analyst want to avoid overfitting the model. Logistic Regression will probably will not overfit the data anyway, but decision-tree models might.
+
+Another possible case is that when you want to assure Fairness in medicine. You'll might have some great results on specific populations that are .
+
+Luckily, we saved some data aside exactly that.
+
+## Expandable rows for Confusion Matrix :arrow_up_down:
+
+## 
+
+One Line for each Strata :left_right_arrow:
+
+So there you have it, a Performance Table that will help you see the

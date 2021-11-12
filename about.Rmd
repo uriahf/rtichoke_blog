@@ -1,0 +1,12 @@
+---
+title: "About rtichoke blog"
+description: |
+  Welcome to rtichoke blog! 
+  
+  This blog was created alongside the {rtichoke} package and is dedicated for 
+  performance metrics of prediction models.
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```

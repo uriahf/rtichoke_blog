@@ -1,0 +1,20 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "About rtichoke blog",
+      "description": "Welcome to rtichoke blog! \n\nThis blog was created alongside the {rtichoke} package and is dedicated for \nperformance metrics of prediction models.",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-11-10T14:53:54+02:00"
+    },
+    {
+      "path": "index.html",
+      "title": "rtichoke blog",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-11-10T14:45:03+02:00"
+    }
+  ],
+  "collections": ["posts/posts.json"]
+}
