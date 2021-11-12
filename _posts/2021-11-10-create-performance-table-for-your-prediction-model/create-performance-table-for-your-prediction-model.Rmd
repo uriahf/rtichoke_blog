@@ -25,6 +25,10 @@ In the upcoming {rtichoke} Package there is a function that is dedicated for cre
 
 `rtichoke::create_performance_table()`.
 
+I had several motivations for writing this post:
+
+-   Introducing some of `gt` package functions.
+
 --In the following post I'll show the different stages . -- TODO: add motivation for the post
 
 ## Prepare Performance Data :dart:
