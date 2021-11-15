@@ -290,6 +290,10 @@ Now that we have a performance table we can stylize it: Tables should be accessi
 
 The philosophy behind the syntax in {gt} (*grammar of tables)* is similar to the one behind {ggplot2} (*grammar of graphics)*, we are starting from a basic table and adding another layer of code each time.
 
+**Hide FPR column: `cols_hide()`**
+
+FPR (False Positive Rate) as mentioned before is nothing more than 1 - Specificity and therefore it is not a very insightful metric. It might be useful if you want to draw an ROC curve, but you can also use specificity for that (even thought it is not very common).
+
 **Format Missing Values: `fmt_missing()`**
 
 Since `NaN` is not very pleasing in tables, we can change it to empty string.
@@ -316,7 +320,7 @@ It might differ from one user to another, but when I write columns names in a da
 
 **Align Columns: `cols_align()`**
 
-There are different thoughts about alignment, but the most important thing is to be aware to it and ensure consistency.
+There are different thoughts about alignment, but the most important thing is to be aware to it and ensure consistency. I'd like to add background bars for the metrics and to makes more sense that the bar will start from the left of the cell. For Net Benefit metric the case is different because it can both positive and negative values.
 
 **Adding spanner column labels: `tab_spanner()`**
 
@@ -330,9 +334,14 @@ White is the default choice for background, but in my opinion it is overused.
 
 Without a lot of effort the title can be styled with markdown syntax (\* for *italics*, \*\* for **bold**).
 
+**Change Font: `opt_table_font()`**
+
+Instead of the default font of gt I'll use Roboto font.
+
 ```{r echo=TRUE}
 
 performance_table <- performance_table %>%
+  cols_hide(FPR) %>%  
     fmt_missing(
       columns = c(lift, PPV, NPV, NB),
       missing_text = ""
@@ -348,15 +357,19 @@ performance_table <- performance_table %>%
     col_pct = PPCR
   ) %>%
     cols_label(
+      threshold = "Probability Threshold",
       sensitivity = "Sens",
       lift = "Lift",
       specificity = "Spec",
       predicted_positives = "Predicted Positives",
-      FPR = "1 - Spec"
     ) %>%
     cols_align(
       align = "left",
       columns = dplyr::everything()
+    ) %>% 
+    cols_align(
+      align = "center",
+      columns = c(threshold, NB)
     ) %>% 
     tab_spanner(
       label = "Confusion Matrix",
@@ -376,10 +389,118 @@ performance_table <- performance_table %>%
     tab_header(
       title = gt::md("**Performanc Metrics for Different Thresholds**"),
       subtitle = gt::md("*Logistic Regression*")
+    ) %>%
+  opt_table_font(
+    font = list(
+      google_font(name = "Roboto"),
+      "Cochin", "Serif"
     )
+  ) %>%
+  opt_css(
+    css = "
+    span.frac {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  font: inherit;
+  font-size:10px;
+}
+span.frac > sup, span.frac > sub {
+  display: block;
+  font: inherit;
+  padding: 0x 0.1em;
+}
+span.frac > sup {border-bottom: 1px solid;}
+span.frac > span {display: none;}
+    "
+  ) %>%
+  tab_footnote(footnote = gt::html(
+    "<p>Sens = <span class='frac'><sup>TP</sup><span>&frasl;</span><sub>TP + FN</sub>
+    </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spec = &nbsp;<span class='frac'><sup>TP</sup><span>&frasl;</span><sub>TN + FP</sub></span>&nbsp;&nbsp;&nbsp;
+    PPV  = <span class='frac'><sup>TP</sup><span>&frasl;</span><sub>TP + FP</sub></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbspNPV  = &nbsp;<span class='frac'><sup>TN</sup><span>&frasl;</span><sub>TN + FN</sub></span></p>
+    <p>Lift  = &nbsp;<span class='frac'><sup><span class='frac'><sup>TP</sup><span>&frasl;</span><sub>TP + FP</sub></span></sup><span>&frasl;</span><sub><span class='frac'><sup>TP + FN</sup><span>&frasl;</span><sub>TP + TN + FP + FN</sub></span></sub></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Net Benifit  = <span class='frac'><sup>TP</sup><span>&frasl;</span><sub>TP + TN + FP + FN</sub>  </span>
+    - <span class='frac'><sup>TN</sup><span>&frasl;</span><sub>TP + TN + FP + FN</sub>  </span>
+    * <span class='frac'><sup>threshold</sup><span>&frasl;</span><sub>1 - threshold</sub>  </span>"
+  ),
+  locations = cells_column_spanners(spanners = "Performance Metrics")
+  )
 
 performance_table
 ```
+
+```{r}
+
+iris %>% 
+  head() %>% 
+  gt() %>%
+  opt_css(
+    css = "
+.All {
+  display: table-row;
+}
+.Metric {
+  display: table-cell;
+  vertical-align: middle;
+}
+.Fraction {
+    display: table-cell;
+    text-align: center;   
+    font-size:10px;
+}
+.Denominator{
+    border-top: 1px solid #000;
+    display: block;
+}
+.Fraction, .Numerator, .Denominator {
+    padding: 0px 5px;    
+}
+    "
+  ) %>%
+  tab_footnote(footnote = html(
+    "<span class='frac'><sup>&sum;n</sup><span>&frasl;</span><sub>n</sub></span>
+<br><br>
+
+
+<div  class='All'><div class='.Metric'>Sensitivity =</div><span class='Fraction'><span class='Numerator'>TP</span><span class='Denominator'>TP + FN</span></span>
+</div>"
+  ),
+  locations = gt::cells_column_labels("Sepal.Length")
+  ) 
+  
+
+```
+
+## Background Bars :bar_chart:
+
+```{r}
+bar_chart <- function(value, 
+                      display, 
+                      color = "red", 
+                      digits = 0, 
+                      no_round = FALSE){
+  
+  if (is.na(value) | is.nan(value)) {
+    NA
+  } else {
+  if (no_round) {
+    display_rounded <- display
+  } else {
+  display_rounded <- round(display, digits = digits) %>% 
+    format(nsmall = digits)
+  }
+  
+  glue::glue("<span style=\"display: inline-block;direction: ltr;
+             background-color: {color}; color: black;
+             width: {value}%\">{display_rounded}</span>") %>% 
+    as.character() %>% 
+    gt::html()
+  }
+}
+
+```
+
+I've been a fan of
 
 ## Compare Models :balance_scale:
 
@@ -388,6 +509,8 @@ So far we examined the performance of a **Logistic Regression :twisted_rightward
 ### Tree Model :evergreen_tree:
 
 Tree Models are extremely popular in Machine Learning, they are considered to be "Black Boxes" because as a user you don't really know (or even care) what they do, but you know that they are doing it well in terms of accuracy.
+
+As mentioned before,
 
 ```{r}
 
