@@ -1497,7 +1497,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><a href="#logistic-regression">Logistic Regression <span class="emoji" data-emoji="twisted_rightwards_arrows">🔀</span></a></li>
 <li><a href="#add-performance-metrics">Add Performance Metrics <span class="emoji" data-emoji="straight_ruler">📏</span></a></li>
 </ul></li>
-<li><a href="#lets-style-the-performance-table-with-gt">Let’s style the performance table with {gt} <span class="emoji" data-emoji="package">📦</span></a></li>
+<li><a href="#style-the-performance-table-with-gt">Style the performance table with {gt} <span class="emoji" data-emoji="package">📦</span></a></li>
 <li><a href="#compare-models-️">Compare Models <span class="emoji" data-emoji="balance_scale">⚖️</span></a>
 <ul>
 <li><a href="#tree-model">Tree Model <span class="emoji" data-emoji="evergreen_tree">🌲</span></a></li>
@@ -1506,8 +1506,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><a href="#add-colors-to-title-and-subtitle">Add Colors to Title and Subtitle <span class="emoji" data-emoji="art">🎨</span></a></li>
 <li><a href="#background-bars">Background Bars</a></li>
 <li><a href="#several-populations">Several Populations 👩👨</a></li>
-<li><a href="#expandable-rows-for-confusion-matrix-️">Expandable rows for Confusion Matrix <span class="emoji" data-emoji="arrow_up_down">↕️</span></a></li>
-<li><a href="#section"></a></li>
 </ul>
 </nav>
 </div>
@@ -1534,12 +1532,12 @@ There are many great packages for table creation available for r, but I think th
   <span class='fu'><a href='https://rdrr.io/pkg/gt/man/gt.html'>gt</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<div id="iyuzcfjmem" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="jtxmwjawnm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#iyuzcfjmem .gt_table {
+#jtxmwjawnm .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1564,7 +1562,7 @@ There are many great packages for table creation available for r, but I think th
   border-left-color: #D3D3D3;
 }
 
-#iyuzcfjmem .gt_heading {
+#jtxmwjawnm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1576,7 +1574,7 @@ There are many great packages for table creation available for r, but I think th
   border-right-color: #D3D3D3;
 }
 
-#iyuzcfjmem .gt_title {
+#jtxmwjawnm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1586,7 +1584,7 @@ There are many great packages for table creation available for r, but I think th
   border-bottom-width: 0;
 }
 
-#iyuzcfjmem .gt_subtitle {
+#jtxmwjawnm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1596,13 +1594,13 @@ There are many great packages for table creation available for r, but I think th
   border-top-width: 0;
 }
 
-#iyuzcfjmem .gt_bottom_border {
+#jtxmwjawnm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#iyuzcfjmem .gt_col_headings {
+#jtxmwjawnm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1617,7 +1615,7 @@ There are many great packages for table creation available for r, but I think th
   border-right-color: #D3D3D3;
 }
 
-#iyuzcfjmem .gt_col_heading {
+#jtxmwjawnm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1637,7 +1635,7 @@ There are many great packages for table creation available for r, but I think th
   overflow-x: hidden;
 }
 
-#iyuzcfjmem .gt_column_spanner_outer {
+#jtxmwjawnm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1649,15 +1647,15 @@ There are many great packages for table creation available for r, but I think th
   padding-right: 4px;
 }
 
-#iyuzcfjmem .gt_column_spanner_outer:first-child {
+#jtxmwjawnm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#iyuzcfjmem .gt_column_spanner_outer:last-child {
+#jtxmwjawnm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#iyuzcfjmem .gt_column_spanner {
+#jtxmwjawnm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1669,7 +1667,7 @@ There are many great packages for table creation available for r, but I think th
   width: 100%;
 }
 
-#iyuzcfjmem .gt_group_heading {
+#jtxmwjawnm .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1691,7 +1689,7 @@ There are many great packages for table creation available for r, but I think th
   vertical-align: middle;
 }
 
-#iyuzcfjmem .gt_empty_group_heading {
+#jtxmwjawnm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1706,15 +1704,15 @@ There are many great packages for table creation available for r, but I think th
   vertical-align: middle;
 }
 
-#iyuzcfjmem .gt_from_md > :first-child {
+#jtxmwjawnm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#iyuzcfjmem .gt_from_md > :last-child {
+#jtxmwjawnm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#iyuzcfjmem .gt_row {
+#jtxmwjawnm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1733,7 +1731,7 @@ There are many great packages for table creation available for r, but I think th
   overflow-x: hidden;
 }
 
-#iyuzcfjmem .gt_stub {
+#jtxmwjawnm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1745,7 +1743,7 @@ There are many great packages for table creation available for r, but I think th
   padding-left: 12px;
 }
 
-#iyuzcfjmem .gt_summary_row {
+#jtxmwjawnm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1755,7 +1753,7 @@ There are many great packages for table creation available for r, but I think th
   padding-right: 5px;
 }
 
-#iyuzcfjmem .gt_first_summary_row {
+#jtxmwjawnm .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1765,7 +1763,7 @@ There are many great packages for table creation available for r, but I think th
   border-top-color: #D3D3D3;
 }
 
-#iyuzcfjmem .gt_grand_summary_row {
+#jtxmwjawnm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1775,7 +1773,7 @@ There are many great packages for table creation available for r, but I think th
   padding-right: 5px;
 }
 
-#iyuzcfjmem .gt_first_grand_summary_row {
+#jtxmwjawnm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1785,11 +1783,11 @@ There are many great packages for table creation available for r, but I think th
   border-top-color: #D3D3D3;
 }
 
-#iyuzcfjmem .gt_striped {
+#jtxmwjawnm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#iyuzcfjmem .gt_table_body {
+#jtxmwjawnm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1798,7 +1796,7 @@ There are many great packages for table creation available for r, but I think th
   border-bottom-color: #D3D3D3;
 }
 
-#iyuzcfjmem .gt_footnotes {
+#jtxmwjawnm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1812,13 +1810,13 @@ There are many great packages for table creation available for r, but I think th
   border-right-color: #D3D3D3;
 }
 
-#iyuzcfjmem .gt_footnote {
+#jtxmwjawnm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#iyuzcfjmem .gt_sourcenotes {
+#jtxmwjawnm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1832,41 +1830,41 @@ There are many great packages for table creation available for r, but I think th
   border-right-color: #D3D3D3;
 }
 
-#iyuzcfjmem .gt_sourcenote {
+#jtxmwjawnm .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#iyuzcfjmem .gt_left {
+#jtxmwjawnm .gt_left {
   text-align: left;
 }
 
-#iyuzcfjmem .gt_center {
+#jtxmwjawnm .gt_center {
   text-align: center;
 }
 
-#iyuzcfjmem .gt_right {
+#jtxmwjawnm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#iyuzcfjmem .gt_font_normal {
+#jtxmwjawnm .gt_font_normal {
   font-weight: normal;
 }
 
-#iyuzcfjmem .gt_font_bold {
+#jtxmwjawnm .gt_font_bold {
   font-weight: bold;
 }
 
-#iyuzcfjmem .gt_font_italic {
+#jtxmwjawnm .gt_font_italic {
   font-style: italic;
 }
 
-#iyuzcfjmem .gt_super {
+#jtxmwjawnm .gt_super {
   font-size: 65%;
 }
 
-#iyuzcfjmem .gt_footnote_marks {
+#jtxmwjawnm .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1902,18 +1900,18 @@ There are many great packages for table creation available for r, but I think th
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>predictions_and_outcomes</span> <span class='op'>&lt;-</span> <span class='va'>predictions_and_outcomes</span> <span class='op'><a href='https://rdrr.io/pkg/gt/man/pipe.html'>%&gt;%</a></span> 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>binary_prediction <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>probs</span> <span class='op'>&gt;</span> <span class='fl'>0.15</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/mutate.html'>mutate</a></span><span class='op'>(</span>binary_prediction <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>probs</span> <span class='op'>&gt;</span> <span class='fl'>0.15</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='va'>predictions_and_outcomes</span> <span class='op'><a href='https://rdrr.io/pkg/gt/man/pipe.html'>%&gt;%</a></span> 
   <span class='fu'><a href='https://rdrr.io/pkg/gt/man/gt.html'>gt</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<div id="xntgmddihd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="drjjnuspvu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#xntgmddihd .gt_table {
+#drjjnuspvu .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1938,7 +1936,7 @@ There are many great packages for table creation available for r, but I think th
   border-left-color: #D3D3D3;
 }
 
-#xntgmddihd .gt_heading {
+#drjjnuspvu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1950,7 +1948,7 @@ There are many great packages for table creation available for r, but I think th
   border-right-color: #D3D3D3;
 }
 
-#xntgmddihd .gt_title {
+#drjjnuspvu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1960,7 +1958,7 @@ There are many great packages for table creation available for r, but I think th
   border-bottom-width: 0;
 }
 
-#xntgmddihd .gt_subtitle {
+#drjjnuspvu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1970,13 +1968,13 @@ There are many great packages for table creation available for r, but I think th
   border-top-width: 0;
 }
 
-#xntgmddihd .gt_bottom_border {
+#drjjnuspvu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xntgmddihd .gt_col_headings {
+#drjjnuspvu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1991,7 +1989,7 @@ There are many great packages for table creation available for r, but I think th
   border-right-color: #D3D3D3;
 }
 
-#xntgmddihd .gt_col_heading {
+#drjjnuspvu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2011,7 +2009,7 @@ There are many great packages for table creation available for r, but I think th
   overflow-x: hidden;
 }
 
-#xntgmddihd .gt_column_spanner_outer {
+#drjjnuspvu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2023,15 +2021,15 @@ There are many great packages for table creation available for r, but I think th
   padding-right: 4px;
 }
 
-#xntgmddihd .gt_column_spanner_outer:first-child {
+#drjjnuspvu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xntgmddihd .gt_column_spanner_outer:last-child {
+#drjjnuspvu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xntgmddihd .gt_column_spanner {
+#drjjnuspvu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2043,7 +2041,7 @@ There are many great packages for table creation available for r, but I think th
   width: 100%;
 }
 
-#xntgmddihd .gt_group_heading {
+#drjjnuspvu .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2065,7 +2063,7 @@ There are many great packages for table creation available for r, but I think th
   vertical-align: middle;
 }
 
-#xntgmddihd .gt_empty_group_heading {
+#drjjnuspvu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2080,15 +2078,15 @@ There are many great packages for table creation available for r, but I think th
   vertical-align: middle;
 }
 
-#xntgmddihd .gt_from_md > :first-child {
+#drjjnuspvu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xntgmddihd .gt_from_md > :last-child {
+#drjjnuspvu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xntgmddihd .gt_row {
+#drjjnuspvu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2107,7 +2105,7 @@ There are many great packages for table creation available for r, but I think th
   overflow-x: hidden;
 }
 
-#xntgmddihd .gt_stub {
+#drjjnuspvu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2119,7 +2117,7 @@ There are many great packages for table creation available for r, but I think th
   padding-left: 12px;
 }
 
-#xntgmddihd .gt_summary_row {
+#drjjnuspvu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2129,7 +2127,7 @@ There are many great packages for table creation available for r, but I think th
   padding-right: 5px;
 }
 
-#xntgmddihd .gt_first_summary_row {
+#drjjnuspvu .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2139,7 +2137,7 @@ There are many great packages for table creation available for r, but I think th
   border-top-color: #D3D3D3;
 }
 
-#xntgmddihd .gt_grand_summary_row {
+#drjjnuspvu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2149,7 +2147,7 @@ There are many great packages for table creation available for r, but I think th
   padding-right: 5px;
 }
 
-#xntgmddihd .gt_first_grand_summary_row {
+#drjjnuspvu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2159,11 +2157,11 @@ There are many great packages for table creation available for r, but I think th
   border-top-color: #D3D3D3;
 }
 
-#xntgmddihd .gt_striped {
+#drjjnuspvu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xntgmddihd .gt_table_body {
+#drjjnuspvu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2172,7 +2170,7 @@ There are many great packages for table creation available for r, but I think th
   border-bottom-color: #D3D3D3;
 }
 
-#xntgmddihd .gt_footnotes {
+#drjjnuspvu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2186,13 +2184,13 @@ There are many great packages for table creation available for r, but I think th
   border-right-color: #D3D3D3;
 }
 
-#xntgmddihd .gt_footnote {
+#drjjnuspvu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#xntgmddihd .gt_sourcenotes {
+#drjjnuspvu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2206,41 +2204,41 @@ There are many great packages for table creation available for r, but I think th
   border-right-color: #D3D3D3;
 }
 
-#xntgmddihd .gt_sourcenote {
+#drjjnuspvu .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#xntgmddihd .gt_left {
+#drjjnuspvu .gt_left {
   text-align: left;
 }
 
-#xntgmddihd .gt_center {
+#drjjnuspvu .gt_center {
   text-align: center;
 }
 
-#xntgmddihd .gt_right {
+#drjjnuspvu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xntgmddihd .gt_font_normal {
+#drjjnuspvu .gt_font_normal {
   font-weight: normal;
 }
 
-#xntgmddihd .gt_font_bold {
+#drjjnuspvu .gt_font_bold {
   font-weight: bold;
 }
 
-#xntgmddihd .gt_font_italic {
+#drjjnuspvu .gt_font_italic {
   font-style: italic;
 }
 
-#xntgmddihd .gt_super {
+#drjjnuspvu .gt_super {
   font-size: 65%;
 }
 
-#xntgmddihd .gt_footnote_marks {
+#drjjnuspvu .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -2280,12 +2278,12 @@ There are many great packages for table creation available for r, but I think th
 <h3 id="add-confusion-matrix">Add Confusion Matrix <span class="emoji" data-emoji="confused">😕</span></h3>
 <p>Now we can classify each prediction to the appropriate case in what is known as the <em>Confusion Matrix</em>:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div id="xyrnolkfwq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="ucneldwsur" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#xyrnolkfwq .gt_table {
+#ucneldwsur .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2310,7 +2308,7 @@ There are many great packages for table creation available for r, but I think th
   border-left-color: #D3D3D3;
 }
 
-#xyrnolkfwq .gt_heading {
+#ucneldwsur .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2322,7 +2320,7 @@ There are many great packages for table creation available for r, but I think th
   border-right-color: #D3D3D3;
 }
 
-#xyrnolkfwq .gt_title {
+#ucneldwsur .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2332,7 +2330,7 @@ There are many great packages for table creation available for r, but I think th
   border-bottom-width: 0;
 }
 
-#xyrnolkfwq .gt_subtitle {
+#ucneldwsur .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2342,13 +2340,13 @@ There are many great packages for table creation available for r, but I think th
   border-top-width: 0;
 }
 
-#xyrnolkfwq .gt_bottom_border {
+#ucneldwsur .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xyrnolkfwq .gt_col_headings {
+#ucneldwsur .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2363,7 +2361,7 @@ There are many great packages for table creation available for r, but I think th
   border-right-color: #D3D3D3;
 }
 
-#xyrnolkfwq .gt_col_heading {
+#ucneldwsur .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2383,7 +2381,7 @@ There are many great packages for table creation available for r, but I think th
   overflow-x: hidden;
 }
 
-#xyrnolkfwq .gt_column_spanner_outer {
+#ucneldwsur .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2395,15 +2393,15 @@ There are many great packages for table creation available for r, but I think th
   padding-right: 4px;
 }
 
-#xyrnolkfwq .gt_column_spanner_outer:first-child {
+#ucneldwsur .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xyrnolkfwq .gt_column_spanner_outer:last-child {
+#ucneldwsur .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xyrnolkfwq .gt_column_spanner {
+#ucneldwsur .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2415,7 +2413,7 @@ There are many great packages for table creation available for r, but I think th
   width: 100%;
 }
 
-#xyrnolkfwq .gt_group_heading {
+#ucneldwsur .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2437,7 +2435,7 @@ There are many great packages for table creation available for r, but I think th
   vertical-align: middle;
 }
 
-#xyrnolkfwq .gt_empty_group_heading {
+#ucneldwsur .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2452,15 +2450,15 @@ There are many great packages for table creation available for r, but I think th
   vertical-align: middle;
 }
 
-#xyrnolkfwq .gt_from_md > :first-child {
+#ucneldwsur .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xyrnolkfwq .gt_from_md > :last-child {
+#ucneldwsur .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xyrnolkfwq .gt_row {
+#ucneldwsur .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2479,7 +2477,7 @@ There are many great packages for table creation available for r, but I think th
   overflow-x: hidden;
 }
 
-#xyrnolkfwq .gt_stub {
+#ucneldwsur .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2491,7 +2489,7 @@ There are many great packages for table creation available for r, but I think th
   padding-left: 12px;
 }
 
-#xyrnolkfwq .gt_summary_row {
+#ucneldwsur .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2501,7 +2499,7 @@ There are many great packages for table creation available for r, but I think th
   padding-right: 5px;
 }
 
-#xyrnolkfwq .gt_first_summary_row {
+#ucneldwsur .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2511,7 +2509,7 @@ There are many great packages for table creation available for r, but I think th
   border-top-color: #D3D3D3;
 }
 
-#xyrnolkfwq .gt_grand_summary_row {
+#ucneldwsur .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2521,7 +2519,7 @@ There are many great packages for table creation available for r, but I think th
   padding-right: 5px;
 }
 
-#xyrnolkfwq .gt_first_grand_summary_row {
+#ucneldwsur .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2531,11 +2529,11 @@ There are many great packages for table creation available for r, but I think th
   border-top-color: #D3D3D3;
 }
 
-#xyrnolkfwq .gt_striped {
+#ucneldwsur .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xyrnolkfwq .gt_table_body {
+#ucneldwsur .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2544,7 +2542,7 @@ There are many great packages for table creation available for r, but I think th
   border-bottom-color: #D3D3D3;
 }
 
-#xyrnolkfwq .gt_footnotes {
+#ucneldwsur .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2558,13 +2556,13 @@ There are many great packages for table creation available for r, but I think th
   border-right-color: #D3D3D3;
 }
 
-#xyrnolkfwq .gt_footnote {
+#ucneldwsur .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#xyrnolkfwq .gt_sourcenotes {
+#ucneldwsur .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2578,41 +2576,41 @@ There are many great packages for table creation available for r, but I think th
   border-right-color: #D3D3D3;
 }
 
-#xyrnolkfwq .gt_sourcenote {
+#ucneldwsur .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#xyrnolkfwq .gt_left {
+#ucneldwsur .gt_left {
   text-align: left;
 }
 
-#xyrnolkfwq .gt_center {
+#ucneldwsur .gt_center {
   text-align: center;
 }
 
-#xyrnolkfwq .gt_right {
+#ucneldwsur .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xyrnolkfwq .gt_font_normal {
+#ucneldwsur .gt_font_normal {
   font-weight: normal;
 }
 
-#xyrnolkfwq .gt_font_bold {
+#ucneldwsur .gt_font_bold {
   font-weight: bold;
 }
 
-#xyrnolkfwq .gt_font_italic {
+#ucneldwsur .gt_font_italic {
   font-style: italic;
 }
 
-#xyrnolkfwq .gt_super {
+#ucneldwsur .gt_super {
   font-size: 65%;
 }
 
-#xyrnolkfwq .gt_footnote_marks {
+#ucneldwsur .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -2647,7 +2645,7 @@ There are many great packages for table creation available for r, but I think th
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>predictions_and_outcomes</span> <span class='op'>&lt;-</span> <span class='va'>predictions_and_outcomes</span> <span class='op'><a href='https://rdrr.io/pkg/gt/man/pipe.html'>%&gt;%</a></span> 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span><span class='st'>"Confusion Matrix"</span> <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/mutate.html'>mutate</a></span><span class='op'>(</span><span class='st'>"Confusion Matrix"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/case_when.html'>case_when</a></span><span class='op'>(</span>
     <span class='va'>real</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>&amp;</span> <span class='va'>binary_prediction</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>"TP"</span>,
     <span class='va'>real</span> <span class='op'>==</span> <span class='fl'>0</span> <span class='op'>&amp;</span> <span class='va'>binary_prediction</span> <span class='op'>==</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='st'>"TN"</span>,
     <span class='va'>real</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>&amp;</span> <span class='va'>binary_prediction</span> <span class='op'>==</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='st'>"FN"</span>,
@@ -2658,12 +2656,12 @@ There are many great packages for table creation available for r, but I think th
   <span class='fu'><a href='https://rdrr.io/pkg/gt/man/gt.html'>gt</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<div id="aonacrtonf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="yithsusmwc" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#aonacrtonf .gt_table {
+#yithsusmwc .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2688,7 +2686,7 @@ There are many great packages for table creation available for r, but I think th
   border-left-color: #D3D3D3;
 }
 
-#aonacrtonf .gt_heading {
+#yithsusmwc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2700,7 +2698,7 @@ There are many great packages for table creation available for r, but I think th
   border-right-color: #D3D3D3;
 }
 
-#aonacrtonf .gt_title {
+#yithsusmwc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2710,7 +2708,7 @@ There are many great packages for table creation available for r, but I think th
   border-bottom-width: 0;
 }
 
-#aonacrtonf .gt_subtitle {
+#yithsusmwc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2720,13 +2718,13 @@ There are many great packages for table creation available for r, but I think th
   border-top-width: 0;
 }
 
-#aonacrtonf .gt_bottom_border {
+#yithsusmwc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#aonacrtonf .gt_col_headings {
+#yithsusmwc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2741,7 +2739,7 @@ There are many great packages for table creation available for r, but I think th
   border-right-color: #D3D3D3;
 }
 
-#aonacrtonf .gt_col_heading {
+#yithsusmwc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2761,7 +2759,7 @@ There are many great packages for table creation available for r, but I think th
   overflow-x: hidden;
 }
 
-#aonacrtonf .gt_column_spanner_outer {
+#yithsusmwc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2773,15 +2771,15 @@ There are many great packages for table creation available for r, but I think th
   padding-right: 4px;
 }
 
-#aonacrtonf .gt_column_spanner_outer:first-child {
+#yithsusmwc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#aonacrtonf .gt_column_spanner_outer:last-child {
+#yithsusmwc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#aonacrtonf .gt_column_spanner {
+#yithsusmwc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2793,7 +2791,7 @@ There are many great packages for table creation available for r, but I think th
   width: 100%;
 }
 
-#aonacrtonf .gt_group_heading {
+#yithsusmwc .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2815,7 +2813,7 @@ There are many great packages for table creation available for r, but I think th
   vertical-align: middle;
 }
 
-#aonacrtonf .gt_empty_group_heading {
+#yithsusmwc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2830,15 +2828,15 @@ There are many great packages for table creation available for r, but I think th
   vertical-align: middle;
 }
 
-#aonacrtonf .gt_from_md > :first-child {
+#yithsusmwc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#aonacrtonf .gt_from_md > :last-child {
+#yithsusmwc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#aonacrtonf .gt_row {
+#yithsusmwc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2857,7 +2855,7 @@ There are many great packages for table creation available for r, but I think th
   overflow-x: hidden;
 }
 
-#aonacrtonf .gt_stub {
+#yithsusmwc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2869,7 +2867,7 @@ There are many great packages for table creation available for r, but I think th
   padding-left: 12px;
 }
 
-#aonacrtonf .gt_summary_row {
+#yithsusmwc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2879,7 +2877,7 @@ There are many great packages for table creation available for r, but I think th
   padding-right: 5px;
 }
 
-#aonacrtonf .gt_first_summary_row {
+#yithsusmwc .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2889,7 +2887,7 @@ There are many great packages for table creation available for r, but I think th
   border-top-color: #D3D3D3;
 }
 
-#aonacrtonf .gt_grand_summary_row {
+#yithsusmwc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2899,7 +2897,7 @@ There are many great packages for table creation available for r, but I think th
   padding-right: 5px;
 }
 
-#aonacrtonf .gt_first_grand_summary_row {
+#yithsusmwc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2909,11 +2907,11 @@ There are many great packages for table creation available for r, but I think th
   border-top-color: #D3D3D3;
 }
 
-#aonacrtonf .gt_striped {
+#yithsusmwc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#aonacrtonf .gt_table_body {
+#yithsusmwc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2922,7 +2920,7 @@ There are many great packages for table creation available for r, but I think th
   border-bottom-color: #D3D3D3;
 }
 
-#aonacrtonf .gt_footnotes {
+#yithsusmwc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2936,13 +2934,13 @@ There are many great packages for table creation available for r, but I think th
   border-right-color: #D3D3D3;
 }
 
-#aonacrtonf .gt_footnote {
+#yithsusmwc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#aonacrtonf .gt_sourcenotes {
+#yithsusmwc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2956,41 +2954,41 @@ There are many great packages for table creation available for r, but I think th
   border-right-color: #D3D3D3;
 }
 
-#aonacrtonf .gt_sourcenote {
+#yithsusmwc .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#aonacrtonf .gt_left {
+#yithsusmwc .gt_left {
   text-align: left;
 }
 
-#aonacrtonf .gt_center {
+#yithsusmwc .gt_center {
   text-align: center;
 }
 
-#aonacrtonf .gt_right {
+#yithsusmwc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#aonacrtonf .gt_font_normal {
+#yithsusmwc .gt_font_normal {
   font-weight: normal;
 }
 
-#aonacrtonf .gt_font_bold {
+#yithsusmwc .gt_font_bold {
   font-weight: bold;
 }
 
-#aonacrtonf .gt_font_italic {
+#yithsusmwc .gt_font_italic {
   font-style: italic;
 }
 
-#aonacrtonf .gt_super {
+#yithsusmwc .gt_super {
   font-size: 65%;
 }
 
-#aonacrtonf .gt_footnote_marks {
+#yithsusmwc .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -3821,7 +3819,7 @@ There are many great packages for table creation available for r, but I think th
 \]</span></p></li>
 <li><p><strong>Lift</strong> is the ratio between <strong>PPV</strong> and the Prevalence, or in other words - how much you model is better than a random guess?</p>
 <p><span class="math display">\[
-\text{Lift} = \frac{\text{PPV}}{\text{Prevalence}} = \frac{\cfrac{\text{TP}}{\text{TP + FP}}}{\cfrac{\text{TP + FP}}{\text{TP + FP + TN + FN}}} 
+\text{Lift} = \frac{\text{PPV}}{\text{Prevalence}} = \frac{\cfrac{\text{TP}}{\text{TP + FP}}}{\cfrac{\text{TP + FN}}{\text{TP + FP + TN + FN}}} 
 \]</span></p></li>
 <li><p><strong>Net-Benifit</strong> is (by my view) an underused metric. I think it’s a powerful way to derive Utility in a generic way. There is an assumption that says that your probability threshold in fact includes the exchange right between False Positives (FP) and False Negatives (FN). TODO: add formula and add reference.</p>
 <p><br />
@@ -3832,443 +3830,1126 @@ Another Unique think about Net-Benefit is that it can be Negative or Positive. N
 <p>Any way I recommend on reading more about this performance metric.</p></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
-<pre><code>$`_data`
-# A tibble: 11 x 14
-   threshold    TP    TN    FN    FP sensitivity    FPR   lift
-       &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
- 1       0     236     0     0   164       1     1        1   
- 2       0.1   234   102     2    62       0.992 0.378    1.34
- 3       0.2   230   116     6    48       0.975 0.293    1.40
- 4       0.3   227   129     9    35       0.962 0.213    1.47
- 5       0.4   223   138    13    26       0.945 0.159    1.52
- 6       0.5   221   142    15    22       0.936 0.134    1.54
- 7       0.6   211   147    25    17       0.894 0.104    1.57
- 8       0.7   203   154    33    10       0.860 0.0610   1.62
- 9       0.8   195   158    41     6       0.826 0.0366   1.64
-10       0.9   170   159    66     5       0.720 0.0305   1.65
-11       1       0   164   236     0       0     0      NaN   
-# ... with 6 more variables: specificity &lt;dbl&gt;, PPV &lt;dbl&gt;, NPV &lt;dbl&gt;,
-#   predicted_positives &lt;dbl&gt;, PPCR &lt;dbl&gt;, NB &lt;dbl&gt;
+<div id="qnnrvhmtkc" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
 
-$`_boxhead`
-# A tibble: 14 x 6
-   var          type  column_label column_align column_width hidden_px
-   &lt;chr&gt;        &lt;chr&gt; &lt;list&gt;       &lt;chr&gt;        &lt;list&gt;       &lt;list&gt;   
- 1 threshold    defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 2 TP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 3 TN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 4 FN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 5 FP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 6 sensitivity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 7 FPR          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 8 lift         defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 9 specificity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-10 PPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-11 NPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-12 predicted_p~ defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-13 PPCR         defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-14 NB           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+#qnnrvhmtkc .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
 
-$`_stub_df`
-# A tibble: 11 x 5
-   rownum_i group_id rowname group_label built
-      &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;list&gt;      &lt;chr&gt;
- 1        1 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 2        2 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 3        3 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 4        4 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 5        5 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 6        6 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 7        7 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 8        8 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 9        9 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
-10       10 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
-11       11 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+#qnnrvhmtkc .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
 
-$`_row_groups`
-character(0)
+#qnnrvhmtkc .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
 
-$`_heading`
-$`_heading`$title
-NULL
+#qnnrvhmtkc .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
 
-$`_heading`$subtitle
-NULL
+#qnnrvhmtkc .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
 
+#qnnrvhmtkc .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
 
-$`_spanners`
-# A tibble: 0 x 5
-# ... with 5 variables: vars &lt;list&gt;, spanner_label &lt;list&gt;,
-#   spanner_id &lt;chr&gt;, gather &lt;lgl&gt;, built &lt;chr&gt;</code></pre>
+#qnnrvhmtkc .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#qnnrvhmtkc .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#qnnrvhmtkc .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#qnnrvhmtkc .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#qnnrvhmtkc .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#qnnrvhmtkc .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#qnnrvhmtkc .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#qnnrvhmtkc .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#qnnrvhmtkc .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#qnnrvhmtkc .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#qnnrvhmtkc .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#qnnrvhmtkc .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qnnrvhmtkc .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#qnnrvhmtkc .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qnnrvhmtkc .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#qnnrvhmtkc .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#qnnrvhmtkc .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qnnrvhmtkc .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qnnrvhmtkc .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#qnnrvhmtkc .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qnnrvhmtkc .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#qnnrvhmtkc .gt_left {
+  text-align: left;
+}
+
+#qnnrvhmtkc .gt_center {
+  text-align: center;
+}
+
+#qnnrvhmtkc .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#qnnrvhmtkc .gt_font_normal {
+  font-weight: normal;
+}
+
+#qnnrvhmtkc .gt_font_bold {
+  font-weight: bold;
+}
+
+#qnnrvhmtkc .gt_font_italic {
+  font-style: italic;
+}
+
+#qnnrvhmtkc .gt_super {
+  font-size: 65%;
+}
+
+#qnnrvhmtkc .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">threshold</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">TP</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">TN</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">FN</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">FP</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">sensitivity</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">FPR</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">lift</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">specificity</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">PPV</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">NPV</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">predicted_positives</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">PPCR</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">NB</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_right">0.0</td>
+<td class="gt_row gt_right">236</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">164</td>
+<td class="gt_row gt_right">1.0000000</td>
+<td class="gt_row gt_right">1.00000000</td>
+<td class="gt_row gt_right">1.000000</td>
+<td class="gt_row gt_right">0.0000000</td>
+<td class="gt_row gt_right">0.5900000</td>
+<td class="gt_row gt_right">NaN</td>
+<td class="gt_row gt_right">400</td>
+<td class="gt_row gt_right">1.0000</td>
+<td class="gt_row gt_right">0.5900000</td></tr>
+    <tr><td class="gt_row gt_right">0.1</td>
+<td class="gt_row gt_right">234</td>
+<td class="gt_row gt_right">102</td>
+<td class="gt_row gt_right">2</td>
+<td class="gt_row gt_right">62</td>
+<td class="gt_row gt_right">0.9915254</td>
+<td class="gt_row gt_right">0.37804878</td>
+<td class="gt_row gt_right">1.339899</td>
+<td class="gt_row gt_right">0.6219512</td>
+<td class="gt_row gt_right">0.7905405</td>
+<td class="gt_row gt_right">0.9807692</td>
+<td class="gt_row gt_right">296</td>
+<td class="gt_row gt_right">0.7400</td>
+<td class="gt_row gt_right">0.5677778</td></tr>
+    <tr><td class="gt_row gt_right">0.2</td>
+<td class="gt_row gt_right">230</td>
+<td class="gt_row gt_right">116</td>
+<td class="gt_row gt_right">6</td>
+<td class="gt_row gt_right">48</td>
+<td class="gt_row gt_right">0.9745763</td>
+<td class="gt_row gt_right">0.29268293</td>
+<td class="gt_row gt_right">1.402268</td>
+<td class="gt_row gt_right">0.7073171</td>
+<td class="gt_row gt_right">0.8273381</td>
+<td class="gt_row gt_right">0.9508197</td>
+<td class="gt_row gt_right">278</td>
+<td class="gt_row gt_right">0.6950</td>
+<td class="gt_row gt_right">0.5450000</td></tr>
+    <tr><td class="gt_row gt_right">0.3</td>
+<td class="gt_row gt_right">227</td>
+<td class="gt_row gt_right">129</td>
+<td class="gt_row gt_right">9</td>
+<td class="gt_row gt_right">35</td>
+<td class="gt_row gt_right">0.9618644</td>
+<td class="gt_row gt_right">0.21341463</td>
+<td class="gt_row gt_right">1.468495</td>
+<td class="gt_row gt_right">0.7865854</td>
+<td class="gt_row gt_right">0.8664122</td>
+<td class="gt_row gt_right">0.9347826</td>
+<td class="gt_row gt_right">262</td>
+<td class="gt_row gt_right">0.6550</td>
+<td class="gt_row gt_right">0.5300000</td></tr>
+    <tr><td class="gt_row gt_right">0.4</td>
+<td class="gt_row gt_right">223</td>
+<td class="gt_row gt_right">138</td>
+<td class="gt_row gt_right">13</td>
+<td class="gt_row gt_right">26</td>
+<td class="gt_row gt_right">0.9449153</td>
+<td class="gt_row gt_right">0.15853659</td>
+<td class="gt_row gt_right">1.517936</td>
+<td class="gt_row gt_right">0.8414634</td>
+<td class="gt_row gt_right">0.8955823</td>
+<td class="gt_row gt_right">0.9139073</td>
+<td class="gt_row gt_right">249</td>
+<td class="gt_row gt_right">0.6225</td>
+<td class="gt_row gt_right">0.5141667</td></tr>
+    <tr><td class="gt_row gt_right">0.5</td>
+<td class="gt_row gt_right">221</td>
+<td class="gt_row gt_right">142</td>
+<td class="gt_row gt_right">15</td>
+<td class="gt_row gt_right">22</td>
+<td class="gt_row gt_right">0.9364407</td>
+<td class="gt_row gt_right">0.13414634</td>
+<td class="gt_row gt_right">1.541466</td>
+<td class="gt_row gt_right">0.8658537</td>
+<td class="gt_row gt_right">0.9094650</td>
+<td class="gt_row gt_right">0.9044586</td>
+<td class="gt_row gt_right">243</td>
+<td class="gt_row gt_right">0.6075</td>
+<td class="gt_row gt_right">0.4975000</td></tr>
+    <tr><td class="gt_row gt_right">0.6</td>
+<td class="gt_row gt_right">211</td>
+<td class="gt_row gt_right">147</td>
+<td class="gt_row gt_right">25</td>
+<td class="gt_row gt_right">17</td>
+<td class="gt_row gt_right">0.8940678</td>
+<td class="gt_row gt_right">0.10365854</td>
+<td class="gt_row gt_right">1.568540</td>
+<td class="gt_row gt_right">0.8963415</td>
+<td class="gt_row gt_right">0.9254386</td>
+<td class="gt_row gt_right">0.8546512</td>
+<td class="gt_row gt_right">228</td>
+<td class="gt_row gt_right">0.5700</td>
+<td class="gt_row gt_right">0.4637500</td></tr>
+    <tr><td class="gt_row gt_right">0.7</td>
+<td class="gt_row gt_right">203</td>
+<td class="gt_row gt_right">154</td>
+<td class="gt_row gt_right">33</td>
+<td class="gt_row gt_right">10</td>
+<td class="gt_row gt_right">0.8601695</td>
+<td class="gt_row gt_right">0.06097561</td>
+<td class="gt_row gt_right">1.615342</td>
+<td class="gt_row gt_right">0.9390244</td>
+<td class="gt_row gt_right">0.9530516</td>
+<td class="gt_row gt_right">0.8235294</td>
+<td class="gt_row gt_right">213</td>
+<td class="gt_row gt_right">0.5325</td>
+<td class="gt_row gt_right">0.4491667</td></tr>
+    <tr><td class="gt_row gt_right">0.8</td>
+<td class="gt_row gt_right">195</td>
+<td class="gt_row gt_right">158</td>
+<td class="gt_row gt_right">41</td>
+<td class="gt_row gt_right">6</td>
+<td class="gt_row gt_right">0.8262712</td>
+<td class="gt_row gt_right">0.03658537</td>
+<td class="gt_row gt_right">1.644321</td>
+<td class="gt_row gt_right">0.9634146</td>
+<td class="gt_row gt_right">0.9701493</td>
+<td class="gt_row gt_right">0.7939698</td>
+<td class="gt_row gt_right">201</td>
+<td class="gt_row gt_right">0.5025</td>
+<td class="gt_row gt_right">0.4275000</td></tr>
+    <tr><td class="gt_row gt_right">0.9</td>
+<td class="gt_row gt_right">170</td>
+<td class="gt_row gt_right">159</td>
+<td class="gt_row gt_right">66</td>
+<td class="gt_row gt_right">5</td>
+<td class="gt_row gt_right">0.7203390</td>
+<td class="gt_row gt_right">0.03048780</td>
+<td class="gt_row gt_right">1.646489</td>
+<td class="gt_row gt_right">0.9695122</td>
+<td class="gt_row gt_right">0.9714286</td>
+<td class="gt_row gt_right">0.7066667</td>
+<td class="gt_row gt_right">175</td>
+<td class="gt_row gt_right">0.4375</td>
+<td class="gt_row gt_right">0.3125000</td></tr>
+    <tr><td class="gt_row gt_right">1.0</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">164</td>
+<td class="gt_row gt_right">236</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0.0000000</td>
+<td class="gt_row gt_right">0.00000000</td>
+<td class="gt_row gt_right">NaN</td>
+<td class="gt_row gt_right">1.0000000</td>
+<td class="gt_row gt_right">NaN</td>
+<td class="gt_row gt_right">0.4100000</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0.0000</td>
+<td class="gt_row gt_right">NaN</td></tr>
+  </tbody>
+  
+  
+</table>
 </div>
-<h2 data-gt="" id="lets-style-the-performance-table-with-gt">Let’s style the performance table with {gt} <span class="emoji" data-emoji="package">📦</span></h2>
-<p>Now that we have a performance table we can stylize it.</p>
-<p>The philosophy behind the syntax in {gt} is similar to the s (TODO: add link grammer ggplot)</p>
-<p><strong>Where some of the values of Lift, PPV, NPV and Net Benefit are missing?</strong></p>
+</div>
+<h2 data-gt="" id="style-the-performance-table-with-gt">Style the performance table with {gt} <span class="emoji" data-emoji="package">📦</span></h2>
+<p>Now that we have a performance table we can stylize it: Tables should be accessible to the reader, some of the things that are useful to the analyst are not useful at all to the reader.</p>
+<p>The philosophy behind the syntax in {gt} (<em>grammar of tables)</em> is similar to the one behind {ggplot2} (<em>grammar of graphics)</em>, we are starting from a basic table and adding another layer of code each time.</p>
+<p><strong>Format Missing Values: <code>fmt_missing()</code></strong></p>
+<p>Since <code>NaN</code> is not very pleasing in tables, we can change it to empty string.</p>
+<p>But why some of the values of Lift, PPV, NPV and Net Benefit are missing?</p>
 <ul>
 <li><p>Lift and PPV are conditional on Positive Prediction, if there Probability Threshold is higher than all of the probabilities there are no Positive Predictions and nothing to condition on.</p></li>
 <li><p>NPV is conditional on Negative Prediction, if the Probability Threshold is lower than all of the probabilities there are no Negative Predictions and nothing to condition on.</p></li>
-<li><p>Net Benifit assumes the () is the exchange rate between bla bla, if the</p></li>
+<li><p>Net Benifit assumes that the odds of the Probability Threshold stands for exchange rate between TP and TN, when the Probability Threshold is 1 the cost of TN is infinite and Net Benfit is not defined.</p></li>
 </ul>
-<h4 id="format-missing-values">Format Missing Values</h4>
-<p>Since <code>NaN</code> is not very pleasing in tables, we can change it to empty string with <code>fmt_missing()</code></p>
+<p><strong>Format 2 decimals for each metric: <code>fmt_number()</code></strong></p>
+<p>For performance metric 2 decimals are probably more than enough.</p>
+<p><strong>Format values as a percentage and merge with counts: <code>cols_merge_n_pct()</code></strong></p>
+<p>There is no need for two different columns for percentage and counts of the predicted positives.</p>
+<p><strong>Relabel Columns: <code>cols_label()</code></strong></p>
+<p>It might differ from one user to another, but when I write columns names in a data frame I use <a href="https://twitter.com/allison_horst/status/1205702878544875521">snake_case</a>, and when I display column names in a table I use capital letters.</p>
+<p><strong>Align Columns: <code>cols_align()</code></strong></p>
+<p>There are different thoughts about alignment, but the most important thing is to be aware to it and ensure consistency.</p>
+<p><strong>Adding spanner column labels: <code>tab_spanner()</code></strong></p>
+<p>Tab spanner is a good way to separate different kinds of columns, performance metrics are derived from the confusion matrix therefore it make sense to set a different spanners.</p>
+<p><strong>Set different background color: <code>tab_options()</code></strong></p>
+<p>White is the default choice for background, but in my opinion it is overused.</p>
+<p><strong>Set title and subtitle: <code>tab_header()</code></strong></p>
+<p>Without a lot of effort the title can be styled with markdown syntax (* for <em>italics</em>, ** for <strong>bold</strong>).</p>
 <div class="layout-chunk" data-layout="l-body">
-<pre><code>$`_data`
-# A tibble: 11 x 14
-   threshold    TP    TN    FN    FP sensitivity    FPR   lift
-       &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
- 1       0     236     0     0   164       1     1        1   
- 2       0.1   234   102     2    62       0.992 0.378    1.34
- 3       0.2   230   116     6    48       0.975 0.293    1.40
- 4       0.3   227   129     9    35       0.962 0.213    1.47
- 5       0.4   223   138    13    26       0.945 0.159    1.52
- 6       0.5   221   142    15    22       0.936 0.134    1.54
- 7       0.6   211   147    25    17       0.894 0.104    1.57
- 8       0.7   203   154    33    10       0.860 0.0610   1.62
- 9       0.8   195   158    41     6       0.826 0.0366   1.64
-10       0.9   170   159    66     5       0.720 0.0305   1.65
-11       1       0   164   236     0       0     0      NaN   
-# ... with 6 more variables: specificity &lt;dbl&gt;, PPV &lt;dbl&gt;, NPV &lt;dbl&gt;,
-#   predicted_positives &lt;dbl&gt;, PPCR &lt;dbl&gt;, NB &lt;dbl&gt;
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>performance_table</span> <span class='op'>&lt;-</span> <span class='va'>performance_table</span> <span class='op'><a href='https://rdrr.io/pkg/gt/man/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://rdrr.io/pkg/gt/man/fmt_missing.html'>fmt_missing</a></span><span class='op'>(</span>
+      columns <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>lift</span>, <span class='va'>PPV</span>, <span class='va'>NPV</span>, <span class='va'>NB</span><span class='op'>)</span>,
+      missing_text <span class='op'>=</span> <span class='st'>""</span>
+    <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/gt/man/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://rdrr.io/pkg/gt/man/fmt_number.html'>fmt_number</a></span><span class='op'>(</span>columns <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>sensitivity</span>, <span class='va'>FPR</span>, <span class='va'>lift</span>, <span class='va'>specificity</span>, 
+                           <span class='va'>PPV</span>, <span class='va'>NPV</span>, <span class='va'>PPCR</span>, <span class='va'>NB</span><span class='op'>)</span>,
+               decimals <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/gt/man/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://rdrr.io/pkg/gt/man/fmt_percent.html'>fmt_percent</a></span><span class='op'>(</span>
+    columns <span class='op'>=</span> <span class='va'>PPCR</span>
+  <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/gt/man/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/gt/man/cols_merge_n_pct.html'>cols_merge_n_pct</a></span><span class='op'>(</span>
+    col_n <span class='op'>=</span> <span class='va'>predicted_positives</span>,
+    col_pct <span class='op'>=</span> <span class='va'>PPCR</span>
+  <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/gt/man/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://rdrr.io/pkg/gt/man/cols_label.html'>cols_label</a></span><span class='op'>(</span>
+      sensitivity <span class='op'>=</span> <span class='st'>"Sens"</span>,
+      lift <span class='op'>=</span> <span class='st'>"Lift"</span>,
+      specificity <span class='op'>=</span> <span class='st'>"Spec"</span>,
+      predicted_positives <span class='op'>=</span> <span class='st'>"Predicted Positives"</span>,
+      FPR <span class='op'>=</span> <span class='st'>"1 - Spec"</span>
+    <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/gt/man/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://rdrr.io/pkg/gt/man/cols_align.html'>cols_align</a></span><span class='op'>(</span>
+      align <span class='op'>=</span> <span class='st'>"left"</span>,
+      columns <span class='op'>=</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://tidyselect.r-lib.org/reference/everything.html'>everything</a></span><span class='op'>(</span><span class='op'>)</span>
+    <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/gt/man/pipe.html'>%&gt;%</a></span> 
+    <span class='fu'><a href='https://rdrr.io/pkg/gt/man/tab_spanner.html'>tab_spanner</a></span><span class='op'>(</span>
+      label <span class='op'>=</span> <span class='st'>"Confusion Matrix"</span>,
+      columns <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
+        <span class='va'>TP</span>, <span class='va'>FP</span>, <span class='va'>TN</span>, <span class='va'>FN</span><span class='op'>)</span>
+    <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/gt/man/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://rdrr.io/pkg/gt/man/tab_spanner.html'>tab_spanner</a></span><span class='op'>(</span>
+      label <span class='op'>=</span> <span class='st'>"Performance Metrics"</span>,
+      columns <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
+        <span class='va'>sensitivity</span>, <span class='va'>lift</span>, <span class='va'>specificity</span>, <span class='va'>FPR</span>,
+        <span class='va'>PPV</span>, <span class='va'>NPV</span>, <span class='va'>NB</span>
+      <span class='op'>)</span>
+    <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/gt/man/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://rdrr.io/pkg/gt/man/tab_options.html'>tab_options</a></span><span class='op'>(</span>
+      table.background.color <span class='op'>=</span> <span class='st'>"#FFFBF3"</span>
+    <span class='op'>)</span> <span class='op'><a href='https://rdrr.io/pkg/gt/man/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://rdrr.io/pkg/gt/man/tab_header.html'>tab_header</a></span><span class='op'>(</span>
+      title <span class='op'>=</span> <span class='fu'>gt</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/gt/man/md.html'>md</a></span><span class='op'>(</span><span class='st'>"**Performanc Metrics for Different Thresholds**"</span><span class='op'>)</span>,
+      subtitle <span class='op'>=</span> <span class='fu'>gt</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/gt/man/md.html'>md</a></span><span class='op'>(</span><span class='st'>"*Logistic Regression*"</span><span class='op'>)</span>
+    <span class='op'>)</span>
 
-$`_boxhead`
-# A tibble: 14 x 6
-   var          type  column_label column_align column_width hidden_px
-   &lt;chr&gt;        &lt;chr&gt; &lt;list&gt;       &lt;chr&gt;        &lt;list&gt;       &lt;list&gt;   
- 1 threshold    defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 2 TP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 3 TN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 4 FN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 5 FP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 6 sensitivity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 7 FPR          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 8 lift         defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 9 specificity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-10 PPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-11 NPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-12 predicted_p~ defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-13 PPCR         defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-14 NB           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-
-$`_stub_df`
-# A tibble: 11 x 5
-   rownum_i group_id rowname group_label built
-      &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;list&gt;      &lt;chr&gt;
- 1        1 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 2        2 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 3        3 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 4        4 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 5        5 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 6        6 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 7        7 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 8        8 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 9        9 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
-10       10 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
-11       11 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
-
-$`_row_groups`
-character(0)
-
-$`_heading`
-$`_heading`$title
-NULL
-
-$`_heading`$subtitle
-NULL
-
-
-$`_spanners`
-# A tibble: 0 x 5
-# ... with 5 variables: vars &lt;list&gt;, spanner_label &lt;list&gt;,
-#   spanner_id &lt;chr&gt;, gather &lt;lgl&gt;, built &lt;chr&gt;</code></pre>
+<span class='va'>performance_table</span>
+</code></pre>
 </div>
-<div class="layout-chunk" data-layout="l-body">
-<pre><code>$`_data`
-# A tibble: 11 x 14
-   threshold    TP    TN    FN    FP sensitivity    FPR   lift
-       &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
- 1       0     236     0     0   164       1     1        1   
- 2       0.1   234   102     2    62       0.992 0.378    1.34
- 3       0.2   230   116     6    48       0.975 0.293    1.40
- 4       0.3   227   129     9    35       0.962 0.213    1.47
- 5       0.4   223   138    13    26       0.945 0.159    1.52
- 6       0.5   221   142    15    22       0.936 0.134    1.54
- 7       0.6   211   147    25    17       0.894 0.104    1.57
- 8       0.7   203   154    33    10       0.860 0.0610   1.62
- 9       0.8   195   158    41     6       0.826 0.0366   1.64
-10       0.9   170   159    66     5       0.720 0.0305   1.65
-11       1       0   164   236     0       0     0      NaN   
-# ... with 6 more variables: specificity &lt;dbl&gt;, PPV &lt;dbl&gt;, NPV &lt;dbl&gt;,
-#   predicted_positives &lt;dbl&gt;, PPCR &lt;dbl&gt;, NB &lt;dbl&gt;
+<div id="vkjjrzcdou" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
 
-$`_boxhead`
-# A tibble: 14 x 6
-   var          type  column_label column_align column_width hidden_px
-   &lt;chr&gt;        &lt;chr&gt; &lt;list&gt;       &lt;chr&gt;        &lt;list&gt;       &lt;list&gt;   
- 1 threshold    defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 2 TP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 3 TN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 4 FN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 5 FP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 6 sensitivity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 7 FPR          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 8 lift         defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 9 specificity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-10 PPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-11 NPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-12 predicted_p~ defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-13 PPCR         defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-14 NB           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+#vkjjrzcdou .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFBF3;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
 
-$`_stub_df`
-# A tibble: 11 x 5
-   rownum_i group_id rowname group_label built
-      &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;list&gt;      &lt;chr&gt;
- 1        1 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 2        2 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 3        3 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 4        4 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 5        5 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 6        6 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 7        7 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 8        8 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 9        9 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
-10       10 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
-11       11 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+#vkjjrzcdou .gt_heading {
+  background-color: #FFFBF3;
+  text-align: center;
+  border-bottom-color: #FFFBF3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
 
-$`_row_groups`
-character(0)
+#vkjjrzcdou .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFBF3;
+  border-bottom-width: 0;
+}
 
-$`_heading`
-$`_heading`$title
-NULL
+#vkjjrzcdou .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  border-top-color: #FFFBF3;
+  border-top-width: 0;
+}
 
-$`_heading`$subtitle
-NULL
+#vkjjrzcdou .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
 
+#vkjjrzcdou .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
 
-$`_spanners`
-# A tibble: 0 x 5
-# ... with 5 variables: vars &lt;list&gt;, spanner_label &lt;list&gt;,
-#   spanner_id &lt;chr&gt;, gather &lt;lgl&gt;, built &lt;chr&gt;</code></pre>
+#vkjjrzcdou .gt_col_heading {
+  color: #333333;
+  background-color: #FFFBF3;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#vkjjrzcdou .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFBF3;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#vkjjrzcdou .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#vkjjrzcdou .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#vkjjrzcdou .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#vkjjrzcdou .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFBF3;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#vkjjrzcdou .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFBF3;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#vkjjrzcdou .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#vkjjrzcdou .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#vkjjrzcdou .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#vkjjrzcdou .gt_stub {
+  color: #333333;
+  background-color: #FFFBF3;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#vkjjrzcdou .gt_summary_row {
+  color: #333333;
+  background-color: #FFFBF3;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vkjjrzcdou .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#vkjjrzcdou .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFBF3;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vkjjrzcdou .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#vkjjrzcdou .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#vkjjrzcdou .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vkjjrzcdou .gt_footnotes {
+  color: #333333;
+  background-color: #FFFBF3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vkjjrzcdou .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#vkjjrzcdou .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFBF3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vkjjrzcdou .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#vkjjrzcdou .gt_left {
+  text-align: left;
+}
+
+#vkjjrzcdou .gt_center {
+  text-align: center;
+}
+
+#vkjjrzcdou .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#vkjjrzcdou .gt_font_normal {
+  font-weight: normal;
+}
+
+#vkjjrzcdou .gt_font_bold {
+  font-weight: bold;
+}
+
+#vkjjrzcdou .gt_font_italic {
+  font-style: italic;
+}
+
+#vkjjrzcdou .gt_super {
+  font-size: 65%;
+}
+
+#vkjjrzcdou .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="13" class="gt_heading gt_title gt_font_normal" style><strong>Performanc Metrics for Different Thresholds</strong></th>
+    </tr>
+    <tr>
+      <th colspan="13" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style><em>Logistic Regression</em></th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1">threshold</th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="4">
+        <span class="gt_column_spanner">Confusion Matrix</span>
+      </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="7">
+        <span class="gt_column_spanner">Performance Metrics</span>
+      </th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1">Predicted Positives</th>
+    </tr>
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">TP</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">FP</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">TN</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">FN</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Sens</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Lift</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Spec</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">1 - Spec</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">PPV</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">NPV</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">NB</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">0.0</td>
+<td class="gt_row gt_left">236</td>
+<td class="gt_row gt_left">164</td>
+<td class="gt_row gt_left">0</td>
+<td class="gt_row gt_left">0</td>
+<td class="gt_row gt_left">1.00</td>
+<td class="gt_row gt_left">1.00</td>
+<td class="gt_row gt_left">0.00</td>
+<td class="gt_row gt_left">1.00</td>
+<td class="gt_row gt_left">0.59</td>
+<td class="gt_row gt_left"></td>
+<td class="gt_row gt_left">0.59</td>
+<td class="gt_row gt_left">400 (100.00&percnt;)</td></tr>
+    <tr><td class="gt_row gt_left">0.1</td>
+<td class="gt_row gt_left">234</td>
+<td class="gt_row gt_left">62</td>
+<td class="gt_row gt_left">102</td>
+<td class="gt_row gt_left">2</td>
+<td class="gt_row gt_left">0.99</td>
+<td class="gt_row gt_left">1.34</td>
+<td class="gt_row gt_left">0.62</td>
+<td class="gt_row gt_left">0.38</td>
+<td class="gt_row gt_left">0.79</td>
+<td class="gt_row gt_left">0.98</td>
+<td class="gt_row gt_left">0.57</td>
+<td class="gt_row gt_left">296 (74.00&percnt;)</td></tr>
+    <tr><td class="gt_row gt_left">0.2</td>
+<td class="gt_row gt_left">230</td>
+<td class="gt_row gt_left">48</td>
+<td class="gt_row gt_left">116</td>
+<td class="gt_row gt_left">6</td>
+<td class="gt_row gt_left">0.97</td>
+<td class="gt_row gt_left">1.40</td>
+<td class="gt_row gt_left">0.71</td>
+<td class="gt_row gt_left">0.29</td>
+<td class="gt_row gt_left">0.83</td>
+<td class="gt_row gt_left">0.95</td>
+<td class="gt_row gt_left">0.54</td>
+<td class="gt_row gt_left">278 (69.50&percnt;)</td></tr>
+    <tr><td class="gt_row gt_left">0.3</td>
+<td class="gt_row gt_left">227</td>
+<td class="gt_row gt_left">35</td>
+<td class="gt_row gt_left">129</td>
+<td class="gt_row gt_left">9</td>
+<td class="gt_row gt_left">0.96</td>
+<td class="gt_row gt_left">1.47</td>
+<td class="gt_row gt_left">0.79</td>
+<td class="gt_row gt_left">0.21</td>
+<td class="gt_row gt_left">0.87</td>
+<td class="gt_row gt_left">0.93</td>
+<td class="gt_row gt_left">0.53</td>
+<td class="gt_row gt_left">262 (65.50&percnt;)</td></tr>
+    <tr><td class="gt_row gt_left">0.4</td>
+<td class="gt_row gt_left">223</td>
+<td class="gt_row gt_left">26</td>
+<td class="gt_row gt_left">138</td>
+<td class="gt_row gt_left">13</td>
+<td class="gt_row gt_left">0.94</td>
+<td class="gt_row gt_left">1.52</td>
+<td class="gt_row gt_left">0.84</td>
+<td class="gt_row gt_left">0.16</td>
+<td class="gt_row gt_left">0.90</td>
+<td class="gt_row gt_left">0.91</td>
+<td class="gt_row gt_left">0.51</td>
+<td class="gt_row gt_left">249 (62.25&percnt;)</td></tr>
+    <tr><td class="gt_row gt_left">0.5</td>
+<td class="gt_row gt_left">221</td>
+<td class="gt_row gt_left">22</td>
+<td class="gt_row gt_left">142</td>
+<td class="gt_row gt_left">15</td>
+<td class="gt_row gt_left">0.94</td>
+<td class="gt_row gt_left">1.54</td>
+<td class="gt_row gt_left">0.87</td>
+<td class="gt_row gt_left">0.13</td>
+<td class="gt_row gt_left">0.91</td>
+<td class="gt_row gt_left">0.90</td>
+<td class="gt_row gt_left">0.50</td>
+<td class="gt_row gt_left">243 (60.75&percnt;)</td></tr>
+    <tr><td class="gt_row gt_left">0.6</td>
+<td class="gt_row gt_left">211</td>
+<td class="gt_row gt_left">17</td>
+<td class="gt_row gt_left">147</td>
+<td class="gt_row gt_left">25</td>
+<td class="gt_row gt_left">0.89</td>
+<td class="gt_row gt_left">1.57</td>
+<td class="gt_row gt_left">0.90</td>
+<td class="gt_row gt_left">0.10</td>
+<td class="gt_row gt_left">0.93</td>
+<td class="gt_row gt_left">0.85</td>
+<td class="gt_row gt_left">0.46</td>
+<td class="gt_row gt_left">228 (57.00&percnt;)</td></tr>
+    <tr><td class="gt_row gt_left">0.7</td>
+<td class="gt_row gt_left">203</td>
+<td class="gt_row gt_left">10</td>
+<td class="gt_row gt_left">154</td>
+<td class="gt_row gt_left">33</td>
+<td class="gt_row gt_left">0.86</td>
+<td class="gt_row gt_left">1.62</td>
+<td class="gt_row gt_left">0.94</td>
+<td class="gt_row gt_left">0.06</td>
+<td class="gt_row gt_left">0.95</td>
+<td class="gt_row gt_left">0.82</td>
+<td class="gt_row gt_left">0.45</td>
+<td class="gt_row gt_left">213 (53.25&percnt;)</td></tr>
+    <tr><td class="gt_row gt_left">0.8</td>
+<td class="gt_row gt_left">195</td>
+<td class="gt_row gt_left">6</td>
+<td class="gt_row gt_left">158</td>
+<td class="gt_row gt_left">41</td>
+<td class="gt_row gt_left">0.83</td>
+<td class="gt_row gt_left">1.64</td>
+<td class="gt_row gt_left">0.96</td>
+<td class="gt_row gt_left">0.04</td>
+<td class="gt_row gt_left">0.97</td>
+<td class="gt_row gt_left">0.79</td>
+<td class="gt_row gt_left">0.43</td>
+<td class="gt_row gt_left">201 (50.25&percnt;)</td></tr>
+    <tr><td class="gt_row gt_left">0.9</td>
+<td class="gt_row gt_left">170</td>
+<td class="gt_row gt_left">5</td>
+<td class="gt_row gt_left">159</td>
+<td class="gt_row gt_left">66</td>
+<td class="gt_row gt_left">0.72</td>
+<td class="gt_row gt_left">1.65</td>
+<td class="gt_row gt_left">0.97</td>
+<td class="gt_row gt_left">0.03</td>
+<td class="gt_row gt_left">0.97</td>
+<td class="gt_row gt_left">0.71</td>
+<td class="gt_row gt_left">0.31</td>
+<td class="gt_row gt_left">175 (43.75&percnt;)</td></tr>
+    <tr><td class="gt_row gt_left">1.0</td>
+<td class="gt_row gt_left">0</td>
+<td class="gt_row gt_left">0</td>
+<td class="gt_row gt_left">164</td>
+<td class="gt_row gt_left">236</td>
+<td class="gt_row gt_left">0.00</td>
+<td class="gt_row gt_left"></td>
+<td class="gt_row gt_left">1.00</td>
+<td class="gt_row gt_left">0.00</td>
+<td class="gt_row gt_left"></td>
+<td class="gt_row gt_left">0.41</td>
+<td class="gt_row gt_left"></td>
+<td class="gt_row gt_left">0</td></tr>
+  </tbody>
+  
+  
+</table>
 </div>
-<h4 id="format-values-as-a-percentage-and-merge-with-counts">Format values as a percentage and merge with counts</h4>
-<div class="layout-chunk" data-layout="l-body">
-<pre><code>$`_data`
-# A tibble: 11 x 14
-   threshold    TP    TN    FN    FP sensitivity    FPR   lift
-       &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
- 1       0     236     0     0   164       1     1        1   
- 2       0.1   234   102     2    62       0.992 0.378    1.34
- 3       0.2   230   116     6    48       0.975 0.293    1.40
- 4       0.3   227   129     9    35       0.962 0.213    1.47
- 5       0.4   223   138    13    26       0.945 0.159    1.52
- 6       0.5   221   142    15    22       0.936 0.134    1.54
- 7       0.6   211   147    25    17       0.894 0.104    1.57
- 8       0.7   203   154    33    10       0.860 0.0610   1.62
- 9       0.8   195   158    41     6       0.826 0.0366   1.64
-10       0.9   170   159    66     5       0.720 0.0305   1.65
-11       1       0   164   236     0       0     0      NaN   
-# ... with 6 more variables: specificity &lt;dbl&gt;, PPV &lt;dbl&gt;, NPV &lt;dbl&gt;,
-#   predicted_positives &lt;dbl&gt;, PPCR &lt;dbl&gt;, NB &lt;dbl&gt;
-
-$`_boxhead`
-# A tibble: 14 x 6
-   var          type  column_label column_align column_width hidden_px
-   &lt;chr&gt;        &lt;chr&gt; &lt;list&gt;       &lt;chr&gt;        &lt;list&gt;       &lt;list&gt;   
- 1 threshold    defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 2 TP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 3 TN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 4 FN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 5 FP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 6 sensitivity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 7 FPR          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 8 lift         defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 9 specificity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-10 PPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-11 NPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-12 predicted_p~ defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-13 PPCR         hidd~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-14 NB           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-
-$`_stub_df`
-# A tibble: 11 x 5
-   rownum_i group_id rowname group_label built
-      &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;list&gt;      &lt;chr&gt;
- 1        1 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 2        2 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 3        3 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 4        4 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 5        5 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 6        6 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 7        7 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 8        8 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 9        9 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
-10       10 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
-11       11 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
-
-$`_row_groups`
-character(0)
-
-$`_heading`
-$`_heading`$title
-NULL
-
-$`_heading`$subtitle
-NULL
-
-
-$`_spanners`
-# A tibble: 0 x 5
-# ... with 5 variables: vars &lt;list&gt;, spanner_label &lt;list&gt;,
-#   spanner_id &lt;chr&gt;, gather &lt;lgl&gt;, built &lt;chr&gt;</code></pre>
-</div>
-<h4 id="relabel-columns">Relabel Columns</h4>
-<div class="layout-chunk" data-layout="l-body">
-<pre><code>$`_data`
-# A tibble: 11 x 14
-   threshold    TP    TN    FN    FP sensitivity    FPR   lift
-       &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
- 1       0     236     0     0   164       1     1        1   
- 2       0.1   234   102     2    62       0.992 0.378    1.34
- 3       0.2   230   116     6    48       0.975 0.293    1.40
- 4       0.3   227   129     9    35       0.962 0.213    1.47
- 5       0.4   223   138    13    26       0.945 0.159    1.52
- 6       0.5   221   142    15    22       0.936 0.134    1.54
- 7       0.6   211   147    25    17       0.894 0.104    1.57
- 8       0.7   203   154    33    10       0.860 0.0610   1.62
- 9       0.8   195   158    41     6       0.826 0.0366   1.64
-10       0.9   170   159    66     5       0.720 0.0305   1.65
-11       1       0   164   236     0       0     0      NaN   
-# ... with 6 more variables: specificity &lt;dbl&gt;, PPV &lt;dbl&gt;, NPV &lt;dbl&gt;,
-#   predicted_positives &lt;dbl&gt;, PPCR &lt;dbl&gt;, NB &lt;dbl&gt;
-
-$`_boxhead`
-# A tibble: 14 x 6
-   var          type  column_label column_align column_width hidden_px
-   &lt;chr&gt;        &lt;chr&gt; &lt;list&gt;       &lt;chr&gt;        &lt;list&gt;       &lt;list&gt;   
- 1 threshold    defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 2 TP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 3 TN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 4 FN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 5 FP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 6 sensitivity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 7 FPR          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 8 lift         defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 9 specificity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-10 PPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-11 NPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-12 predicted_p~ defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-13 PPCR         hidd~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-14 NB           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-
-$`_stub_df`
-# A tibble: 11 x 5
-   rownum_i group_id rowname group_label built
-      &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;list&gt;      &lt;chr&gt;
- 1        1 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 2        2 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 3        3 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 4        4 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 5        5 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 6        6 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 7        7 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 8        8 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 9        9 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
-10       10 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
-11       11 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
-
-$`_row_groups`
-character(0)
-
-$`_heading`
-$`_heading`$title
-NULL
-
-$`_heading`$subtitle
-NULL
-
-
-$`_spanners`
-# A tibble: 0 x 5
-# ... with 5 variables: vars &lt;list&gt;, spanner_label &lt;list&gt;,
-#   spanner_id &lt;chr&gt;, gather &lt;lgl&gt;, built &lt;chr&gt;</code></pre>
-</div>
-<h4 id="adding-spanner-column-labels">Adding spanner column labels</h4>
-<div class="layout-chunk" data-layout="l-body">
-<pre><code>$`_data`
-# A tibble: 11 x 14
-   threshold    TP    TN    FN    FP sensitivity    FPR   lift
-       &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
- 1       0     236     0     0   164       1     1        1   
- 2       0.1   234   102     2    62       0.992 0.378    1.34
- 3       0.2   230   116     6    48       0.975 0.293    1.40
- 4       0.3   227   129     9    35       0.962 0.213    1.47
- 5       0.4   223   138    13    26       0.945 0.159    1.52
- 6       0.5   221   142    15    22       0.936 0.134    1.54
- 7       0.6   211   147    25    17       0.894 0.104    1.57
- 8       0.7   203   154    33    10       0.860 0.0610   1.62
- 9       0.8   195   158    41     6       0.826 0.0366   1.64
-10       0.9   170   159    66     5       0.720 0.0305   1.65
-11       1       0   164   236     0       0     0      NaN   
-# ... with 6 more variables: specificity &lt;dbl&gt;, PPV &lt;dbl&gt;, NPV &lt;dbl&gt;,
-#   predicted_positives &lt;dbl&gt;, PPCR &lt;dbl&gt;, NB &lt;dbl&gt;
-
-$`_boxhead`
-# A tibble: 14 x 6
-   var          type  column_label column_align column_width hidden_px
-   &lt;chr&gt;        &lt;chr&gt; &lt;list&gt;       &lt;chr&gt;        &lt;list&gt;       &lt;list&gt;   
- 1 threshold    defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 2 TP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 3 FP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 4 TN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 5 FN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 6 sensitivity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 7 lift         defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 8 specificity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
- 9 FPR          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-10 PPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-11 NPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-12 NB           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-13 predicted_p~ defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-14 PPCR         hidd~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
-
-$`_stub_df`
-# A tibble: 11 x 5
-   rownum_i group_id rowname group_label built
-      &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;list&gt;      &lt;chr&gt;
- 1        1 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 2        2 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 3        3 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 4        4 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 5        5 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 6        6 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 7        7 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 8        8 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
- 9        9 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
-10       10 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
-11       11 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
-
-$`_row_groups`
-character(0)
-
-$`_heading`
-$`_heading`$title
-NULL
-
-$`_heading`$subtitle
-NULL
-
-
-$`_spanners`
-# A tibble: 2 x 5
-  vars      spanner_label spanner_id          gather built
-  &lt;list&gt;    &lt;list&gt;        &lt;chr&gt;               &lt;lgl&gt;  &lt;chr&gt;
-1 &lt;chr [4]&gt; &lt;chr [1]&gt;     Confusion Matrix    TRUE   &lt;NA&gt; 
-2 &lt;chr [7]&gt; &lt;chr [1]&gt;     Performance Metrics TRUE   &lt;NA&gt; </code></pre>
 </div>
 <h2 id="compare-models-️">Compare Models <span class="emoji" data-emoji="balance_scale">⚖️</span></h2>
-<p>So far we examined the performance of a <strong>Logistic Regression <span class="emoji" data-emoji="twisted_rightwards_arrows">🔀</span></strong> for our population.</p>
+<p>So far we examined the performance of a <strong>Logistic Regression <span class="emoji" data-emoji="twisted_rightwards_arrows">🔀</span></strong> for our population.<br />
+We will discover performance</p>
 <h3 id="tree-model">Tree Model <span class="emoji" data-emoji="evergreen_tree">🌲</span></h3>
 <p>Tree Models are extremely popular in Machine Learning, generally they are all based on Decision Trees. These kind of models are considered to be “Black Boxes” because you don’t really know (or even care) what they do, but you know that they are doing it well. How do you know that? You’ve guessed it - Performance Metrics!</p>
 <h3 id="random-guess">Random Guess <span class="emoji" data-emoji="see_no_evil">🙈</span></h3>
@@ -4283,11 +4964,7 @@ $`_spanners`
 <p>There are many reasons to explore results for different populations: The most common in Machine Learning models is when the analyst want to avoid overfitting the model. Logistic Regression will probably will not overfit the data anyway, but decision-tree models might.</p>
 <p>Another possible case is that when you want to assure Fairness in medicine. You’ll might have some great results on specific populations that are .</p>
 <p>Luckily, we saved some data aside exactly that.</p>
-<h2 id="expandable-rows-for-confusion-matrix-️">Expandable rows for Confusion Matrix <span class="emoji" data-emoji="arrow_up_down">↕️</span></h2>
-<h2 id="section"></h2>
-<p>One Line for each Strata <span class="emoji" data-emoji="left_right_arrow">↔︎️</span></p>
-<p>So there you have it, a Performance Table that will help you see the</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

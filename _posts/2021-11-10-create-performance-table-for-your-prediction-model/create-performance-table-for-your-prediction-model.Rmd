@@ -243,10 +243,14 @@ $$ A variation of Specificity is called the False Positive Rate (FPR) and it is 
     \text{NPV} = \frac{\text{TN}}{\text{TN + FN}} = \frac{\text{TN}}{\text{Predicted Negatives}} = \text{Prob( Real Negative | Predicted Negative )}
     $$
 
--   **Lift** is the ratio between **PPV** and the Prevalence, or in other words - how much you model is better than a random guess?
+-   **Prevalence** is *not* a performance metric, but it is a key concept in order to understand how much the data is balanced. It is in fact nothing more but the fraction of positive observations from the whole population and therefore it is constant regardless the probability threshold.
+
+    $${\text{Prevalence}} = \frac{\text{TP + FN}}{\text{TP + FP + TN + FN}}$$
+
+-   **Lift** is the ratio between **PPV** and the **Prevalence**, or in other words - how much you model is better than a random guess?
 
     $$
-    \text{Lift} = \frac{\text{PPV}}{\text{Prevalence}} = \frac{\cfrac{\text{TP}}{\text{TP + FP}}}{\cfrac{\text{TP + FP}}{\text{TP + FP + TN + FN}}} 
+    \text{Lift} = \frac{\text{PPV}}{\text{Prevalence}} = \frac{\cfrac{\text{TP}}{\text{TP + FP}}}{\cfrac{\text{TP + FN}}{\text{TP + FP + TN + FN}}} 
     $$
 
 -   **Net-Benifit** is (by my view) an underused metric. I think it's a powerful way to derive Utility in a generic way. There is an assumption that says that your probability threshold in fact includes the exchange right between False Positives (FP) and False Negatives (FN). TODO: add formula and add reference.
@@ -276,30 +280,57 @@ performance_table <- performance_data %>%
     ) %>% 
   gt()
   
-performance_table %>% 
-  head()
+performance_table 
 
 ```
 
-## Let's style the performance table with {gt} :package:  {gt=""}
+## Style the performance table with {gt} :package: {gt=""}
 
-Now that we have a performance table we can stylize it.
+Now that we have a performance table we can stylize it: Tables should be accessible to the reader, some of the things that are useful to the analyst are not useful at all to the reader.
 
-The philosophy behind the syntax in {gt} is similar to the s (TODO: add link grammer ggplot)
+The philosophy behind the syntax in {gt} (*grammar of tables)* is similar to the one behind {ggplot2} (*grammar of graphics)*, we are starting from a basic table and adding another layer of code each time.
 
-**Where some of the values of Lift, PPV, NPV and Net Benefit are missing?**
+**Format Missing Values: `fmt_missing()`**
+
+Since `NaN` is not very pleasing in tables, we can change it to empty string.
+
+But why some of the values of Lift, PPV, NPV and Net Benefit are missing?
 
 -   Lift and PPV are conditional on Positive Prediction, if there Probability Threshold is higher than all of the probabilities there are no Positive Predictions and nothing to condition on.
 
 -   NPV is conditional on Negative Prediction, if the Probability Threshold is lower than all of the probabilities there are no Negative Predictions and nothing to condition on.
 
--   Net Benifit assumes the () is the exchange rate between bla bla, if the
+-   Net Benifit assumes that the odds of the Probability Threshold stands for exchange rate between TP and TN, when the Probability Threshold is 1 the cost of TN is infinite and Net Benfit is not defined.
 
-#### Format Missing Values
+**Format 2 decimals for each metric: `fmt_number()`**
 
-Since `NaN` is not very pleasing in tables, we can change it to empty string with `fmt_missing()`
+For performance metric 2 decimals are probably more than enough.
 
-```{r}
+**Format values as a percentage and merge with counts: `cols_merge_n_pct()`**
+
+There is no need for two different columns for percentage and counts of the predicted positives.
+
+**Relabel Columns: `cols_label()`**
+
+It might differ from one user to another, but when I write columns names in a data frame I use [snake_case](https://twitter.com/allison_horst/status/1205702878544875521), and when I display column names in a table I use capital letters.
+
+**Align Columns: `cols_align()`**
+
+There are different thoughts about alignment, but the most important thing is to be aware to it and ensure consistency.
+
+**Adding spanner column labels: `tab_spanner()`**
+
+Tab spanner is a good way to separate different kinds of columns, performance metrics are derived from the confusion matrix therefore it make sense to set a different spanners.
+
+**Set different background color: `tab_options()`**
+
+White is the default choice for background, but in my opinion it is overused.
+
+**Set title and subtitle: `tab_header()`**
+
+Without a lot of effort the title can be styled with markdown syntax (\* for *italics*, \*\* for **bold**).
+
+```{r echo=TRUE}
 
 performance_table <- performance_table %>%
     fmt_missing(
@@ -316,54 +347,17 @@ performance_table <- performance_table %>%
     col_n = predicted_positives,
     col_pct = PPCR
   ) %>%
-    gt::cols_label(
+    cols_label(
       sensitivity = "Sens",
       lift = "Lift",
       specificity = "Spec",
       predicted_positives = "Predicted Positives",
-      FPR = "1 - specificity"
-    )
-
- %>% 
-  head()
-```
-
-```{r}
-
-performance_table <- performance_table 
-
-performance_table %>% 
-  head()
-
-
-```
-
-#### Format values as a percentage and merge with counts
-
-```{r}
-performance_table <- performance_table
-
-performance_table %>% 
-  head()
-
-```
-
-#### Relabel Columns
-
-```{r}
-
-performance_table <- performance_table 
-
-performance_table %>% 
-  head()
-
-```
-
-#### Adding spanner column labels
-
-```{r}
-
- performance_table <- performance_table %>%
+      FPR = "1 - Spec"
+    ) %>%
+    cols_align(
+      align = "left",
+      columns = dplyr::everything()
+    ) %>% 
     tab_spanner(
       label = "Confusion Matrix",
       columns = c(
@@ -375,28 +369,37 @@ performance_table %>%
         sensitivity, lift, specificity, FPR,
         PPV, NPV, NB
       )
+    ) %>%
+    tab_options(
+      table.background.color = "#FFFBF3"
+    ) %>%
+    tab_header(
+      title = gt::md("**Performanc Metrics for Different Thresholds**"),
+      subtitle = gt::md("*Logistic Regression*")
     )
 
- performance_table %>% 
-  head()
-
+performance_table
 ```
 
 ## Compare Models :balance_scale:
 
-So far we examined the performance of a **Logistic Regression :twisted_rightwards_arrows:** for our population.
+So far we examined the performance of a **Logistic Regression :twisted_rightwards_arrows:** for our population. We will explore the performance of two additional models:
 
 ### Tree Model :evergreen_tree:
 
-Tree Models are extremely popular in Machine Learning, generally they are all based on Decision Trees. These kind of models are considered to be "Black Boxes" because you don't really know (or even care) what they do, but you know that they are doing it well. How do you know that? You've guessed it - Performance Metrics!
+Tree Models are extremely popular in Machine Learning, they are considered to be "Black Boxes" because as a user you don't really know (or even care) what they do, but you know that they are doing it well in terms of accuracy.
+
+```{r}
+
+```
 
 ### Random Guess :see_no_evil:
 
-Maybe you are familiar with Emile Borel quote in his book ()
+Emile Borel once claimed:
 
 > If an army of monkeys were strumming on typewriters they might write all the books in the British Museum.
 
-It doesn't mean that you want a monkey to make a prediction, but for education purposes we will give him (or for the `rbinom()` function) a chance to compete with our man-made model. In order to be fair we will tell the monkey the prevalence of the population and set it as the *p* parameter in the binomial distribution.
+We don't have an army of monkeys, but for education purposes we will give one monkey to use the `rbinom()` function. In order to be fair we will tell the monkey the prevalence of the population and set it as the *p* parameter in the binomial distribution.
 
 ## Add Colors to Title and Subtitle :art:
 
@@ -409,11 +412,3 @@ There are many reasons to explore results for different populations: The most co
 Another possible case is that when you want to assure Fairness in medicine. You'll might have some great results on specific populations that are .
 
 Luckily, we saved some data aside exactly that.
-
-## Expandable rows for Confusion Matrix :arrow_up_down:
-
-## 
-
-One Line for each Strata :left_right_arrow:
-
-So there you have it, a Performance Table that will help you see the
