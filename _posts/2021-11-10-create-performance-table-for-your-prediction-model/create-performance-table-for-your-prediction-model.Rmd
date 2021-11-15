@@ -19,15 +19,25 @@ library(tidyverse)
 library(ISLR)
 library(gt)
 library(rsample)
+library(glue)
 ```
 
 In the upcoming {rtichoke} Package there is a function that is dedicated for creation of a performance table from a combination of predictions and outcomes:
 
 `rtichoke::create_performance_table()`.
 
+## Motivation
+
 I had several motivations for writing this post:
 
--   Introducing some of `gt` package functions.
+### :bulb:Introduce some theoretical insights:
+
+There are a lot of great resources on data science, statistics and performance metrics online - but I think that many of the insightful discussions are not so easy to find. In this tutorial I'll try to mention some of the related key concepts without going into details, in order for the reader to understand how these concepts take place in the big picture. TODO: rephrase.
+
+### :package: Introducing some of {gt} capabilities
+
+Now that our performance data is ready, we can render a table with the {gt} package.\
+There are many great packages for table creation available for r, but I think that {gt} is the most convenient one because I'm so used to the "grammer of graphics" from {ggplot2}. {gt} works in a similar way, you start from basic table and you can add all kinds of stuff along the way. If you are a {tidyverse} user {gt} should be very convenient to you two!\
 
 --In the following post I'll show the different stages . -- TODO: add motivation for the post
 
@@ -39,10 +49,10 @@ A basic problem in delivering performance metrics for predictions of binary outc
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 
-performance_data <- tibble("Probability" = c(0.21, 0.45, 0.13, 0.02, 0.34),
-       "Outcome" =  c(0, 1, 0, 1, 0)) 
+predictions_and_outcomes <- tibble(probs = c(0.21, 0.45, 0.13, 0.02, 0.34),
+       real =  c(0, 1, 0, 1, 0)) 
 
-performance_data %>% 
+predictions_and_outcomes %>% 
   gt()
 
 ```
@@ -53,10 +63,10 @@ Let's say that we chose a probability threshold of 0.15. In that case when the e
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 
-performance_data <- performance_data %>% 
-  mutate(`Binary Prediction` = as.numeric(Probability > 0.15))
+predictions_and_outcomes <- predictions_and_outcomes %>% 
+  mutate(binary_prediction = as.numeric(probs > 0.15))
 
-performance_data %>% 
+predictions_and_outcomes %>% 
   gt()
 
 ```
@@ -119,10 +129,10 @@ tribble(
 
 predictions_and_outcomes <- predictions_and_outcomes %>% 
   mutate("Confusion Matrix" = case_when(
-    Outcome == 1 & `Binary Prediction` == 1 ~ "TP",
-    Outcome == 0 & `Binary Prediction` == 0 ~ "TN",
-    Outcome == 1 & `Binary Prediction` == 0 ~ "FN",
-    Outcome == 0 & `Binary Prediction` == 1 ~ "FP"
+    real == 1 & binary_prediction == 1 ~ "TP",
+    real == 0 & binary_prediction == 0 ~ "TN",
+    real == 1 & binary_prediction == 0 ~ "FN",
+    real == 0 & binary_prediction == 1 ~ "FP"
   ))
 
 predictions_and_outcomes %>% 
@@ -176,30 +186,42 @@ predictions_and_outcomes %>%
 
 TODO: maybe a better code? PURRR?
 
-Finally, we are ready to build our Performance Data: For each Probability Threshold we will calculate the confusion matrix:
+We are ready to build our Performance Data, For each Probability Threshold we will calculate the confusion matrix:
 
 ```{r}
+
+N <- nrow(predictions_and_outcomes)
+real_positives <- sum(predictions_and_outcomes$real)
+real_negatives <- N - real_positives
+prevalence <- real_positives / N
+
 performance_data <- tibble(
   threshold = seq(0, 1, by = 0.1)
 ) %>% 
   mutate(
     TP = lapply(threshold, function(x) sum(predictions_and_outcomes$probs[predictions_and_outcomes$real == 1] > x)) %>%
         unlist(),
-    TN = lapply(threshold, function(x) sum(probs[real == 0] <= x)) %>%
+    TN = lapply(threshold, function(x) sum(predictions_and_outcomes$probs[predictions_and_outcomes$real == 0] <= x)) %>%
       unlist(),
-    FP = sum(predictions_and_outcomes$real) - TP,
-    FN = length(predictions_and_outcomes$real) - sum(predictions_and_outcomes$real) - TN
+    FN = real_positives - TP,
+    FP = real_negatives - TN
   )
 
 performance_data %>% 
-  head() %>% 
+  head() %>%
   gt()
 
 ```
 
+**Stratified performance by Probability Threshold or by Predicted Positives Condition Rate?**
+
+Sometimes you have a good reason to decide on a specific Probability Threshold, but sometimes you have some resource in scarce. Let's say that you have a specific constant amount of medicine that you can't give to everyone, but you want to identify the populations that are at the most risk.
+
+In that case you will not care much about the specific threshold, you would rather to see performance by The Predicted Positive Condition Rate (PPCR), which is the fraction of Predicted Positives if you were to pick them by their highest probability to have an event.
+
 ### Add Performance Metrics :straight_ruler:
 
-Now that we have a confusion matrix for each Probability Threshold / PPCR we can calculate the performance metrics. We will use common performance metrics that are used:
+Now that we have a confusion matrix for each Probability Threshold we can calculate some common performance metrics.
 
 -   **Sensitivity** and **Specificity** are extremely popular, but you should notice that in terms of prediction they are [conditional on the future.](https://www.fharrell.com/post/backwards-probs/)
 
@@ -208,26 +230,26 @@ $$
 $$
 
 $$
-Specificity = \frac{TN}{TN + FP} = \frac{TN}{RealNegatives} = Prob(PredictedPositives|RealPositive)
+\text{Specificity} = \frac{\text{TN}}{\text{TN + FP}} = \frac{\text{TN}}{\text{Real Negatives}} = \text{Prob( Predicted Positive | Real Positive )}
 $$ A variation of Specificity is called the False Positive Rate (FPR) and it is nothing more but \$\$1 - Specificity\$\$. It's is used in the ROC curve, but honestly I don't think that it's very useful. The thing that you do want to remember is that unlike Sensitivity and Specificity you want FPR to be as small as possible.
 
 -   **PPV** and **NPV** might be more suitable for prediction model because they are conditional on your predictions (and you can decide *now* how much observations you want to predict as positives):
 
     $$
-    PPV = \frac{TP}{TP + FP} = \frac{TP}{PredictedPositives} = Prob(RealPositive|PredictedPositive)
+    \text{PPV} = \frac{\text{TP}}{\text{TP + FP}} = \frac{\text{TP}}{\text{Predicted Positives}} = \text{Prob( Real Positive | Predicted Positive )}
     $$
 
     $$
-    NPV = \frac{TN}{TN + FN} = \frac{TN}{PredictedNegatives} = Prob(RealNegative|PredictedNegative)
+    \text{NPV} = \frac{\text{TN}}{\text{TN + FN}} = \frac{\text{TN}}{\text{Predicted Negatives}} = \text{Prob( Real Negative | Predicted Negative )}
     $$
 
 -   **Lift** is the ratio between **PPV** and the Prevalence, or in other words - how much you model is better than a random guess?
 
     $$
-    Lift = \frac{PPV}{Prevalence} = \frac{\cfrac{TP}{TP + FP}}{\cfrac{TP + FP}{TP + FP + TN + FN}} 
+    \text{Lift} = \frac{\text{PPV}}{\text{Prevalence}} = \frac{\cfrac{\text{TP}}{\text{TP + FP}}}{\cfrac{\text{TP + FP}}{\text{TP + FP + TN + FN}}} 
     $$
 
--   **Net-Benifit** is (by my view) an underused metric. I think it's a powerful way to derive Utility in a generic way. There is an assumption that says that your probability threshold in fact includes the exchange right between False Positives (FP) and False Negatives (FN).
+-   **Net-Benifit** is (by my view) an underused metric. I think it's a powerful way to derive Utility in a generic way. There is an assumption that says that your probability threshold in fact includes the exchange right between False Positives (FP) and False Negatives (FN). TODO: add formula and add reference.
 
     \
     :warning: **Warning: You don't want to use Net Benefit based on Predicted Positives Condition Rate!** **If you are using Net Benefit you must declare the explicit Probability Threshold, because it is part of the components of the metric!**\
@@ -238,24 +260,131 @@ $$ A variation of Specificity is called the False Positive Rate (FPR) and it is 
 
     Any way I recommend on reading more about this performance metric.
 
-**by Probability Threshold or by Predicted Positives Condition Rate?**
+```{r}
 
-Sometimes you have a good reason to decide on a specific Probability Threshold, but sometimes you have some resource in scarce. Let's say that you have a specific constant amount of medicine that you can't give to everyone, but you want to identify the populations that are at the most risk.
+performance_table <- performance_data %>%
+    dplyr::mutate(
+      sensitivity = TP / (TP + FN),
+      FPR = FP / (FP + TN),
+      lift = (TP / (TP + FN)) / ((TP + FP) / N),
+      specificity = TN / (TN + FP),
+      PPV = TP / (TP + FP),
+      NPV = TN / (TN + FN),
+      predicted_positives = TP + FP,
+      PPCR = predicted_positives / N,
+      NB = TP / N - (FP / N) * (threshold / (1 - threshold))
+    ) %>% 
+  gt()
+  
+performance_table %>% 
+  head()
 
-In that case you will not care much about the specific threshold, you would rather to see performance by The Predicted Positive Condition Rate (PPCR), which is the fraction of Predicted Positives if you were to pick them by their highest probability to have an event.
+```
 
-### 
+## Let's style the performance table with {gt} :package:  {gt=""}
 
-## {gt} package for table creation :package:
+Now that we have a performance table we can stylize it.
 
-Now that our performance data is ready, we can render a table with the {gt} package.\
-There are many great packages for table creation available for r, but I think that {gt} is the most convenient one because I'm so used to the "grammer of graphics" from {ggplot2}. {gt} works in a similar way, you start from basic table and you can add all kinds of stuff along the way. If you are a {tidyverse} user {gt} should be very convenient to you two!
+The philosophy behind the syntax in {gt} is similar to the s (TODO: add link grammer ggplot)
+
+**Where some of the values of Lift, PPV, NPV and Net Benefit are missing?**
+
+-   Lift and PPV are conditional on Positive Prediction, if there Probability Threshold is higher than all of the probabilities there are no Positive Predictions and nothing to condition on.
+
+-   NPV is conditional on Negative Prediction, if the Probability Threshold is lower than all of the probabilities there are no Negative Predictions and nothing to condition on.
+
+-   Net Benifit assumes the () is the exchange rate between bla bla, if the
+
+#### Format Missing Values
+
+Since `NaN` is not very pleasing in tables, we can change it to empty string with `fmt_missing()`
+
+```{r}
+
+performance_table <- performance_table %>%
+    fmt_missing(
+      columns = c(lift, PPV, NPV, NB),
+      missing_text = ""
+    ) %>%
+    fmt_number(columns = c(sensitivity, FPR, lift, specificity, 
+                           PPV, NPV, PPCR, NB),
+               decimals = 2) %>%
+  fmt_percent(
+    columns = PPCR
+  ) %>% 
+  cols_merge_n_pct(
+    col_n = predicted_positives,
+    col_pct = PPCR
+  ) %>%
+    gt::cols_label(
+      sensitivity = "Sens",
+      lift = "Lift",
+      specificity = "Spec",
+      predicted_positives = "Predicted Positives",
+      FPR = "1 - specificity"
+    )
+
+ %>% 
+  head()
+```
+
+```{r}
+
+performance_table <- performance_table 
+
+performance_table %>% 
+  head()
+
+
+```
+
+#### Format values as a percentage and merge with counts
+
+```{r}
+performance_table <- performance_table
+
+performance_table %>% 
+  head()
+
+```
+
+#### Relabel Columns
+
+```{r}
+
+performance_table <- performance_table 
+
+performance_table %>% 
+  head()
+
+```
+
+#### Adding spanner column labels
+
+```{r}
+
+ performance_table <- performance_table %>%
+    tab_spanner(
+      label = "Confusion Matrix",
+      columns = c(
+        TP, FP, TN, FN)
+    ) %>%
+    tab_spanner(
+      label = "Performance Metrics",
+      columns = c(
+        sensitivity, lift, specificity, FPR,
+        PPV, NPV, NB
+      )
+    )
+
+ performance_table %>% 
+  head()
+
+```
 
 ## Compare Models :balance_scale:
 
-### Logistic Regression :twisted_rightwards_arrows:
-
-So far we examined the performance of a logistic regression for our population.
+So far we examined the performance of a **Logistic Regression :twisted_rightwards_arrows:** for our population.
 
 ### Tree Model :evergreen_tree:
 

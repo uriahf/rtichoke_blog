@@ -1485,17 +1485,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
+<li><a href="#motivation">Motivation</a>
+<ul>
+<li><a href="#introduce-some-theoretical-insights"><span class="emoji" data-emoji="bulb">💡</span>Introduce some theoretical insights:</a></li>
+<li><a href="#introducing-some-of-gt-capabilities"><span class="emoji" data-emoji="package">📦</span> Introducing some of {gt} capabilities</a></li>
+</ul></li>
 <li><a href="#prepare-performance-data">Prepare Performance Data <span class="emoji" data-emoji="dart">🎯</span></a>
 <ul>
 <li><a href="#chop-probabilities-to-binary-predictions">Chop probabilities to binary predictions <span class="emoji" data-emoji="knife">🔪</span></a></li>
 <li><a href="#add-confusion-matrix">Add Confusion Matrix <span class="emoji" data-emoji="confused">😕</span></a></li>
-<li><a href="#add-confusion-matrix-1">Add Confusion Matrix <span class="emoji" data-emoji="confused">😕</span></a></li>
+<li><a href="#logistic-regression">Logistic Regression <span class="emoji" data-emoji="twisted_rightwards_arrows">🔀</span></a></li>
 <li><a href="#add-performance-metrics">Add Performance Metrics <span class="emoji" data-emoji="straight_ruler">📏</span></a></li>
 </ul></li>
-<li><a href="#gt-package-for-table-creation">{gt} package for table creation <span class="emoji" data-emoji="package">📦</span></a></li>
+<li><a href="#lets-style-the-performance-table-with-gt">Let’s style the performance table with {gt} <span class="emoji" data-emoji="package">📦</span></a></li>
 <li><a href="#compare-models-️">Compare Models <span class="emoji" data-emoji="balance_scale">⚖️</span></a>
 <ul>
-<li><a href="#logistic-regression">Logistic Regression <span class="emoji" data-emoji="twisted_rightwards_arrows">🔀</span></a></li>
 <li><a href="#tree-model">Tree Model <span class="emoji" data-emoji="evergreen_tree">🌲</span></a></li>
 <li><a href="#random-guess">Random Guess <span class="emoji" data-emoji="see_no_evil">🙈</span></a></li>
 </ul></li>
@@ -1509,17 +1513,33 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <p>In the upcoming {rtichoke} Package there is a function that is dedicated for creation of a performance table from a combination of predictions and outcomes:</p>
 <p><code>rtichoke::create_performance_table()</code>.</p>
+<h2 id="motivation">Motivation</h2>
+<p>I had several motivations for writing this post:</p>
+<h3 id="introduce-some-theoretical-insights"><span class="emoji" data-emoji="bulb">💡</span>Introduce some theoretical insights:</h3>
+<p>There are a lot of great resources on data science, statistics and performance metrics online - but I think that many of the insightful discussions are not so easy to find. In this tutorial I’ll try to mention some of the related key concepts without going into details, in order for the reader to understand how these concepts take place in the big picture. TODO: rephrase.</p>
+<h3 id="introducing-some-of-gt-capabilities"><span class="emoji" data-emoji="package">📦</span> Introducing some of {gt} capabilities</h3>
+<p>Now that our performance data is ready, we can render a table with the {gt} package.<br />
+There are many great packages for table creation available for r, but I think that {gt} is the most convenient one because I’m so used to the “grammer of graphics” from {ggplot2}. {gt} works in a similar way, you start from basic table and you can add all kinds of stuff along the way. If you are a {tidyverse} user {gt} should be very convenient to you two!<br />
+</p>
 <p>–In the following post I’ll show the different stages . – TODO: add motivation for the post</p>
 <h2 id="prepare-performance-data">Prepare Performance Data <span class="emoji" data-emoji="dart">🎯</span></h2>
 <h3 id="chop-probabilities-to-binary-predictions">Chop probabilities to binary predictions <span class="emoji" data-emoji="knife">🔪</span></h3>
 <p>A basic problem in delivering performance metrics for predictions of binary outcome is that we are estimating a probability, which is in fact a continuous number <strong>between 0 and 1</strong> ( <span class="math inline">\(0 \leq\hat{p} \leq 1\)</span>) while the outcome <strong>must be 0 or 1</strong> ( <span class="math inline">\(y∈\{1, 0\}\)</span> ).</p>
 <div class="layout-chunk" data-layout="l-body">
-<div id="dlnrloparq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>predictions_and_outcomes</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/tibble/man/tibble.html'>tibble</a></span><span class='op'>(</span>probs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.21</span>, <span class='fl'>0.45</span>, <span class='fl'>0.13</span>, <span class='fl'>0.02</span>, <span class='fl'>0.34</span><span class='op'>)</span>,
+       real <span class='op'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>1</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span> 
+
+<span class='va'>predictions_and_outcomes</span> <span class='op'><a href='https://rdrr.io/pkg/gt/man/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://rdrr.io/pkg/gt/man/gt.html'>gt</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<div id="iyuzcfjmem" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#dlnrloparq .gt_table {
+#iyuzcfjmem .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1544,7 +1564,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-left-color: #D3D3D3;
 }
 
-#dlnrloparq .gt_heading {
+#iyuzcfjmem .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1556,7 +1576,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#dlnrloparq .gt_title {
+#iyuzcfjmem .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1566,7 +1586,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-bottom-width: 0;
 }
 
-#dlnrloparq .gt_subtitle {
+#iyuzcfjmem .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1576,13 +1596,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-top-width: 0;
 }
 
-#dlnrloparq .gt_bottom_border {
+#iyuzcfjmem .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dlnrloparq .gt_col_headings {
+#iyuzcfjmem .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1597,7 +1617,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#dlnrloparq .gt_col_heading {
+#iyuzcfjmem .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1617,7 +1637,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   overflow-x: hidden;
 }
 
-#dlnrloparq .gt_column_spanner_outer {
+#iyuzcfjmem .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1629,15 +1649,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-right: 4px;
 }
 
-#dlnrloparq .gt_column_spanner_outer:first-child {
+#iyuzcfjmem .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dlnrloparq .gt_column_spanner_outer:last-child {
+#iyuzcfjmem .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dlnrloparq .gt_column_spanner {
+#iyuzcfjmem .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1649,7 +1669,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   width: 100%;
 }
 
-#dlnrloparq .gt_group_heading {
+#iyuzcfjmem .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1671,7 +1691,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   vertical-align: middle;
 }
 
-#dlnrloparq .gt_empty_group_heading {
+#iyuzcfjmem .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1686,15 +1706,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   vertical-align: middle;
 }
 
-#dlnrloparq .gt_from_md > :first-child {
+#iyuzcfjmem .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dlnrloparq .gt_from_md > :last-child {
+#iyuzcfjmem .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dlnrloparq .gt_row {
+#iyuzcfjmem .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1713,7 +1733,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   overflow-x: hidden;
 }
 
-#dlnrloparq .gt_stub {
+#iyuzcfjmem .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1725,7 +1745,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-left: 12px;
 }
 
-#dlnrloparq .gt_summary_row {
+#iyuzcfjmem .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1735,7 +1755,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-right: 5px;
 }
 
-#dlnrloparq .gt_first_summary_row {
+#iyuzcfjmem .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1745,7 +1765,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-top-color: #D3D3D3;
 }
 
-#dlnrloparq .gt_grand_summary_row {
+#iyuzcfjmem .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1755,7 +1775,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-right: 5px;
 }
 
-#dlnrloparq .gt_first_grand_summary_row {
+#iyuzcfjmem .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1765,11 +1785,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-top-color: #D3D3D3;
 }
 
-#dlnrloparq .gt_striped {
+#iyuzcfjmem .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dlnrloparq .gt_table_body {
+#iyuzcfjmem .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1778,7 +1798,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-bottom-color: #D3D3D3;
 }
 
-#dlnrloparq .gt_footnotes {
+#iyuzcfjmem .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1792,13 +1812,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#dlnrloparq .gt_footnote {
+#iyuzcfjmem .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#dlnrloparq .gt_sourcenotes {
+#iyuzcfjmem .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1812,41 +1832,41 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#dlnrloparq .gt_sourcenote {
+#iyuzcfjmem .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#dlnrloparq .gt_left {
+#iyuzcfjmem .gt_left {
   text-align: left;
 }
 
-#dlnrloparq .gt_center {
+#iyuzcfjmem .gt_center {
   text-align: center;
 }
 
-#dlnrloparq .gt_right {
+#iyuzcfjmem .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dlnrloparq .gt_font_normal {
+#iyuzcfjmem .gt_font_normal {
   font-weight: normal;
 }
 
-#dlnrloparq .gt_font_bold {
+#iyuzcfjmem .gt_font_bold {
   font-weight: bold;
 }
 
-#dlnrloparq .gt_font_italic {
+#iyuzcfjmem .gt_font_italic {
   font-style: italic;
 }
 
-#dlnrloparq .gt_super {
+#iyuzcfjmem .gt_super {
   font-size: 65%;
 }
 
-#dlnrloparq .gt_footnote_marks {
+#iyuzcfjmem .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1856,8 +1876,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Probability</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Outcome</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">probs</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">real</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -1881,19 +1901,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>Let’s say that we chose a probability threshold of 0.15. In that case when the estimated probability is higher than 0.15 we will classify the prediction as <em>Positive</em> and if it’s less or equal to 0.15 we will classify it as <em>Negative</em>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>performance_data</span> <span class='op'>&lt;-</span> <span class='va'>performance_data</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>mutate</span><span class='op'>(</span>`Binary Prediction` <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>Probability</span> <span class='op'>&gt;</span> <span class='fl'>0.15</span><span class='op'>)</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>predictions_and_outcomes</span> <span class='op'>&lt;-</span> <span class='va'>predictions_and_outcomes</span> <span class='op'><a href='https://rdrr.io/pkg/gt/man/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>binary_prediction <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>probs</span> <span class='op'>&gt;</span> <span class='fl'>0.15</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='va'>performance_data</span> <span class='op'>%&gt;%</span> 
+<span class='va'>predictions_and_outcomes</span> <span class='op'><a href='https://rdrr.io/pkg/gt/man/pipe.html'>%&gt;%</a></span> 
   <span class='fu'><a href='https://rdrr.io/pkg/gt/man/gt.html'>gt</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<div id="ukjaltxroc" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="xntgmddihd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#ukjaltxroc .gt_table {
+#xntgmddihd .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1918,7 +1938,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-left-color: #D3D3D3;
 }
 
-#ukjaltxroc .gt_heading {
+#xntgmddihd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1930,7 +1950,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#ukjaltxroc .gt_title {
+#xntgmddihd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1940,7 +1960,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-bottom-width: 0;
 }
 
-#ukjaltxroc .gt_subtitle {
+#xntgmddihd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1950,13 +1970,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-top-width: 0;
 }
 
-#ukjaltxroc .gt_bottom_border {
+#xntgmddihd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ukjaltxroc .gt_col_headings {
+#xntgmddihd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1971,7 +1991,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#ukjaltxroc .gt_col_heading {
+#xntgmddihd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1991,7 +2011,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   overflow-x: hidden;
 }
 
-#ukjaltxroc .gt_column_spanner_outer {
+#xntgmddihd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2003,15 +2023,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-right: 4px;
 }
 
-#ukjaltxroc .gt_column_spanner_outer:first-child {
+#xntgmddihd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ukjaltxroc .gt_column_spanner_outer:last-child {
+#xntgmddihd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ukjaltxroc .gt_column_spanner {
+#xntgmddihd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2023,7 +2043,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   width: 100%;
 }
 
-#ukjaltxroc .gt_group_heading {
+#xntgmddihd .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2045,7 +2065,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   vertical-align: middle;
 }
 
-#ukjaltxroc .gt_empty_group_heading {
+#xntgmddihd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2060,15 +2080,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   vertical-align: middle;
 }
 
-#ukjaltxroc .gt_from_md > :first-child {
+#xntgmddihd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ukjaltxroc .gt_from_md > :last-child {
+#xntgmddihd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ukjaltxroc .gt_row {
+#xntgmddihd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2087,7 +2107,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   overflow-x: hidden;
 }
 
-#ukjaltxroc .gt_stub {
+#xntgmddihd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2099,7 +2119,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-left: 12px;
 }
 
-#ukjaltxroc .gt_summary_row {
+#xntgmddihd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2109,7 +2129,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-right: 5px;
 }
 
-#ukjaltxroc .gt_first_summary_row {
+#xntgmddihd .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2119,7 +2139,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-top-color: #D3D3D3;
 }
 
-#ukjaltxroc .gt_grand_summary_row {
+#xntgmddihd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2129,7 +2149,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-right: 5px;
 }
 
-#ukjaltxroc .gt_first_grand_summary_row {
+#xntgmddihd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2139,11 +2159,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-top-color: #D3D3D3;
 }
 
-#ukjaltxroc .gt_striped {
+#xntgmddihd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ukjaltxroc .gt_table_body {
+#xntgmddihd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2152,7 +2172,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-bottom-color: #D3D3D3;
 }
 
-#ukjaltxroc .gt_footnotes {
+#xntgmddihd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2166,13 +2186,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#ukjaltxroc .gt_footnote {
+#xntgmddihd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#ukjaltxroc .gt_sourcenotes {
+#xntgmddihd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2186,41 +2206,41 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#ukjaltxroc .gt_sourcenote {
+#xntgmddihd .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#ukjaltxroc .gt_left {
+#xntgmddihd .gt_left {
   text-align: left;
 }
 
-#ukjaltxroc .gt_center {
+#xntgmddihd .gt_center {
   text-align: center;
 }
 
-#ukjaltxroc .gt_right {
+#xntgmddihd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ukjaltxroc .gt_font_normal {
+#xntgmddihd .gt_font_normal {
   font-weight: normal;
 }
 
-#ukjaltxroc .gt_font_bold {
+#xntgmddihd .gt_font_bold {
   font-weight: bold;
 }
 
-#ukjaltxroc .gt_font_italic {
+#xntgmddihd .gt_font_italic {
   font-style: italic;
 }
 
-#ukjaltxroc .gt_super {
+#xntgmddihd .gt_super {
   font-size: 65%;
 }
 
-#ukjaltxroc .gt_footnote_marks {
+#xntgmddihd .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -2230,9 +2250,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Probability</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Outcome</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Binary Prediction</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">probs</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">real</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">binary_prediction</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -2260,12 +2280,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h3 id="add-confusion-matrix">Add Confusion Matrix <span class="emoji" data-emoji="confused">😕</span></h3>
 <p>Now we can classify each prediction to the appropriate case in what is known as the <em>Confusion Matrix</em>:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div id="khxdrzwcsi" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="xyrnolkfwq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#khxdrzwcsi .gt_table {
+#xyrnolkfwq .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2290,7 +2310,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-left-color: #D3D3D3;
 }
 
-#khxdrzwcsi .gt_heading {
+#xyrnolkfwq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2302,7 +2322,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#khxdrzwcsi .gt_title {
+#xyrnolkfwq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2312,7 +2332,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-bottom-width: 0;
 }
 
-#khxdrzwcsi .gt_subtitle {
+#xyrnolkfwq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2322,13 +2342,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-top-width: 0;
 }
 
-#khxdrzwcsi .gt_bottom_border {
+#xyrnolkfwq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#khxdrzwcsi .gt_col_headings {
+#xyrnolkfwq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2343,7 +2363,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#khxdrzwcsi .gt_col_heading {
+#xyrnolkfwq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2363,7 +2383,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   overflow-x: hidden;
 }
 
-#khxdrzwcsi .gt_column_spanner_outer {
+#xyrnolkfwq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2375,15 +2395,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-right: 4px;
 }
 
-#khxdrzwcsi .gt_column_spanner_outer:first-child {
+#xyrnolkfwq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#khxdrzwcsi .gt_column_spanner_outer:last-child {
+#xyrnolkfwq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#khxdrzwcsi .gt_column_spanner {
+#xyrnolkfwq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2395,7 +2415,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   width: 100%;
 }
 
-#khxdrzwcsi .gt_group_heading {
+#xyrnolkfwq .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2417,7 +2437,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   vertical-align: middle;
 }
 
-#khxdrzwcsi .gt_empty_group_heading {
+#xyrnolkfwq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2432,15 +2452,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   vertical-align: middle;
 }
 
-#khxdrzwcsi .gt_from_md > :first-child {
+#xyrnolkfwq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#khxdrzwcsi .gt_from_md > :last-child {
+#xyrnolkfwq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#khxdrzwcsi .gt_row {
+#xyrnolkfwq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2459,7 +2479,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   overflow-x: hidden;
 }
 
-#khxdrzwcsi .gt_stub {
+#xyrnolkfwq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2471,7 +2491,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-left: 12px;
 }
 
-#khxdrzwcsi .gt_summary_row {
+#xyrnolkfwq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2481,7 +2501,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-right: 5px;
 }
 
-#khxdrzwcsi .gt_first_summary_row {
+#xyrnolkfwq .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2491,7 +2511,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-top-color: #D3D3D3;
 }
 
-#khxdrzwcsi .gt_grand_summary_row {
+#xyrnolkfwq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2501,7 +2521,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-right: 5px;
 }
 
-#khxdrzwcsi .gt_first_grand_summary_row {
+#xyrnolkfwq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2511,11 +2531,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-top-color: #D3D3D3;
 }
 
-#khxdrzwcsi .gt_striped {
+#xyrnolkfwq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#khxdrzwcsi .gt_table_body {
+#xyrnolkfwq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2524,7 +2544,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-bottom-color: #D3D3D3;
 }
 
-#khxdrzwcsi .gt_footnotes {
+#xyrnolkfwq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2538,13 +2558,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#khxdrzwcsi .gt_footnote {
+#xyrnolkfwq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#khxdrzwcsi .gt_sourcenotes {
+#xyrnolkfwq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2558,41 +2578,41 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#khxdrzwcsi .gt_sourcenote {
+#xyrnolkfwq .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#khxdrzwcsi .gt_left {
+#xyrnolkfwq .gt_left {
   text-align: left;
 }
 
-#khxdrzwcsi .gt_center {
+#xyrnolkfwq .gt_center {
   text-align: center;
 }
 
-#khxdrzwcsi .gt_right {
+#xyrnolkfwq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#khxdrzwcsi .gt_font_normal {
+#xyrnolkfwq .gt_font_normal {
   font-weight: normal;
 }
 
-#khxdrzwcsi .gt_font_bold {
+#xyrnolkfwq .gt_font_bold {
   font-weight: bold;
 }
 
-#khxdrzwcsi .gt_font_italic {
+#xyrnolkfwq .gt_font_italic {
   font-style: italic;
 }
 
-#khxdrzwcsi .gt_super {
+#xyrnolkfwq .gt_super {
   font-size: 65%;
 }
 
-#khxdrzwcsi .gt_footnote_marks {
+#xyrnolkfwq .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -2626,24 +2646,24 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p><strong>FN</strong> (False Negative) - when the prediction is 0 but the outcome is 1.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>performance_data</span> <span class='op'>&lt;-</span> <span class='va'>performance_data</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>mutate</span><span class='op'>(</span><span class='st'>"Confusion Matrix"</span> <span class='op'>=</span> <span class='fu'>case_when</span><span class='op'>(</span>
-    <span class='va'>Outcome</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>&amp;</span> <span class='va'>`Binary Prediction`</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>"TP"</span>,
-    <span class='va'>Outcome</span> <span class='op'>==</span> <span class='fl'>0</span> <span class='op'>&amp;</span> <span class='va'>`Binary Prediction`</span> <span class='op'>==</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='st'>"TN"</span>,
-    <span class='va'>Outcome</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>&amp;</span> <span class='va'>`Binary Prediction`</span> <span class='op'>==</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='st'>"FN"</span>,
-    <span class='va'>Outcome</span> <span class='op'>==</span> <span class='fl'>0</span> <span class='op'>&amp;</span> <span class='va'>`Binary Prediction`</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>"FP"</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>predictions_and_outcomes</span> <span class='op'>&lt;-</span> <span class='va'>predictions_and_outcomes</span> <span class='op'><a href='https://rdrr.io/pkg/gt/man/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span><span class='st'>"Confusion Matrix"</span> <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span>
+    <span class='va'>real</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>&amp;</span> <span class='va'>binary_prediction</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>"TP"</span>,
+    <span class='va'>real</span> <span class='op'>==</span> <span class='fl'>0</span> <span class='op'>&amp;</span> <span class='va'>binary_prediction</span> <span class='op'>==</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='st'>"TN"</span>,
+    <span class='va'>real</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>&amp;</span> <span class='va'>binary_prediction</span> <span class='op'>==</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='st'>"FN"</span>,
+    <span class='va'>real</span> <span class='op'>==</span> <span class='fl'>0</span> <span class='op'>&amp;</span> <span class='va'>binary_prediction</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>"FP"</span>
   <span class='op'>)</span><span class='op'>)</span>
 
-<span class='va'>performance_data</span> <span class='op'>%&gt;%</span> 
+<span class='va'>predictions_and_outcomes</span> <span class='op'><a href='https://rdrr.io/pkg/gt/man/pipe.html'>%&gt;%</a></span> 
   <span class='fu'><a href='https://rdrr.io/pkg/gt/man/gt.html'>gt</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<div id="ujltfiicyj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="aonacrtonf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#ujltfiicyj .gt_table {
+#aonacrtonf .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2668,7 +2688,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-left-color: #D3D3D3;
 }
 
-#ujltfiicyj .gt_heading {
+#aonacrtonf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2680,7 +2700,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#ujltfiicyj .gt_title {
+#aonacrtonf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2690,7 +2710,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-bottom-width: 0;
 }
 
-#ujltfiicyj .gt_subtitle {
+#aonacrtonf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2700,13 +2720,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-top-width: 0;
 }
 
-#ujltfiicyj .gt_bottom_border {
+#aonacrtonf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ujltfiicyj .gt_col_headings {
+#aonacrtonf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2721,7 +2741,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#ujltfiicyj .gt_col_heading {
+#aonacrtonf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2741,7 +2761,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   overflow-x: hidden;
 }
 
-#ujltfiicyj .gt_column_spanner_outer {
+#aonacrtonf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2753,15 +2773,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-right: 4px;
 }
 
-#ujltfiicyj .gt_column_spanner_outer:first-child {
+#aonacrtonf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ujltfiicyj .gt_column_spanner_outer:last-child {
+#aonacrtonf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ujltfiicyj .gt_column_spanner {
+#aonacrtonf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2773,7 +2793,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   width: 100%;
 }
 
-#ujltfiicyj .gt_group_heading {
+#aonacrtonf .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2795,7 +2815,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   vertical-align: middle;
 }
 
-#ujltfiicyj .gt_empty_group_heading {
+#aonacrtonf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2810,15 +2830,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   vertical-align: middle;
 }
 
-#ujltfiicyj .gt_from_md > :first-child {
+#aonacrtonf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ujltfiicyj .gt_from_md > :last-child {
+#aonacrtonf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ujltfiicyj .gt_row {
+#aonacrtonf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2837,7 +2857,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   overflow-x: hidden;
 }
 
-#ujltfiicyj .gt_stub {
+#aonacrtonf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2849,7 +2869,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-left: 12px;
 }
 
-#ujltfiicyj .gt_summary_row {
+#aonacrtonf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2859,7 +2879,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-right: 5px;
 }
 
-#ujltfiicyj .gt_first_summary_row {
+#aonacrtonf .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2869,7 +2889,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-top-color: #D3D3D3;
 }
 
-#ujltfiicyj .gt_grand_summary_row {
+#aonacrtonf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2879,7 +2899,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-right: 5px;
 }
 
-#ujltfiicyj .gt_first_grand_summary_row {
+#aonacrtonf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2889,11 +2909,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-top-color: #D3D3D3;
 }
 
-#ujltfiicyj .gt_striped {
+#aonacrtonf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ujltfiicyj .gt_table_body {
+#aonacrtonf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2902,7 +2922,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-bottom-color: #D3D3D3;
 }
 
-#ujltfiicyj .gt_footnotes {
+#aonacrtonf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2916,13 +2936,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#ujltfiicyj .gt_footnote {
+#aonacrtonf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#ujltfiicyj .gt_sourcenotes {
+#aonacrtonf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2936,41 +2956,41 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#ujltfiicyj .gt_sourcenote {
+#aonacrtonf .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#ujltfiicyj .gt_left {
+#aonacrtonf .gt_left {
   text-align: left;
 }
 
-#ujltfiicyj .gt_center {
+#aonacrtonf .gt_center {
   text-align: center;
 }
 
-#ujltfiicyj .gt_right {
+#aonacrtonf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ujltfiicyj .gt_font_normal {
+#aonacrtonf .gt_font_normal {
   font-weight: normal;
 }
 
-#ujltfiicyj .gt_font_bold {
+#aonacrtonf .gt_font_bold {
   font-weight: bold;
 }
 
-#ujltfiicyj .gt_font_italic {
+#aonacrtonf .gt_font_italic {
   font-style: italic;
 }
 
-#ujltfiicyj .gt_super {
+#aonacrtonf .gt_super {
   font-size: 65%;
 }
 
-#ujltfiicyj .gt_footnote_marks {
+#aonacrtonf .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -2980,9 +3000,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Probability</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Outcome</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">Binary Prediction</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">probs</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">real</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">binary_prediction</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1">Confusion Matrix</th>
     </tr>
   </thead>
@@ -3013,22 +3033,22 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </table>
 </div>
 </div>
-<p>So far it all seems pretty straight forward, but usually we would like to see accuracy among many different Probability Thresholds.</p>
+<p>So far it all seems pretty straight forward, but usually we would like to see accuracy among many different Probability Thresholds. For our example we will use the <code>Carseats</code> data set from the <code>ISLR</code> package that provides a collection of data sets to the highly recommended <a href="https://www.statlearning.com/">ISLR book</a>.</p>
+<p>For this tutorial I will use the code from <a href="https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/index.html">ISLR tidymodels Labs</a> (which is also highly recommended). We will try to predict high sales by dichotomising the <code>Sales</code> variable, and split the data to train and test set with the help of the <code>rsample</code> package:</p>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<p><strong>by Probability Threshold or by Predicted Positives Condition Rate?</strong></p>
-<p>Sometimes you have a good reason to decide on a specific Probability Threshold, but sometimes you have some resource in scarce. Let’s say that you have a specific constant amount of medicine that you can’t give to everyone, but you want to identify the populations that are at the most risk.</p>
-<p>In that case you will not care much about the specific threshold, you would rather to see performance by The Predicted Positive Condition Rate (PPCR), which is the fraction of Predicted Positives if you were to pick them by their highest probability to have an event.</p>
-<h3 id="add-confusion-matrix-1">Add Confusion Matrix <span class="emoji" data-emoji="confused">😕</span></h3>
-<p>For each strata (Probability Threshold or Predicted Positives Condition Rate) we have binary outcomes and also binary predictions, therefore we can classify each prediction to the appropriate case in the confusion matrix:</p>
+<p>We are ready to use our first model:</p>
+<h3 id="logistic-regression">Logistic Regression <span class="emoji" data-emoji="twisted_rightwards_arrows">🔀</span></h3>
+<p>Logistic Regression is the classic solution for prediction of binary outcome, it provides an explainable equation and <a href="https://papers.tinbergen.nl/02119.pdf">it is used for many years</a>.</p>
+<p>I’m a big fan of <code>tidymodels</code> because it provides a solution to the exhausting <a href="https://www.tmwr.org/base-r.html#tidiness-modeling">syntactical diversity</a> for models in R, but sometimes it’s an overkill for GLM models - so for this part I’ll use some classic R code:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div id="jaqbakhxdo" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="nisadxnjxm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#jaqbakhxdo .gt_table {
+#nisadxnjxm .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -3053,7 +3073,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-left-color: #D3D3D3;
 }
 
-#jaqbakhxdo .gt_heading {
+#nisadxnjxm .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3065,7 +3085,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#jaqbakhxdo .gt_title {
+#nisadxnjxm .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3075,7 +3095,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-bottom-width: 0;
 }
 
-#jaqbakhxdo .gt_subtitle {
+#nisadxnjxm .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3085,13 +3105,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-top-width: 0;
 }
 
-#jaqbakhxdo .gt_bottom_border {
+#nisadxnjxm .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jaqbakhxdo .gt_col_headings {
+#nisadxnjxm .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3106,7 +3126,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#jaqbakhxdo .gt_col_heading {
+#nisadxnjxm .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3126,7 +3146,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   overflow-x: hidden;
 }
 
-#jaqbakhxdo .gt_column_spanner_outer {
+#nisadxnjxm .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3138,15 +3158,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-right: 4px;
 }
 
-#jaqbakhxdo .gt_column_spanner_outer:first-child {
+#nisadxnjxm .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jaqbakhxdo .gt_column_spanner_outer:last-child {
+#nisadxnjxm .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jaqbakhxdo .gt_column_spanner {
+#nisadxnjxm .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3158,7 +3178,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   width: 100%;
 }
 
-#jaqbakhxdo .gt_group_heading {
+#nisadxnjxm .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3180,7 +3200,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   vertical-align: middle;
 }
 
-#jaqbakhxdo .gt_empty_group_heading {
+#nisadxnjxm .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3195,15 +3215,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   vertical-align: middle;
 }
 
-#jaqbakhxdo .gt_from_md > :first-child {
+#nisadxnjxm .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jaqbakhxdo .gt_from_md > :last-child {
+#nisadxnjxm .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jaqbakhxdo .gt_row {
+#nisadxnjxm .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3222,7 +3242,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   overflow-x: hidden;
 }
 
-#jaqbakhxdo .gt_stub {
+#nisadxnjxm .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3234,7 +3254,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-left: 12px;
 }
 
-#jaqbakhxdo .gt_summary_row {
+#nisadxnjxm .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3244,7 +3264,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-right: 5px;
 }
 
-#jaqbakhxdo .gt_first_summary_row {
+#nisadxnjxm .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3254,7 +3274,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-top-color: #D3D3D3;
 }
 
-#jaqbakhxdo .gt_grand_summary_row {
+#nisadxnjxm .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3264,7 +3284,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-right: 5px;
 }
 
-#jaqbakhxdo .gt_first_grand_summary_row {
+#nisadxnjxm .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3274,11 +3294,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-top-color: #D3D3D3;
 }
 
-#jaqbakhxdo .gt_striped {
+#nisadxnjxm .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jaqbakhxdo .gt_table_body {
+#nisadxnjxm .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3287,7 +3307,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-bottom-color: #D3D3D3;
 }
 
-#jaqbakhxdo .gt_footnotes {
+#nisadxnjxm .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3301,13 +3321,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#jaqbakhxdo .gt_footnote {
+#nisadxnjxm .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#jaqbakhxdo .gt_sourcenotes {
+#nisadxnjxm .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3321,41 +3341,41 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#jaqbakhxdo .gt_sourcenote {
+#nisadxnjxm .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#jaqbakhxdo .gt_left {
+#nisadxnjxm .gt_left {
   text-align: left;
 }
 
-#jaqbakhxdo .gt_center {
+#nisadxnjxm .gt_center {
   text-align: center;
 }
 
-#jaqbakhxdo .gt_right {
+#nisadxnjxm .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jaqbakhxdo .gt_font_normal {
+#nisadxnjxm .gt_font_normal {
   font-weight: normal;
 }
 
-#jaqbakhxdo .gt_font_bold {
+#nisadxnjxm .gt_font_bold {
   font-weight: bold;
 }
 
-#jaqbakhxdo .gt_font_italic {
+#nisadxnjxm .gt_font_italic {
   font-style: italic;
 }
 
-#jaqbakhxdo .gt_super {
+#nisadxnjxm .gt_super {
   font-size: 65%;
 }
 
-#jaqbakhxdo .gt_footnote_marks {
+#nisadxnjxm .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -3365,30 +3385,423 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
   <thead class="gt_col_headings">
     <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Predicted Positive</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Predicted Negative</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">probs</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">real</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left gt_stub">Real Positive</td>
-<td class="gt_row gt_center" style="background-color: #90EE90;">TP</td>
-<td class="gt_row gt_center" style="background-color: #FFC0CB;">FN</td></tr>
-    <tr><td class="gt_row gt_left gt_stub">Real Negative</td>
-<td class="gt_row gt_center" style="background-color: #FFC0CB;">FP</td>
-<td class="gt_row gt_center" style="background-color: #90EE90;">TN</td></tr>
+    <tr><td class="gt_row gt_right">0.7842462526</td>
+<td class="gt_row gt_right">0</td></tr>
+    <tr><td class="gt_row gt_right">0.0004486777</td>
+<td class="gt_row gt_right">0</td></tr>
+    <tr><td class="gt_row gt_right">0.1143582309</td>
+<td class="gt_row gt_right">0</td></tr>
+    <tr><td class="gt_row gt_right">0.4122560523</td>
+<td class="gt_row gt_right">1</td></tr>
+    <tr><td class="gt_row gt_right">0.9733579006</td>
+<td class="gt_row gt_right">1</td></tr>
+    <tr><td class="gt_row gt_right">0.0249088833</td>
+<td class="gt_row gt_right">0</td></tr>
   </tbody>
   
   
 </table>
 </div>
 </div>
-<p><strong>TP</strong> (True Positive) - when the prediction is 1 (<em>positive</em>) and the outcome is indeed 1.</p>
-<p><strong>TN</strong> (True Negative) - when the prediction is 0 (<em>negative</em>) and the outcome is indeed 0.</p>
-<p><strong>FP</strong> (False Positive) - when the prediction is 1 but the outcome is 0.</p>
-<p><strong>FN</strong> (False Negative) - when the prediction is 0 but the outcome is 1.</p>
+<p>TODO: maybe a better code? PURRR?</p>
+<p>We are ready to build our Performance Data, For each Probability Threshold we will calculate the confusion matrix:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div id="mjskouokdv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#mjskouokdv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#mjskouokdv .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mjskouokdv .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#mjskouokdv .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#mjskouokdv .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mjskouokdv .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mjskouokdv .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#mjskouokdv .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#mjskouokdv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#mjskouokdv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#mjskouokdv .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#mjskouokdv .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#mjskouokdv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#mjskouokdv .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#mjskouokdv .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#mjskouokdv .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#mjskouokdv .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#mjskouokdv .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mjskouokdv .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#mjskouokdv .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mjskouokdv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#mjskouokdv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#mjskouokdv .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mjskouokdv .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mjskouokdv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#mjskouokdv .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mjskouokdv .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#mjskouokdv .gt_left {
+  text-align: left;
+}
+
+#mjskouokdv .gt_center {
+  text-align: center;
+}
+
+#mjskouokdv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#mjskouokdv .gt_font_normal {
+  font-weight: normal;
+}
+
+#mjskouokdv .gt_font_bold {
+  font-weight: bold;
+}
+
+#mjskouokdv .gt_font_italic {
+  font-style: italic;
+}
+
+#mjskouokdv .gt_super {
+  font-size: 65%;
+}
+
+#mjskouokdv .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">threshold</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">TP</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">TN</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">FN</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1">FP</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_right">0.0</td>
+<td class="gt_row gt_right">236</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">0</td>
+<td class="gt_row gt_right">164</td></tr>
+    <tr><td class="gt_row gt_right">0.1</td>
+<td class="gt_row gt_right">234</td>
+<td class="gt_row gt_right">102</td>
+<td class="gt_row gt_right">2</td>
+<td class="gt_row gt_right">62</td></tr>
+    <tr><td class="gt_row gt_right">0.2</td>
+<td class="gt_row gt_right">230</td>
+<td class="gt_row gt_right">116</td>
+<td class="gt_row gt_right">6</td>
+<td class="gt_row gt_right">48</td></tr>
+    <tr><td class="gt_row gt_right">0.3</td>
+<td class="gt_row gt_right">227</td>
+<td class="gt_row gt_right">129</td>
+<td class="gt_row gt_right">9</td>
+<td class="gt_row gt_right">35</td></tr>
+    <tr><td class="gt_row gt_right">0.4</td>
+<td class="gt_row gt_right">223</td>
+<td class="gt_row gt_right">138</td>
+<td class="gt_row gt_right">13</td>
+<td class="gt_row gt_right">26</td></tr>
+    <tr><td class="gt_row gt_right">0.5</td>
+<td class="gt_row gt_right">221</td>
+<td class="gt_row gt_right">142</td>
+<td class="gt_row gt_right">15</td>
+<td class="gt_row gt_right">22</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+<p><strong>Stratified performance by Probability Threshold or by Predicted Positives Condition Rate?</strong></p>
+<p>Sometimes you have a good reason to decide on a specific Probability Threshold, but sometimes you have some resource in scarce. Let’s say that you have a specific constant amount of medicine that you can’t give to everyone, but you want to identify the populations that are at the most risk.</p>
+<p>In that case you will not care much about the specific threshold, you would rather to see performance by The Predicted Positive Condition Rate (PPCR), which is the fraction of Predicted Positives if you were to pick them by their highest probability to have an event.</p>
 <h3 id="add-performance-metrics">Add Performance Metrics <span class="emoji" data-emoji="straight_ruler">📏</span></h3>
-<p>Now that we have a confusion matrix for each Probability Threshold / PPCR we can calculate the performance metrics. We will use common performance metrics that are used:</p>
+<p>Now that we have a confusion matrix for each Probability Threshold we can calculate some common performance metrics.</p>
 <ul>
 <li><strong>Sensitivity</strong> and <strong>Specificity</strong> are extremely popular, but you should notice that in terms of prediction they are <a href="https://www.fharrell.com/post/backwards-probs/">conditional on the future.</a></li>
 </ul>
@@ -3396,21 +3809,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 \text{Sensitivity} = \frac{\text{TP}}{\text{TP + FN}} = \frac{\text{TP}}{\text{Real Positives}} = \text{Prob( Predicted Positive | Real Positive )}
 \]</span></p>
 <p><span class="math display">\[
-Specificity = \frac{TN}{TN + FP} = \frac{TN}{RealNegatives} = Prob(PredictedPositives|RealPositive)
+\text{Specificity} = \frac{\text{TN}}{\text{TN + FP}} = \frac{\text{TN}}{\text{Real Negatives}} = \text{Prob( Predicted Positive | Real Positive )}
 \]</span> A variation of Specificity is called the False Positive Rate (FPR) and it is nothing more but $$1 - Specificity$$. It’s is used in the ROC curve, but honestly I don’t think that it’s very useful. The thing that you do want to remember is that unlike Sensitivity and Specificity you want FPR to be as small as possible.</p>
 <ul>
 <li><p><strong>PPV</strong> and <strong>NPV</strong> might be more suitable for prediction model because they are conditional on your predictions (and you can decide <em>now</em> how much observations you want to predict as positives):</p>
 <p><span class="math display">\[
-PPV = \frac{TP}{TP + FP} = \frac{TP}{PredictedPositives} = Prob(RealPositive|PredictedPositive)
+\text{PPV} = \frac{\text{TP}}{\text{TP + FP}} = \frac{\text{TP}}{\text{Predicted Positives}} = \text{Prob( Real Positive | Predicted Positive )}
 \]</span></p>
 <p><span class="math display">\[
-NPV = \frac{TN}{TN + FN} = \frac{TN}{PredictedNegatives} = Prob(RealNegative|PredictedNegative)
+\text{NPV} = \frac{\text{TN}}{\text{TN + FN}} = \frac{\text{TN}}{\text{Predicted Negatives}} = \text{Prob( Real Negative | Predicted Negative )}
 \]</span></p></li>
 <li><p><strong>Lift</strong> is the ratio between <strong>PPV</strong> and the Prevalence, or in other words - how much you model is better than a random guess?</p>
 <p><span class="math display">\[
-Lift = \frac{PPV}{Prevalence} = \frac{\cfrac{TP}{TP + FP}}{\cfrac{TP + FP}{TP + FP + TN + FN}} 
+\text{Lift} = \frac{\text{PPV}}{\text{Prevalence}} = \frac{\cfrac{\text{TP}}{\text{TP + FP}}}{\cfrac{\text{TP + FP}}{\text{TP + FP + TN + FN}}} 
 \]</span></p></li>
-<li><p><strong>Net-Benifit</strong> is (by my view) an underused metric. I think it’s a powerful way to derive Utility in a generic way. There is an assumption that says that your probability threshold in fact includes the exchange right between False Positives (FP) and False Negatives (FN).</p>
+<li><p><strong>Net-Benifit</strong> is (by my view) an underused metric. I think it’s a powerful way to derive Utility in a generic way. There is an assumption that says that your probability threshold in fact includes the exchange right between False Positives (FP) and False Negatives (FN). TODO: add formula and add reference.</p>
 <p><br />
 <span class="emoji" data-emoji="warning">⚠️</span> <strong>Warning: You don’t want to use Net Benefit based on Predicted Positives Condition Rate!</strong> <strong>If you are using Net Benefit you must declare the explicit Probability Threshold, because it is part of the components of the metric!</strong><br />
 <br />
@@ -3418,12 +3831,444 @@ Another Unique think about Net-Benefit is that it can be Negative or Positive. N
 <p>Also keep in mind that this performance metric also shows if your model is well-calibrated: You’ll see that <a href="#compare-models-⚖️">when we will compare different models</a> how Net-Benefit varies.</p>
 <p>Any way I recommend on reading more about this performance metric.</p></li>
 </ul>
-<h2 id="gt-package-for-table-creation">{gt} package for table creation <span class="emoji" data-emoji="package">📦</span></h2>
-<p>Now that our performance data is ready, we can render a table with the {gt} package.<br />
-There are many great packages for table creation available for r, but I think that {gt} is the most convenient one because I’m so used to the “grammer of graphics” from {ggplot2}. {gt} works in a similar way, you start from basic table and you can add all kinds of stuff along the way. If you are a {tidyverse} user {gt} should be very convenient to you two!</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>$`_data`
+# A tibble: 11 x 14
+   threshold    TP    TN    FN    FP sensitivity    FPR   lift
+       &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1       0     236     0     0   164       1     1        1   
+ 2       0.1   234   102     2    62       0.992 0.378    1.34
+ 3       0.2   230   116     6    48       0.975 0.293    1.40
+ 4       0.3   227   129     9    35       0.962 0.213    1.47
+ 5       0.4   223   138    13    26       0.945 0.159    1.52
+ 6       0.5   221   142    15    22       0.936 0.134    1.54
+ 7       0.6   211   147    25    17       0.894 0.104    1.57
+ 8       0.7   203   154    33    10       0.860 0.0610   1.62
+ 9       0.8   195   158    41     6       0.826 0.0366   1.64
+10       0.9   170   159    66     5       0.720 0.0305   1.65
+11       1       0   164   236     0       0     0      NaN   
+# ... with 6 more variables: specificity &lt;dbl&gt;, PPV &lt;dbl&gt;, NPV &lt;dbl&gt;,
+#   predicted_positives &lt;dbl&gt;, PPCR &lt;dbl&gt;, NB &lt;dbl&gt;
+
+$`_boxhead`
+# A tibble: 14 x 6
+   var          type  column_label column_align column_width hidden_px
+   &lt;chr&gt;        &lt;chr&gt; &lt;list&gt;       &lt;chr&gt;        &lt;list&gt;       &lt;list&gt;   
+ 1 threshold    defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 2 TP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 3 TN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 4 FN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 5 FP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 6 sensitivity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 7 FPR          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 8 lift         defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 9 specificity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+10 PPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+11 NPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+12 predicted_p~ defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+13 PPCR         defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+14 NB           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+
+$`_stub_df`
+# A tibble: 11 x 5
+   rownum_i group_id rowname group_label built
+      &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;list&gt;      &lt;chr&gt;
+ 1        1 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 2        2 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 3        3 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 4        4 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 5        5 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 6        6 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 7        7 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 8        8 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 9        9 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+10       10 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+11       11 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+
+$`_row_groups`
+character(0)
+
+$`_heading`
+$`_heading`$title
+NULL
+
+$`_heading`$subtitle
+NULL
+
+
+$`_spanners`
+# A tibble: 0 x 5
+# ... with 5 variables: vars &lt;list&gt;, spanner_label &lt;list&gt;,
+#   spanner_id &lt;chr&gt;, gather &lt;lgl&gt;, built &lt;chr&gt;</code></pre>
+</div>
+<h2 data-gt="" id="lets-style-the-performance-table-with-gt">Let’s style the performance table with {gt} <span class="emoji" data-emoji="package">📦</span></h2>
+<p>Now that we have a performance table we can stylize it.</p>
+<p>The philosophy behind the syntax in {gt} is similar to the s (TODO: add link grammer ggplot)</p>
+<p><strong>Where some of the values of Lift, PPV, NPV and Net Benefit are missing?</strong></p>
+<ul>
+<li><p>Lift and PPV are conditional on Positive Prediction, if there Probability Threshold is higher than all of the probabilities there are no Positive Predictions and nothing to condition on.</p></li>
+<li><p>NPV is conditional on Negative Prediction, if the Probability Threshold is lower than all of the probabilities there are no Negative Predictions and nothing to condition on.</p></li>
+<li><p>Net Benifit assumes the () is the exchange rate between bla bla, if the</p></li>
+</ul>
+<h4 id="format-missing-values">Format Missing Values</h4>
+<p>Since <code>NaN</code> is not very pleasing in tables, we can change it to empty string with <code>fmt_missing()</code></p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>$`_data`
+# A tibble: 11 x 14
+   threshold    TP    TN    FN    FP sensitivity    FPR   lift
+       &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1       0     236     0     0   164       1     1        1   
+ 2       0.1   234   102     2    62       0.992 0.378    1.34
+ 3       0.2   230   116     6    48       0.975 0.293    1.40
+ 4       0.3   227   129     9    35       0.962 0.213    1.47
+ 5       0.4   223   138    13    26       0.945 0.159    1.52
+ 6       0.5   221   142    15    22       0.936 0.134    1.54
+ 7       0.6   211   147    25    17       0.894 0.104    1.57
+ 8       0.7   203   154    33    10       0.860 0.0610   1.62
+ 9       0.8   195   158    41     6       0.826 0.0366   1.64
+10       0.9   170   159    66     5       0.720 0.0305   1.65
+11       1       0   164   236     0       0     0      NaN   
+# ... with 6 more variables: specificity &lt;dbl&gt;, PPV &lt;dbl&gt;, NPV &lt;dbl&gt;,
+#   predicted_positives &lt;dbl&gt;, PPCR &lt;dbl&gt;, NB &lt;dbl&gt;
+
+$`_boxhead`
+# A tibble: 14 x 6
+   var          type  column_label column_align column_width hidden_px
+   &lt;chr&gt;        &lt;chr&gt; &lt;list&gt;       &lt;chr&gt;        &lt;list&gt;       &lt;list&gt;   
+ 1 threshold    defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 2 TP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 3 TN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 4 FN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 5 FP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 6 sensitivity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 7 FPR          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 8 lift         defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 9 specificity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+10 PPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+11 NPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+12 predicted_p~ defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+13 PPCR         defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+14 NB           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+
+$`_stub_df`
+# A tibble: 11 x 5
+   rownum_i group_id rowname group_label built
+      &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;list&gt;      &lt;chr&gt;
+ 1        1 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 2        2 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 3        3 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 4        4 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 5        5 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 6        6 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 7        7 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 8        8 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 9        9 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+10       10 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+11       11 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+
+$`_row_groups`
+character(0)
+
+$`_heading`
+$`_heading`$title
+NULL
+
+$`_heading`$subtitle
+NULL
+
+
+$`_spanners`
+# A tibble: 0 x 5
+# ... with 5 variables: vars &lt;list&gt;, spanner_label &lt;list&gt;,
+#   spanner_id &lt;chr&gt;, gather &lt;lgl&gt;, built &lt;chr&gt;</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>$`_data`
+# A tibble: 11 x 14
+   threshold    TP    TN    FN    FP sensitivity    FPR   lift
+       &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1       0     236     0     0   164       1     1        1   
+ 2       0.1   234   102     2    62       0.992 0.378    1.34
+ 3       0.2   230   116     6    48       0.975 0.293    1.40
+ 4       0.3   227   129     9    35       0.962 0.213    1.47
+ 5       0.4   223   138    13    26       0.945 0.159    1.52
+ 6       0.5   221   142    15    22       0.936 0.134    1.54
+ 7       0.6   211   147    25    17       0.894 0.104    1.57
+ 8       0.7   203   154    33    10       0.860 0.0610   1.62
+ 9       0.8   195   158    41     6       0.826 0.0366   1.64
+10       0.9   170   159    66     5       0.720 0.0305   1.65
+11       1       0   164   236     0       0     0      NaN   
+# ... with 6 more variables: specificity &lt;dbl&gt;, PPV &lt;dbl&gt;, NPV &lt;dbl&gt;,
+#   predicted_positives &lt;dbl&gt;, PPCR &lt;dbl&gt;, NB &lt;dbl&gt;
+
+$`_boxhead`
+# A tibble: 14 x 6
+   var          type  column_label column_align column_width hidden_px
+   &lt;chr&gt;        &lt;chr&gt; &lt;list&gt;       &lt;chr&gt;        &lt;list&gt;       &lt;list&gt;   
+ 1 threshold    defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 2 TP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 3 TN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 4 FN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 5 FP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 6 sensitivity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 7 FPR          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 8 lift         defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 9 specificity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+10 PPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+11 NPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+12 predicted_p~ defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+13 PPCR         defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+14 NB           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+
+$`_stub_df`
+# A tibble: 11 x 5
+   rownum_i group_id rowname group_label built
+      &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;list&gt;      &lt;chr&gt;
+ 1        1 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 2        2 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 3        3 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 4        4 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 5        5 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 6        6 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 7        7 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 8        8 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 9        9 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+10       10 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+11       11 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+
+$`_row_groups`
+character(0)
+
+$`_heading`
+$`_heading`$title
+NULL
+
+$`_heading`$subtitle
+NULL
+
+
+$`_spanners`
+# A tibble: 0 x 5
+# ... with 5 variables: vars &lt;list&gt;, spanner_label &lt;list&gt;,
+#   spanner_id &lt;chr&gt;, gather &lt;lgl&gt;, built &lt;chr&gt;</code></pre>
+</div>
+<h4 id="format-values-as-a-percentage-and-merge-with-counts">Format values as a percentage and merge with counts</h4>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>$`_data`
+# A tibble: 11 x 14
+   threshold    TP    TN    FN    FP sensitivity    FPR   lift
+       &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1       0     236     0     0   164       1     1        1   
+ 2       0.1   234   102     2    62       0.992 0.378    1.34
+ 3       0.2   230   116     6    48       0.975 0.293    1.40
+ 4       0.3   227   129     9    35       0.962 0.213    1.47
+ 5       0.4   223   138    13    26       0.945 0.159    1.52
+ 6       0.5   221   142    15    22       0.936 0.134    1.54
+ 7       0.6   211   147    25    17       0.894 0.104    1.57
+ 8       0.7   203   154    33    10       0.860 0.0610   1.62
+ 9       0.8   195   158    41     6       0.826 0.0366   1.64
+10       0.9   170   159    66     5       0.720 0.0305   1.65
+11       1       0   164   236     0       0     0      NaN   
+# ... with 6 more variables: specificity &lt;dbl&gt;, PPV &lt;dbl&gt;, NPV &lt;dbl&gt;,
+#   predicted_positives &lt;dbl&gt;, PPCR &lt;dbl&gt;, NB &lt;dbl&gt;
+
+$`_boxhead`
+# A tibble: 14 x 6
+   var          type  column_label column_align column_width hidden_px
+   &lt;chr&gt;        &lt;chr&gt; &lt;list&gt;       &lt;chr&gt;        &lt;list&gt;       &lt;list&gt;   
+ 1 threshold    defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 2 TP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 3 TN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 4 FN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 5 FP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 6 sensitivity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 7 FPR          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 8 lift         defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 9 specificity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+10 PPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+11 NPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+12 predicted_p~ defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+13 PPCR         hidd~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+14 NB           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+
+$`_stub_df`
+# A tibble: 11 x 5
+   rownum_i group_id rowname group_label built
+      &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;list&gt;      &lt;chr&gt;
+ 1        1 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 2        2 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 3        3 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 4        4 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 5        5 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 6        6 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 7        7 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 8        8 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 9        9 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+10       10 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+11       11 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+
+$`_row_groups`
+character(0)
+
+$`_heading`
+$`_heading`$title
+NULL
+
+$`_heading`$subtitle
+NULL
+
+
+$`_spanners`
+# A tibble: 0 x 5
+# ... with 5 variables: vars &lt;list&gt;, spanner_label &lt;list&gt;,
+#   spanner_id &lt;chr&gt;, gather &lt;lgl&gt;, built &lt;chr&gt;</code></pre>
+</div>
+<h4 id="relabel-columns">Relabel Columns</h4>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>$`_data`
+# A tibble: 11 x 14
+   threshold    TP    TN    FN    FP sensitivity    FPR   lift
+       &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1       0     236     0     0   164       1     1        1   
+ 2       0.1   234   102     2    62       0.992 0.378    1.34
+ 3       0.2   230   116     6    48       0.975 0.293    1.40
+ 4       0.3   227   129     9    35       0.962 0.213    1.47
+ 5       0.4   223   138    13    26       0.945 0.159    1.52
+ 6       0.5   221   142    15    22       0.936 0.134    1.54
+ 7       0.6   211   147    25    17       0.894 0.104    1.57
+ 8       0.7   203   154    33    10       0.860 0.0610   1.62
+ 9       0.8   195   158    41     6       0.826 0.0366   1.64
+10       0.9   170   159    66     5       0.720 0.0305   1.65
+11       1       0   164   236     0       0     0      NaN   
+# ... with 6 more variables: specificity &lt;dbl&gt;, PPV &lt;dbl&gt;, NPV &lt;dbl&gt;,
+#   predicted_positives &lt;dbl&gt;, PPCR &lt;dbl&gt;, NB &lt;dbl&gt;
+
+$`_boxhead`
+# A tibble: 14 x 6
+   var          type  column_label column_align column_width hidden_px
+   &lt;chr&gt;        &lt;chr&gt; &lt;list&gt;       &lt;chr&gt;        &lt;list&gt;       &lt;list&gt;   
+ 1 threshold    defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 2 TP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 3 TN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 4 FN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 5 FP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 6 sensitivity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 7 FPR          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 8 lift         defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 9 specificity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+10 PPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+11 NPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+12 predicted_p~ defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+13 PPCR         hidd~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+14 NB           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+
+$`_stub_df`
+# A tibble: 11 x 5
+   rownum_i group_id rowname group_label built
+      &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;list&gt;      &lt;chr&gt;
+ 1        1 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 2        2 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 3        3 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 4        4 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 5        5 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 6        6 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 7        7 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 8        8 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 9        9 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+10       10 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+11       11 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+
+$`_row_groups`
+character(0)
+
+$`_heading`
+$`_heading`$title
+NULL
+
+$`_heading`$subtitle
+NULL
+
+
+$`_spanners`
+# A tibble: 0 x 5
+# ... with 5 variables: vars &lt;list&gt;, spanner_label &lt;list&gt;,
+#   spanner_id &lt;chr&gt;, gather &lt;lgl&gt;, built &lt;chr&gt;</code></pre>
+</div>
+<h4 id="adding-spanner-column-labels">Adding spanner column labels</h4>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>$`_data`
+# A tibble: 11 x 14
+   threshold    TP    TN    FN    FP sensitivity    FPR   lift
+       &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1       0     236     0     0   164       1     1        1   
+ 2       0.1   234   102     2    62       0.992 0.378    1.34
+ 3       0.2   230   116     6    48       0.975 0.293    1.40
+ 4       0.3   227   129     9    35       0.962 0.213    1.47
+ 5       0.4   223   138    13    26       0.945 0.159    1.52
+ 6       0.5   221   142    15    22       0.936 0.134    1.54
+ 7       0.6   211   147    25    17       0.894 0.104    1.57
+ 8       0.7   203   154    33    10       0.860 0.0610   1.62
+ 9       0.8   195   158    41     6       0.826 0.0366   1.64
+10       0.9   170   159    66     5       0.720 0.0305   1.65
+11       1       0   164   236     0       0     0      NaN   
+# ... with 6 more variables: specificity &lt;dbl&gt;, PPV &lt;dbl&gt;, NPV &lt;dbl&gt;,
+#   predicted_positives &lt;dbl&gt;, PPCR &lt;dbl&gt;, NB &lt;dbl&gt;
+
+$`_boxhead`
+# A tibble: 14 x 6
+   var          type  column_label column_align column_width hidden_px
+   &lt;chr&gt;        &lt;chr&gt; &lt;list&gt;       &lt;chr&gt;        &lt;list&gt;       &lt;list&gt;   
+ 1 threshold    defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 2 TP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 3 FP           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 4 TN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 5 FN           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 6 sensitivity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 7 lift         defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 8 specificity  defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+ 9 FPR          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+10 PPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+11 NPV          defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+12 NB           defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+13 predicted_p~ defa~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+14 PPCR         hidd~ &lt;chr [1]&gt;    right        &lt;NULL&gt;       &lt;NULL&gt;   
+
+$`_stub_df`
+# A tibble: 11 x 5
+   rownum_i group_id rowname group_label built
+      &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;list&gt;      &lt;chr&gt;
+ 1        1 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 2        2 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 3        3 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 4        4 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 5        5 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 6        6 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 7        7 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 8        8 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+ 9        9 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+10       10 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+11       11 &lt;NA&gt;     &lt;NA&gt;    &lt;NULL&gt;      &lt;NA&gt; 
+
+$`_row_groups`
+character(0)
+
+$`_heading`
+$`_heading`$title
+NULL
+
+$`_heading`$subtitle
+NULL
+
+
+$`_spanners`
+# A tibble: 2 x 5
+  vars      spanner_label spanner_id          gather built
+  &lt;list&gt;    &lt;list&gt;        &lt;chr&gt;               &lt;lgl&gt;  &lt;chr&gt;
+1 &lt;chr [4]&gt; &lt;chr [1]&gt;     Confusion Matrix    TRUE   &lt;NA&gt; 
+2 &lt;chr [7]&gt; &lt;chr [1]&gt;     Performance Metrics TRUE   &lt;NA&gt; </code></pre>
+</div>
 <h2 id="compare-models-️">Compare Models <span class="emoji" data-emoji="balance_scale">⚖️</span></h2>
-<h3 id="logistic-regression">Logistic Regression <span class="emoji" data-emoji="twisted_rightwards_arrows">🔀</span></h3>
-<p>So far we examined the performance of a logistic regression for our population. Logistic Regression got many benefits - it’s used for over a hundred years and it’s explainable. In terms of prediction Logistic Regression is not optimal.</p>
+<p>So far we examined the performance of a <strong>Logistic Regression <span class="emoji" data-emoji="twisted_rightwards_arrows">🔀</span></strong> for our population.</p>
 <h3 id="tree-model">Tree Model <span class="emoji" data-emoji="evergreen_tree">🌲</span></h3>
 <p>Tree Models are extremely popular in Machine Learning, generally they are all based on Decision Trees. These kind of models are considered to be “Black Boxes” because you don’t really know (or even care) what they do, but you know that they are doing it well. How do you know that? You’ve guessed it - Performance Metrics!</p>
 <h3 id="random-guess">Random Guess <span class="emoji" data-emoji="see_no_evil">🙈</span></h3>
@@ -3442,7 +4287,7 @@ There are many great packages for table creation available for r, but I think th
 <h2 id="section"></h2>
 <p>One Line for each Strata <span class="emoji" data-emoji="left_right_arrow">↔︎️</span></p>
 <p>So there you have it, a Performance Table that will help you see the</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
