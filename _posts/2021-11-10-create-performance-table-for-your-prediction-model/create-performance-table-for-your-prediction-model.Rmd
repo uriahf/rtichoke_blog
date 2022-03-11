@@ -426,7 +426,7 @@ span.frac > span {display: none;}
   locations = cells_column_spanners(spanners = "Performance Metrics")
   )
 
-performance_table
+performance_table 
 ```
 
 ```{r}
