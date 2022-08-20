@@ -1,0 +1,21 @@
+---
+page-layout: full
+---
+
+::: grid
+::: g-col-4
+![](gaston_rtichoke.png){width="200"}
+:::
+
+::: g-col-8
+# Welcome to rtichoke blog
+
+This blog is dedicated to reproducible examples by rtichoke in order to help new users to have a quick start. For more conventional documentation of the package please visit [rtichoke pkgdown website](https://uriahf.github.io/rtichoke/).
+
+Some of the posts will be [replications](posts.qmd#category=Replications) of existing code that produces the same output as rtichoke by different packages.
+
+Other posts will be more focused on theoretical issues, but always with a reproducible code.
+
+I will also share some [talks](posts.qmd#category=Talks) that might be about everything as long as there are some relevant outputs by rtichoke (Most of the talks will be in Hebrew but the slides will always be in English).
+:::
+:::

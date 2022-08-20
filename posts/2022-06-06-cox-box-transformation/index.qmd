@@ -1,0 +1,273 @@
+---
+title: "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson"
+date: "2012-06-06"
+categories: 
+  - Replications
+  - ROC
+  - Max Kuhn
+  - Kjell Johnson
+  - Feature Engineering by Max Kuhn and Kjell Johnson
+  - caret
+image: "image.png"
+---
+
+## Welcome to rtichoke blog!
+
+This blog will be dedicated to the {rtichoke} package, which means that it will contain posts that are related to performance metrics and the possible related usability of {rtichoke}.
+
+## Replications
+
+To make the package easier to use I plan to reproduce other people's code with rtichoke, posts of this kind will be available under the category "replications".
+
+My first choice is to replicate the first example from the book ["Feature Engineering and Selection: A Practical Approach for Predictive Models by Max Kuhn and Kjell Johnson"](http://www.feat.engineering/a-simple-example.html).
+
+In this example you can see how Box-Cox transformation improves the discrimination capability of the logistic regression model without using any additional information.
+
+## Original Code
+
+The code is almost identical to the original code that can be found [on github](https://github.com/topepo/FES/blob/master/01_Introduction/1_01_A_Simple_Example.R).
+
+### Preparing the Data
+
+```{r}
+#| message: false
+#| warning: false
+#| include: false
+
+ggplot2::theme_set(ggplot2::theme_classic())
+ggplot2::theme_update(
+  rect = ggplot2::element_rect(fill = "transparent"),
+      panel.background = ggplot2::element_rect(fill='transparent'), #transparent panel bg
+    plot.background = ggplot2::element_rect(fill='transparent', color=NA), #transparent plot bg
+    panel.grid.major = ggplot2::element_blank(), #remove major gridlines
+    panel.grid.minor = ggplot2::element_blank(), #remove minor gridlines
+    legend.background = ggplot2::element_rect(fill='transparent'), #transparent legend bg
+    legend.box.background = ggplot2::element_rect(fill='transparent') #transparent legend panel
+)
+```
+
+```{r}
+#| message: false
+#| warning: false
+
+library(caret)
+library(tidymodels)
+library(ggplot2)
+
+
+data(segmentationData)
+
+segmentationData <- 
+  segmentationData %>% 
+  dplyr::select(EqSphereAreaCh1, PerimCh1, Class, Case) %>% 
+  setNames(c("PredictorA", "PredictorB", "Class", "Case")) %>% 
+  mutate(Class = factor(ifelse(Class == "PS", "One", "Two")))
+
+example_train <- 
+  segmentationData %>% 
+  dplyr::filter(Case == "Train") %>% 
+  dplyr::select(-Case)
+
+example_test  <- 
+  segmentationData %>% 
+  dplyr::filter(Case == "Test") %>% 
+  dplyr::select(-Case)
+```
+
+### Training the Models
+
+```{r}
+
+example_ctrl <- 
+  trainControl(method = "none",
+               classProbs = TRUE,
+               summaryFunction = twoClassSummary)
+
+natural_terms <- train(Class ~ PredictorA + PredictorB,
+                       data = example_train,
+                       method = "glm",
+                       metric = "ROC",
+                       trControl = example_ctrl)
+
+trans_terms <- train(Class ~ PredictorA + PredictorB,
+                     data = example_train,
+                     method = "glm",
+                     preProc = "BoxCox",
+                     metric = "ROC",
+                     trControl = example_ctrl)
+
+```
+
+### Creating Predictions
+
+```{r}
+
+original_probs <- predict(natural_terms, example_test, type = "prob")[,1]
+
+transformed_probs <- predict(trans_terms, example_test, type = "prob")[,1]
+
+outcomes <- example_test$Class == "One"
+
+```
+
+### Creating ROC Curve with yardstick
+
+```{r}
+#| message: false
+#| warning: false
+#| eval: false
+
+
+natural_dat <-
+  example_test %>% 
+  mutate(
+    prob = original_probs) %>% 
+  roc_curve(Class, prob) %>% 
+  mutate(Format = "Natural Units")
+
+trans_dat <-
+  example_test %>% 
+  mutate(
+    prob = transformed_probs) %>% 
+  roc_curve(Class, prob) %>% 
+  mutate(Format = "Inverse Units") 
+
+both_dat <- 
+  bind_rows(natural_dat, trans_dat) %>%
+  mutate(
+    Format = factor(Format, levels = c("Natural Units", "Inverse Units")))
+
+trans_roc_plot <- 
+  ggplot(both_dat) +
+  geom_step(aes(x = 1 - specificity, y = sensitivity, color = Format)) + 
+  coord_equal() + 
+  xlab("False Positive Rate") + 
+  ylab("True Positive Rate") + 
+  theme(legend.position = c(.8, .2)) + 
+  scale_colour_manual(
+    values = c("Natural Units" = "grey", 
+               "Inverse Units" = "black")) + 
+  geom_abline(intercept = 0, slope = 1, col = "grey", lty = 2) +
+  theme_classic()
+
+trans_roc_plot
+
+```
+
+![](trans_roc_plot.svg)
+
+```{r eval=FALSE, include=FALSE}
+#| include: false
+#| eval: false
+
+# ggsave("./content/blog/2022-06-06-cox-box-transformation/trans_roc_plot.svg",    
+#        # plot = trans_roc_plot,
+#        bg='transparent', 
+#        units = "px")
+
+```
+
+## rtichoke code
+
+### Creating ROC Curve with rtichoke
+
+::: panel-tabset
+## By Probability Threshold
+
+::: {layout-ncol="2"}
+```{r}
+#| message: false
+#| warning: false
+#| eval: false
+
+library(rtichoke)
+
+create_roc_curve(
+  probs = list(
+    "Natural Units" = original_probs,
+    "Inverse Units" = transformed_probs
+  ),
+  reals = list(
+    outcomes
+  ),
+  size = 350, 
+  col_values = c("grey", "black")
+) 
+
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+
+library(rtichoke)
+
+create_roc_curve(
+  probs = list(
+    "Natural Units" = original_probs,
+    "Inverse Units" = transformed_probs
+  ),
+  reals = list(
+    outcomes
+  ),
+  size = 350, 
+  col_values = c("grey", "black")
+) %>% 
+plotly::layout(plot_bgcolor = "#fff7f5", 
+               paper_bgcolor= "#fff7f5")
+
+```
+:::
+
+## By Percent Positives Conditional Rate
+
+::: {layout-ncol="2"}
+```{r}
+#| message: false
+#| warning: false
+#| eval: false
+
+
+library(rtichoke)
+
+create_roc_curve(
+  probs = list(
+    "Natural Units" = original_probs,
+    "Inverse Units" = transformed_probs
+  ),
+  reals = list(
+    outcomes
+  ),
+  stratified_by = "ppcr",
+  size = 350, 
+  col_values = c("grey", "black")
+) 
+
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+
+library(rtichoke)
+
+create_roc_curve(
+  probs = list(
+    "Natural Units" = original_probs,
+    "Inverse Units" = transformed_probs
+  ),
+  reals = list(
+    outcomes
+  ),
+  stratified_by = "ppcr",
+  size = 350, 
+  col_values = c("grey", "black")
+) %>% 
+plotly::layout(plot_bgcolor = "#fff7f5", 
+               paper_bgcolor= "#fff7f5")
+
+```
+:::
+:::

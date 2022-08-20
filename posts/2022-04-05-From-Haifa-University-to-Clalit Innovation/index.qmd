@@ -1,0 +1,11 @@
+---
+title: "From Haifa University to Clalit innovation"
+date: "2022-04-05"
+categories: 
+  - ROC
+  - Decision
+image: "image.png"
+draft: false
+---
+
+## Section

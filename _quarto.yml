@@ -1,0 +1,25 @@
+project:
+  type: website
+
+website:
+  title: "rtichoke blog"
+  navbar:
+    right:
+      - text: Posts
+        href: posts.qmd 
+      - text: About Me
+        href: about_me.qmd
+      - icon: github
+        href: https://github.com/uriahf/rtichoke
+      - icon: twitter
+        href: https://twitter.com/finkeluriah
+      - icon: facebook
+        href: https://www.facebook.com/groups/rforthemasses
+      - icon: linkedin
+        href: https://www.linkedin.com/in/uriah-finkel
+format:
+  html:
+    theme: theme.scss
+
+editor: visual
+

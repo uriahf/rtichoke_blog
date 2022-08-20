@@ -1,0 +1,41 @@
+---
+title: "Uriah Finkel"
+about:
+  template: jolla
+  image: avatar.jpg
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/uriahf/rtichoke
+    - icon: twitter
+      text: twitter
+      href: https://twitter.com/finkeluriah
+    - icon: facebook
+      href: https://www.facebook.com/groups/rforthemasses
+      text: R for the Masses
+    - icon: linkedin
+      href: https://www.linkedin.com/in/uriah-finkel
+      text: Linkedin
+format:
+  html:
+    resources:
+      - audio.mp4
+---
+
+<figure>
+
+<figcaption>How to Say My Name</figcaption>
+
+<audio controls src="audio.mp4">
+
+Your browser does not support the <code>audio</code> element.
+
+</audio>
+
+</figure>
+
+Author of [rtichoke](https://uriahf.github.io/rtichoke/)
+
+Data Scientist in [Clalit Innovation](https://www.clalit-innovation.org/)
+
+Co-Admin of Israeli R community ["R for the Masses"](https://www.facebook.com/groups/1655238354489398/)

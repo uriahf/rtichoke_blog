@@ -1,0 +1,261 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "rtichoke blog",
+    "section": "",
+    "text": "This blog is dedicated to reproducible examples by rtichoke in order to help new users to have a quick start. For more conventional documentation of the package please visit rtichoke pkgdown website.\nSome of the posts will be replications of existing code that produces the same output as rtichoke by different packages.\nOther posts will be more focused on theoretical issues, but always with a reproducible code.\nI will also share some talks that might be about everything as long as there are some relevant outputs by rtichoke (Most of the talks will be in Hebrew but the slides will always be in English)."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "",
+    "text": "RPython\n\n\nR-specific examples here.asdfasdfdsad\n\n\nPython-specific examples here.\nIf there are repeated groups on the same page, their tabs are synced:"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "Since this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "posts/post-with-code/a.html",
+    "href": "posts/post-with-code/a.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#welcome-to-rtichoke-blog",
+    "href": "posts/post-with-code/index.html#welcome-to-rtichoke-blog",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "Welcome to rtichoke blog!",
+    "text": "Welcome to rtichoke blog!\nThis blog will be dedicated to the {rtichoke} package, which means that it will contain posts that are related to performance metrics and the possible related usability of {rtichoke}."
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#replications",
+    "href": "posts/post-with-code/index.html#replications",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "Replications",
+    "text": "Replications\nTo make the package easier to use I plan to reproduce other people’s code with rtichoke, posts of this kind will be available under the category “replications”.\nMy first choice is to replicate the first example from the book “Feature Engineering and Selection: A Practical Approach for Predictive Models by Max Kuhn and Kjell Johnson”.\nIn this example you can see how Box-Cox transformation improves the discrimination capability of the logistic regression model without using any additional information."
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#original-code",
+    "href": "posts/post-with-code/index.html#original-code",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "Original Code",
+    "text": "Original Code\nThe code is almost identical to the original code that can be found on github.\n\nPreparing the Data\n\nlibrary(caret)\nlibrary(tidymodels)\nlibrary(ggplot2)\n\n\ndata(segmentationData)\n\nsegmentationData <- \n  segmentationData %>% \n  dplyr::select(EqSphereAreaCh1, PerimCh1, Class, Case) %>% \n  setNames(c(\"PredictorA\", \"PredictorB\", \"Class\", \"Case\")) %>% \n  mutate(Class = factor(ifelse(Class == \"PS\", \"One\", \"Two\")))\n\nexample_train <- \n  segmentationData %>% \n  dplyr::filter(Case == \"Train\") %>% \n  dplyr::select(-Case)\n\nexample_test  <- \n  segmentationData %>% \n  dplyr::filter(Case == \"Test\") %>% \n  dplyr::select(-Case)\n\n\n\nTraining the Models\n\nexample_ctrl <- \n  trainControl(method = \"none\",\n               classProbs = TRUE,\n               summaryFunction = twoClassSummary)\n\nnatural_terms <- train(Class ~ PredictorA + PredictorB,\n                       data = example_train,\n                       method = \"glm\",\n                       metric = \"ROC\",\n                       trControl = example_ctrl)\n\ntrans_terms <- train(Class ~ PredictorA + PredictorB,\n                     data = example_train,\n                     method = \"glm\",\n                     preProc = \"BoxCox\",\n                     metric = \"ROC\",\n                     trControl = example_ctrl)\n\n\n\nCreating ROC Curve with yardstick\n\nnatural_dat <-\n  example_test %>% \n  mutate(\n    prob = predict(natural_terms, example_test, type = \"prob\")[,1]) %>% \n  roc_curve(Class, prob) %>% \n  mutate(Format = \"Natural Units\")\n\ntrans_dat <-\n  example_test %>% \n  mutate(\n    prob = predict(trans_terms, example_test, type = \"prob\")[,1]) %>% \n  roc_curve(Class, prob) %>% \n  mutate(Format = \"Inverse Units\") \n\nboth_dat <- \n  bind_rows(natural_dat, trans_dat) %>%\n  mutate(\n    Format = factor(Format, levels = c(\"Natural Units\", \"Inverse Units\")))\n\ntrans_roc_plot <- \n  ggplot(both_dat) +\n  geom_step(aes(x = 1 - specificity, y = sensitivity, color = Format)) + \n  coord_equal() + \n  xlab(\"False Positive Rate\") + \n  ylab(\"True Positive Rate\") + \n  theme(legend.position = c(.8, .2)) + \n  scale_colour_manual(\n    values = c(\"Natural Units\" = \"grey\", \n               \"Inverse Units\" = \"black\")) + \n  geom_abline(intercept = 0, slope = 1, col = \"grey\", lty = 2) +\n  theme_classic()\n\ntrans_roc_plot"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#rtichoke-code",
+    "href": "posts/post-with-code/index.html#rtichoke-code",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "rtichoke code",
+    "text": "rtichoke code\n\nCreating ROC Curve with rtichoke"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#by-probability-threshold",
+    "href": "posts/post-with-code/index.html#by-probability-threshold",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "By Probability Threshold",
+    "text": "By Probability Threshold\n\nlibrary(rtichoke)\n\ncreate_roc_curve(\n  probs = list(\n    \"Natural Units\" = predict(natural_terms, \n                            example_test, type = \"prob\")[,1],\n    \"Inverse Units\" = predict(trans_terms, \n                            example_test, type = \"prob\")[,1]\n  ),\n  reals = list(example_test$Class == \"One\"),\n  size = 400, \n  col_values = c(\"grey\", \"black\")\n)"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#by-percent-positives-conditional-rate",
+    "href": "posts/post-with-code/index.html#by-percent-positives-conditional-rate",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "By Percent Positives Conditional Rate",
+    "text": "By Percent Positives Conditional Rate\n\nlibrary(rtichoke)\n\ncreate_roc_curve(\n  probs = list(\n    \"Natural Units\" = predict(natural_terms, \n                            example_test, type = \"prob\")[,1],\n    \"Inverse Units\" = predict(trans_terms, \n                            example_test, type = \"prob\")[,1]\n  ),\n  reals = list(example_test$Class == \"One\"),\n  stratified_by = \"ppcr\",\n  size = 400, \n  col_values = c(\"grey\", \"black\")\n)"
+  },
+  {
+    "objectID": "posts/2022-06-06-cox-box-transformation/a.html",
+    "href": "posts/2022-06-06-cox-box-transformation/a.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/2022-06-06-cox-box-transformation/index.html",
+    "href": "posts/2022-06-06-cox-box-transformation/index.html",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "",
+    "text": "This blog will be dedicated to the {rtichoke} package, which means that it will contain posts that are related to performance metrics and the possible related usability of {rtichoke}."
+  },
+  {
+    "objectID": "posts/2022-06-06-cox-box-transformation/index.html#welcome-to-rtichoke-blog",
+    "href": "posts/2022-06-06-cox-box-transformation/index.html#welcome-to-rtichoke-blog",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "Welcome to rtichoke blog!",
+    "text": "Welcome to rtichoke blog!\nThis blog will be dedicated to the {rtichoke} package, which means that it will contain posts that are related to performance metrics and the possible related usability of {rtichoke}."
+  },
+  {
+    "objectID": "posts/2022-06-06-cox-box-transformation/index.html#replications",
+    "href": "posts/2022-06-06-cox-box-transformation/index.html#replications",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "Replications",
+    "text": "Replications\nTo make the package easier to use I plan to reproduce other people’s code with rtichoke, posts of this kind will be available under the category “replications”.\nMy first choice is to replicate the first example from the book “Feature Engineering and Selection: A Practical Approach for Predictive Models by Max Kuhn and Kjell Johnson”.\nIn this example you can see how Box-Cox transformation improves the discrimination capability of the logistic regression model without using any additional information."
+  },
+  {
+    "objectID": "posts/2022-06-06-cox-box-transformation/index.html#original-code",
+    "href": "posts/2022-06-06-cox-box-transformation/index.html#original-code",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "Original Code",
+    "text": "Original Code\nThe code is almost identical to the original code that can be found on github.\n\nPreparing the Data\n\nlibrary(caret)\nlibrary(tidymodels)\nlibrary(ggplot2)\n\n\ndata(segmentationData)\n\nsegmentationData <- \n  segmentationData %>% \n  dplyr::select(EqSphereAreaCh1, PerimCh1, Class, Case) %>% \n  setNames(c(\"PredictorA\", \"PredictorB\", \"Class\", \"Case\")) %>% \n  mutate(Class = factor(ifelse(Class == \"PS\", \"One\", \"Two\")))\n\nexample_train <- \n  segmentationData %>% \n  dplyr::filter(Case == \"Train\") %>% \n  dplyr::select(-Case)\n\nexample_test  <- \n  segmentationData %>% \n  dplyr::filter(Case == \"Test\") %>% \n  dplyr::select(-Case)\n\n\n\nTraining the Models\n\nexample_ctrl <- \n  trainControl(method = \"none\",\n               classProbs = TRUE,\n               summaryFunction = twoClassSummary)\n\nnatural_terms <- train(Class ~ PredictorA + PredictorB,\n                       data = example_train,\n                       method = \"glm\",\n                       metric = \"ROC\",\n                       trControl = example_ctrl)\n\ntrans_terms <- train(Class ~ PredictorA + PredictorB,\n                     data = example_train,\n                     method = \"glm\",\n                     preProc = \"BoxCox\",\n                     metric = \"ROC\",\n                     trControl = example_ctrl)\n\n\n\nCreating Predictions\n\noriginal_probs <- predict(natural_terms, example_test, type = \"prob\")[,1]\n\ntransformed_probs <- predict(trans_terms, example_test, type = \"prob\")[,1]\n\noutcomes <- example_test$Class == \"One\"\n\n\n\nCreating ROC Curve with yardstick\n\nnatural_dat <-\n  example_test %>% \n  mutate(\n    prob = original_probs) %>% \n  roc_curve(Class, prob) %>% \n  mutate(Format = \"Natural Units\")\n\ntrans_dat <-\n  example_test %>% \n  mutate(\n    prob = transformed_probs) %>% \n  roc_curve(Class, prob) %>% \n  mutate(Format = \"Inverse Units\") \n\nboth_dat <- \n  bind_rows(natural_dat, trans_dat) %>%\n  mutate(\n    Format = factor(Format, levels = c(\"Natural Units\", \"Inverse Units\")))\n\ntrans_roc_plot <- \n  ggplot(both_dat) +\n  geom_step(aes(x = 1 - specificity, y = sensitivity, color = Format)) + \n  coord_equal() + \n  xlab(\"False Positive Rate\") + \n  ylab(\"True Positive Rate\") + \n  theme(legend.position = c(.8, .2)) + \n  scale_colour_manual(\n    values = c(\"Natural Units\" = \"grey\", \n               \"Inverse Units\" = \"black\")) + \n  geom_abline(intercept = 0, slope = 1, col = \"grey\", lty = 2) +\n  theme_classic()\n\ntrans_roc_plot"
+  },
+  {
+    "objectID": "posts/2022-06-06-cox-box-transformation/index.html#rtichoke-code",
+    "href": "posts/2022-06-06-cox-box-transformation/index.html#rtichoke-code",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "rtichoke code",
+    "text": "rtichoke code\n\nCreating ROC Curve with rtichoke\n\nBy Probability ThresholdBy Percent Positives Conditional Rate\n\n\n\n\n\nlibrary(rtichoke)\n\ncreate_roc_curve(\n  probs = list(\n    \"Natural Units\" = original_probs,\n    \"Inverse Units\" = transformed_probs\n  ),\n  reals = list(\n    outcomes\n  ),\n  size = 350, \n  col_values = c(\"grey\", \"black\")\n) \n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(rtichoke)\n\ncreate_roc_curve(\n  probs = list(\n    \"Natural Units\" = original_probs,\n    \"Inverse Units\" = transformed_probs\n  ),\n  reals = list(\n    outcomes\n  ),\n  stratified_by = \"ppcr\",\n  size = 350, \n  col_values = c(\"grey\", \"black\")\n)"
+  },
+  {
+    "objectID": "posts/2022-06-06-cox-box-transformation/index.html#by-probability-threshold",
+    "href": "posts/2022-06-06-cox-box-transformation/index.html#by-probability-threshold",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "By Probability Threshold",
+    "text": "By Probability Threshold\n\nlibrary(rtichoke)\n\ncreate_roc_curve(\n  probs = list(\n    \"Natural Units\" = predict(natural_terms, \n                            example_test, type = \"prob\")[,1],\n    \"Inverse Units\" = predict(trans_terms, \n                            example_test, type = \"prob\")[,1]\n  ),\n  reals = list(example_test$Class == \"One\"),\n  size = 400, \n  col_values = c(\"grey\", \"black\")\n)"
+  },
+  {
+    "objectID": "posts/2022-06-06-cox-box-transformation/index.html#by-percent-positives-conditional-rate",
+    "href": "posts/2022-06-06-cox-box-transformation/index.html#by-percent-positives-conditional-rate",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "By Percent Positives Conditional Rate",
+    "text": "By Percent Positives Conditional Rate\n\nlibrary(rtichoke)\n\ncreate_roc_curve(\n  probs = list(\n    \"Natural Units\" = predict(natural_terms, \n                            example_test, type = \"prob\")[,1],\n    \"Inverse Units\" = predict(trans_terms, \n                            example_test, type = \"prob\")[,1]\n  ),\n  reals = list(example_test$Class == \"One\"),\n  stratified_by = \"ppcr\",\n  size = 400, \n  col_values = c(\"grey\", \"black\")\n)"
+  },
+  {
+    "objectID": "posts/2022-06-06-cox-box-transformation/index.html#bla",
+    "href": "posts/2022-06-06-cox-box-transformation/index.html#bla",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "bla",
+    "text": "bla\n\n\nList One\n\nItem A\nItem B\nItem C\n\n\n\nList Two\n\nItem X\nItem Y\nItem Z"
+  },
+  {
+    "objectID": "posts/2022-06-06-cox-box-transformation/index.knit.html",
+    "href": "posts/2022-06-06-cox-box-transformation/index.knit.html",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "",
+    "text": "If there are repeated groups on the same page, their tabs are synced:"
+  },
+  {
+    "objectID": "posts/2022-06-06-cox-box-transformation/index.knit.html#welcome-to-rtichoke-blog",
+    "href": "posts/2022-06-06-cox-box-transformation/index.knit.html#welcome-to-rtichoke-blog",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "Welcome to rtichoke blog!",
+    "text": "Welcome to rtichoke blog!\nThis blog will be dedicated to the {rtichoke} package, which means that it will contain posts that are related to performance metrics and the possible related usability of {rtichoke}."
+  },
+  {
+    "objectID": "posts/2022-06-06-cox-box-transformation/index.knit.html#replications",
+    "href": "posts/2022-06-06-cox-box-transformation/index.knit.html#replications",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "Replications",
+    "text": "Replications\nTo make the package easier to use I plan to reproduce other people’s code with rtichoke, posts of this kind will be available under the category “replications”.\nMy first choice is to replicate the first example from the book “Feature Engineering and Selection: A Practical Approach for Predictive Models by Max Kuhn and Kjell Johnson”.\nIn this example you can see how Box-Cox transformation improves the discrimination capability of the logistic regression model without using any additional information."
+  },
+  {
+    "objectID": "posts/2022-06-06-cox-box-transformation/index.knit.html#original-code",
+    "href": "posts/2022-06-06-cox-box-transformation/index.knit.html#original-code",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "Original Code",
+    "text": "Original Code\nThe code is almost identical to the original code that can be found on github.\n\nPreparing the Data\n\nlibrary(caret)\nlibrary(tidymodels)\nlibrary(ggplot2)\n\n\ndata(segmentationData)\n\nsegmentationData <- \n  segmentationData %>% \n  dplyr::select(EqSphereAreaCh1, PerimCh1, Class, Case) %>% \n  setNames(c(\"PredictorA\", \"PredictorB\", \"Class\", \"Case\")) %>% \n  mutate(Class = factor(ifelse(Class == \"PS\", \"One\", \"Two\")))\n\nexample_train <- \n  segmentationData %>% \n  dplyr::filter(Case == \"Train\") %>% \n  dplyr::select(-Case)\n\nexample_test  <- \n  segmentationData %>% \n  dplyr::filter(Case == \"Test\") %>% \n  dplyr::select(-Case)\n\n\n\nTraining the Models\n\nexample_ctrl <- \n  trainControl(method = \"none\",\n               classProbs = TRUE,\n               summaryFunction = twoClassSummary)\n\nnatural_terms <- train(Class ~ PredictorA + PredictorB,\n                       data = example_train,\n                       method = \"glm\",\n                       metric = \"ROC\",\n                       trControl = example_ctrl)\n\ntrans_terms <- train(Class ~ PredictorA + PredictorB,\n                     data = example_train,\n                     method = \"glm\",\n                     preProc = \"BoxCox\",\n                     metric = \"ROC\",\n                     trControl = example_ctrl)\n\n\n\nCreating Predictions\n\noriginal_predictions <- predict(natural_terms, example_test, type = \"prob\")[,1]\n\ntransformed_predictions <- predict(trans_terms, example_test, type = \"prob\")[,1]\n\noutcomes <- example_test$Class == \"One\"\n\n\n\nCreating ROC Curve with yardstick\n\nnatural_dat <-\n  example_test %>% \n  mutate(\n    prob = original_predictions) %>% \n  roc_curve(Class, prob) %>% \n  mutate(Format = \"Natural Units\")\n\ntrans_dat <-\n  example_test %>% \n  mutate(\n    prob = transformed_predictions) %>% \n  roc_curve(Class, prob) %>% \n  mutate(Format = \"Inverse Units\") \n\nboth_dat <- \n  bind_rows(natural_dat, trans_dat) %>%\n  mutate(\n    Format = factor(Format, levels = c(\"Natural Units\", \"Inverse Units\")))\n\ntrans_roc_plot <- \n  ggplot(both_dat) +\n  geom_step(aes(x = 1 - specificity, y = sensitivity, color = Format)) + \n  coord_equal() + \n  xlab(\"False Positive Rate\") + \n  ylab(\"True Positive Rate\") + \n  theme(legend.position = c(.8, .2)) + \n  scale_colour_manual(\n    values = c(\"Natural Units\" = \"grey\", \n               \"Inverse Units\" = \"black\")) + \n  geom_abline(intercept = 0, slope = 1, col = \"grey\", lty = 2) +\n  theme_classic()\n\ntrans_roc_plot"
+  },
+  {
+    "objectID": "posts/2022-06-06-cox-box-transformation/index.knit.html#rtichoke-code",
+    "href": "posts/2022-06-06-cox-box-transformation/index.knit.html#rtichoke-code",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "rtichoke code",
+    "text": "rtichoke code\n\nCreating ROC Curve with rtichoke\n\nBy Probability ThresholdBy Percent Positives Conditional Rate\n\n\n\n\n\nCode\nlibrary(rtichoke)\n\ncreate_roc_curve(\n  probs = list(\n    \"Natural Units\" = original_predictions,\n    \"Inverse Units\" = transformed_predictions\n  ),\n  reals = list(\n    outcomes\n  ),\n  size = 400, \n  col_values = c(\"grey\", \"black\")\n) \n\n\nOutput\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nlibrary(rtichoke)\n\ncreate_roc_curve(\n  probs = list(\n    \"Natural Units\" = original_predictions,\n    \"Inverse Units\" = transformed_predictions\n  ),\n  reals = list(\n    outcomes\n  ),\n  stratified_by = \"ppcr\",\n  size = 400, \n  col_values = c(\"grey\", \"black\")\n) \n\n\nOutput"
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "rtichoke blog",
+    "section": "",
+    "text": "Replications\n\n\nROC\n\n\nPrecision Recall\n\n\n\n\n\n\n\n\n\n\n\nJul 1, 2022\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nReplications\n\n\nROC\n\n\n\n\n\n\n\n\n\n\n\nJun 6, 2012\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts.html",
+    "href": "posts.html",
+    "title": "Posts",
+    "section": "",
+    "text": "Replications\n\n\nDecision\n\n\nEmily Vertosick\n\n\nAndrew Vickers\n\n\ngt\n\n\ngtsummary\n\n\ndcurves\n\n\nrms\n\n\nHmisc\n\n\n\n\n\n\n\n\n\n\n\nJul 5, 2022\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nReplications\n\n\nROC\n\n\nPrecision Recall\n\n\nMax Kuhn\n\n\nKjell Johnson\n\n\nFeature Engineering by Max Kuhn and Kjell Johnson\n\n\nyardstick\n\n\n\n\n\n\n\n\n\n\n\nJul 1, 2022\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nROC\n\n\nDecision\n\n\n\n\n\n\n\n\n\n\n\nApr 5, 2022\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nReplications\n\n\nROC\n\n\nMax Kuhn\n\n\nKjell Johnson\n\n\nFeature Engineering by Max Kuhn and Kjell Johnson\n\n\ncaret\n\n\n\n\n\n\n\n\n\n\n\nJun 6, 2012\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about_me.html",
+    "href": "about_me.html",
+    "title": "Uriah Finkel",
+    "section": "",
+    "text": "Author of rtichoke\nData Scientist in Clalit Innovation\nCo-Admin of Israeli R community “R for the Masses”"
+  },
+  {
+    "objectID": "about_me.html#education",
+    "href": "about_me.html#education",
+    "title": "Finley Malloc",
+    "section": "Education",
+    "text": "Education\nUniversity of Haifa | Israel M.A in Statistics\nUniversity of Haifa | Israel B.A in Statistics & Economics"
+  },
+  {
+    "objectID": "posts/2022-08-01-precision-recall/index.html",
+    "href": "posts/2022-08-01-precision-recall/index.html",
+    "title": "Precision Recall from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "",
+    "text": "Precision Recall Curve is shown as an alternative to the known ROC curve in the “second part from the ‘Measuring Performance’ Chapter of Feature Engineering and Selection”. It is mentioned that this curve is more appropriate in terms of Information Retrieval.\n\n\nThe code is almost identical to the original code that can be found on github.\nAlternatively you can download the caret object from here and load it into the global environment by running the following command:\n\nload(\"okc_glm_keyword.RData\")\n\n\n\n\nROCPrecision Recall\n\n\n\n\n\nlibrary(yardstick)\nlibrary(ggplot2)\nlibrary(magrittr)\n\nglm_keyword$pred  %>% \n  roc_curve(obs, stem) %>% \n  autoplot()  +\n  theme_classic()\n\n\n\n\n\n\n\n\n\n\n\nlibrary(yardstick)\nlibrary(ggplot2)\nlibrary(magrittr)\n\nglm_keyword$pred  %>% \n  pr_curve(obs, stem) %>% \n  autoplot()  +\n  theme_classic()\n\n\n\n\n\n\n\n\n\n\n\n\n\nROCPrecision Recall\n\n\n\n\n\nlibrary(rtichoke)\n\ncreate_roc_curve(\n  probs = list(\n    glm_keyword$pred$stem),\n  reals = list(\n    glm_keyword$pred$obs == \"stem\"),\n  size = 350\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(rtichoke)\n\ncreate_precision_recall_curve(\n  probs = list(\n    glm_keyword$pred$stem),\n  reals = list(\n    glm_keyword$pred$obs == \"stem\"),\n  size = 350\n)"
+  },
+  {
+    "objectID": "posts/2022-07-05-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html",
+    "href": "posts/2022-07-05-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html",
+    "title": "DCA for Quantifying the Additional Benefit of a New Marker by Emily Vertosick and Andrew Vickers",
+    "section": "",
+    "text": "Prediction Model might gain accuracy if you’ll add more relevant features to existing models, but many times it’s not obvious what is the additional value of additional feature and how to quantify it in terms of Decision Making. The post Decision curve analysis for quantifying the additional benefit of a new marker by Emily Vertosick and Andrew Vickers show a simple example (the code presented here is almost identical to the original code presented in the link)."
+  },
+  {
+    "objectID": "posts/2022-07-05-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html#preparing-the-data",
+    "href": "posts/2022-07-05-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html#preparing-the-data",
+    "title": "DCA for Quantifying the Additional Benefit of a New Marker by Emily Vertosick and Andrew Vickers",
+    "section": "Preparing the Data",
+    "text": "Preparing the Data\n\nLoading the Data with Hmisc\n\nlibrary(Hmisc)\nlibrary(dplyr)\nlibrary(tibble)\n\ngetHdata(acath)\nacath <- subset(acath, !is.na(choleste))\n\n\n\nFitting Logistic Regressions with rms\n\nlibrary(rms)\n\npre <- lrm(sigdz ~ rcs(age,4) * sex, data = acath)\npre_pred <- predict(pre, type='fitted')\n\npost <- lrm(sigdz ~ rcs(age,4) * sex + \n              rcs(choleste,4) + rcs(age,4) %ia% rcs(choleste,4), data = acath)\npost_pred <- predict(post, type='fitted')\n\nacath_pred <- bind_cols(\n    acath,\n    pre_pred %>% enframe(name = NULL, value = \"pre\"),\n    post_pred %>% enframe(name = NULL, value = \"post\")\n  )"
+  },
+  {
+    "objectID": "posts/2022-07-05-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html#conventional-decision-curve",
+    "href": "posts/2022-07-05-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html#conventional-decision-curve",
+    "title": "DCA for Quantifying the Additional Benefit of a New Marker by Emily Vertosick and Andrew Vickers",
+    "section": "Conventional Decision Curve",
+    "text": "Conventional Decision Curve\n\ndcurvesrtichoke\n\n\n\n\n\nlibrary(dcurves)\n\ndca_prepost <- dca(\n    sigdz ~ pre + post,\n    data = acath_pred,\n    label = list(\n      pre = \"Age and Sex\",\n      post = \"Age, Sex and Cholesterol\"))\n\ndca_prepost %>%\n  plot(smooth = TRUE)  + \n  theme_classic()  +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\n\n\n\nlibrary(rtichoke)\nlibrary(plotly)\n\nperformance_data_dc <- \n  prepare_performance_data(\n  probs = list(\n    \"Age and Sex\" = \n      acath_pred$pre,\n    \"Age, Sex and Cholesterol\" = \n      acath_pred$post\n  ),\n  reals = list(acath_pred$sigdz)\n)\n\nperformance_data_dc %>%\n  plot_decision_curve(\n    col_values = \n      c(\"#00BFC4\", \"#C77CFF\"),\n    size = 350\n  ) %>%\n  layout(\n    yaxis = list(\n      range =\n        c(-0.07, 0.7)\n    )\n  )"
+  },
+  {
+    "objectID": "posts/2022-07-05-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html#specific-range-of-probability-thresholds",
+    "href": "posts/2022-07-05-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html#specific-range-of-probability-thresholds",
+    "title": "DCA for Quantifying the Additional Benefit of a New Marker by Emily Vertosick and Andrew Vickers",
+    "section": "Specific Range of Probability Thresholds",
+    "text": "Specific Range of Probability Thresholds\n\ndcurvesrtichoke\n\n\n\n\n\nlibrary(dcurves)\n\ndca_prepost_15_35 <- dca(\n    sigdz ~ pre + post,\n    data = acath_pred,\n    thresholds = seq(0.15, 0.35, by = 0.05),\n    label = list(\n      pre = \"Age and Sex\",\n      post = \"Age, Sex and Cholesterol\")) %>%\n  plot(type = 'net_benefit', \n       smooth = FALSE, \n       show_ggplot_code = FALSE)\n\ndca_prepost_15_35 + \n  theme_classic()  + \n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\n\n\n\nperformance_data_dc %>% \n  rtichoke::plot_decision_curve(\n    col_values = c(\"#00BFC4\", \"#C77CFF\"),\n    min_p_threshold = 0.15, \n    max_p_threshold = 0.35,\n    size = 350\n  ) %>% \n  plotly::layout(\n    yaxis = list(range =\n                   c(-0.07, 0.7))\n  )"
+  },
+  {
+    "objectID": "posts/2022-07-05-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html#interventions-avoided",
+    "href": "posts/2022-07-05-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html#interventions-avoided",
+    "title": "DCA for Quantifying the Additional Benefit of a New Marker by Emily Vertosick and Andrew Vickers",
+    "section": "Interventions Avoided",
+    "text": "Interventions Avoided\n\ndcurvesrtichoke\n\n\n\n\n\n# code\n\n\n\n\n\n\n\n\n\n\n\nperformance_data_dc %>%\n  rtichoke::plot_decision_curve(\n    col_values = c(\"#F8766D\", \"#00BFC4\"),\n    type = \"interventions avoided\",\n    size = 350\n  ) %>%\n  plotly::layout(\n    yaxis = list(range =\n                   c(-10, 100))\n  )"
+  },
+  {
+    "objectID": "posts/2022-07-05-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html#conventional-and-interventions-avoided-combined-rtichoke-code",
+    "href": "posts/2022-07-05-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html#conventional-and-interventions-avoided-combined-rtichoke-code",
+    "title": "DCA for Quantifying the Additional Benefit of a New Marker by Emily Vertosick and Andrew Vickers",
+    "section": "Conventional and Interventions Avoided Combined (rtichoke code)",
+    "text": "Conventional and Interventions Avoided Combined (rtichoke code)\n\n\n\nperformance_data_dc %>%\n  plot_decision_curve(\n    col_values = \n      c(\"#00BFC4\", \"#C77CFF\"),\n    type = \"combined\",\n    size = 500\n  )"
+  },
+  {
+    "objectID": "posts/2022-04-05-From-Haifa-University-to-Clalit Innovation/index.html",
+    "href": "posts/2022-04-05-From-Haifa-University-to-Clalit Innovation/index.html",
+    "title": "From Haifa University to Clalit innovation",
+    "section": "",
+    "text": "https://haifa-to-clalit-innovation.netlify.app/journey_haifa_to_cri/journey_haifa_to_cri.html#1"
+  }
+]
