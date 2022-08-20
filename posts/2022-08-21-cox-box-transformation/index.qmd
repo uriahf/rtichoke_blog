@@ -1,6 +1,6 @@
 ---
 title: "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson"
-date: "2021-08-21"
+date: "2022-08-21"
 categories: 
   - Replications
   - ROC

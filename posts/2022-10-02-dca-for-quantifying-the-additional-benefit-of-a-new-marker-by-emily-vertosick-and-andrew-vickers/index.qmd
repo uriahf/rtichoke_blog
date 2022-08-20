@@ -12,7 +12,7 @@ categories:
   - rms
   - Hmisc
 image: "image.jpg"
-draft: false
+draft: true
 ---
 
 ```{r}
