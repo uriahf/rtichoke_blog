@@ -1,6 +1,6 @@
 ---
 title: "DCA for Quantifying the Additional Benefit of a New Marker by Emily Vertosick and Andrew Vickers"
-date: "2022-07-05"
+date: "2022-10-02"
 categories: 
   - Replications
   - Decision
@@ -503,8 +503,8 @@ plotly::layout(plot_bgcolor = "#fff7f5",
 :::
 
 ## Conventional and Interventions Avoided Combined (rtichoke code)
-::: {layout-ncol="2"}
 
+::: {layout-ncol="2"}
 ```{r}
 #| message: false
 #| eval: false
