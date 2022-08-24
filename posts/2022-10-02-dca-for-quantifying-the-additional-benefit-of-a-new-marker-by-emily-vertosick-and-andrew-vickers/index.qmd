@@ -12,7 +12,7 @@ categories:
   - rms
   - Hmisc
 image: "image.jpg"
-draft: true
+draft: false
 ---
 
 ```{r}
@@ -53,6 +53,8 @@ acath_pred <-
     post_pred %>% enframe(name = NULL, value = "post")
   )
 
+library(dcurves)
+
 # decision curve
 dca_prepost <-
   dca(
@@ -67,7 +69,7 @@ dca_prepost_smooth <-
   plot(smooth = TRUE)
 
 dca_prepost_15_35 <-
-  dcurves::dca(
+  dca(
     sigdz ~ pre + post,
     data = acath_pred,
     thresholds = seq(0.15, 0.35, by = 0.05),
@@ -79,14 +81,10 @@ dca_prepost_15_35 <-
        show_ggplot_code = FALSE)
 
 # net interventions avoided
-dca_prepost_netint_ob <- dca_prepost %>%
-  dcurves::net_intervention_avoided() 
 
-dca_prepost_netint <- dca_prepost_netint_ob %>% 
-  plot(x, 
-       type = 'net_intervention_avoided', 
-       smooth = FALSE, 
-       show_ggplot_code = FALSE)
+dca_prepost_netint <- dca_prepost %>%
+  net_intervention_avoided() %>% 
+  plot(type = 'net_intervention_avoided')
 
 # estimates table
 df_dca_tbl <-
@@ -302,7 +300,7 @@ performance_data_dc %>%
       c("#00BFC4", "#C77CFF"),
     size = 350
   ) %>%
-  layout(
+  plotly::layout(
     yaxis = list(
       range =
         c(-0.07, 0.7)
@@ -330,7 +328,7 @@ conventional_dc <- performance_data_dc %>%
     col_values = c("#00BFC4", "#C77CFF"),
     size = 350
   ) %>% 
-  layout(
+  plotly::layout(
     yaxis = list(range =
                    c(-0.07, 0.7))
   )
@@ -409,7 +407,7 @@ dca_prepost_15_35 +
 #| warning: false
 
 performance_data_dc %>% 
-  rtichoke::plot_decision_curve(
+  plot_decision_curve(
     col_values = c("#00BFC4", "#C77CFF"),
     min_p_threshold = 0.15, 
     max_p_threshold = 0.35,
@@ -454,7 +452,13 @@ performance_data_dc %>%
 #| eval: false
 #| warning: false
 
-# code
+dca_prepost %>%
+  net_intervention_avoided() %>% 
+  plot(type = 'net_intervention_avoided', 
+       smooth = FALSE)  + 
+  theme_classic()  +
+  theme(legend.position = "none")
+
 ```
 
 ![](./interventions_avoided.svg)
@@ -469,7 +473,7 @@ performance_data_dc %>%
 #| warning: false
 
 performance_data_dc %>%
-  rtichoke::plot_decision_curve(
+  plot_decision_curve(
     col_values = c("#F8766D", "#00BFC4"),
     type = "interventions avoided",
     size = 350

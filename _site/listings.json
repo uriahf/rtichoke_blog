@@ -1,21 +1,8 @@
 [
   {
-    "listing": "/index.html",
-    "items": [
-      "/posts/2022-08-01-precision-recall/index.html",
-      "/posts/2022-06-06-cox-box-transformation/index.html"
-    ]
-  },
-  {
-    "listing": "/blog.html",
-    "items": [
-      "/posts/2022-08-01-precision-recall/index.html",
-      "/posts/2022-06-06-cox-box-transformation/index.html"
-    ]
-  },
-  {
     "listing": "/posts.html",
     "items": [
+      "/posts/2022-10-02-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html",
       "/posts/2022-08-21-cox-box-transformation/index.html"
     ]
   }
