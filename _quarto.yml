@@ -3,6 +3,7 @@ project:
 
 website:
   title: "rtichoke blog"
+  site-url: https://rtichoke-blog.netlify.app
   navbar:
     right:
       - text: Posts
@@ -17,6 +18,8 @@ website:
         href: https://www.facebook.com/groups/rforthemasses
       - icon: linkedin
         href: https://www.linkedin.com/in/uriah-finkel
+      - icon: rss
+        href: posts.xml  
 format:
   html:
     theme: theme.scss
