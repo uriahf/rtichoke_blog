@@ -6,8 +6,6 @@ categories:
   - Decision
   - Emily Vertosick
   - Andrew Vickers
-  - gt
-  - gtsummary
   - dcurves
   - rms
   - Hmisc
@@ -23,11 +21,7 @@ draft: false
 
 library(tidyverse)
 library(rms)
-library(gtsummary)
 library(dcurves)
-library(gt)
-
-
 
 # Load data
 options(prType='html')
@@ -302,7 +296,7 @@ performance_data_dc %>%
       c("#00BFC4", "#C77CFF"),
     size = 350
   ) %>%
-  layout(
+  plotly::layout(
     yaxis = list(
       range =
         c(-0.07, 0.7)
@@ -330,7 +324,7 @@ conventional_dc <- performance_data_dc %>%
     col_values = c("#00BFC4", "#C77CFF"),
     size = 350
   ) %>% 
-  layout(
+  plotly::layout(
     yaxis = list(range =
                    c(-0.07, 0.7))
   )

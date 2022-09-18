@@ -11,7 +11,7 @@
     "href": "posts.html",
     "title": "Posts",
     "section": "",
-    "text": "Replications\n\n\nDecision\n\n\nEmily Vertosick\n\n\nAndrew Vickers\n\n\ngt\n\n\ngtsummary\n\n\ndcurves\n\n\nrms\n\n\nHmisc\n\n\n\n\n\n\n\n\n\n\n\nSep 18, 2022\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nReplications\n\n\nROC\n\n\nMax Kuhn\n\n\nKjell Johnson\n\n\nFeature Engineering by Max Kuhn and Kjell Johnson\n\n\ncaret\n\n\n\n\n\n\n\n\n\n\n\nAug 21, 2022\n\n\n\n\n\n\nNo matching items"
+    "text": "Replications\n\n\nDecision\n\n\nEmily Vertosick\n\n\nAndrew Vickers\n\n\ndcurves\n\n\nrms\n\n\nHmisc\n\n\n\n\n\n\n\n\n\n\n\nSep 18, 2022\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nReplications\n\n\nROC\n\n\nMax Kuhn\n\n\nKjell Johnson\n\n\nFeature Engineering by Max Kuhn and Kjell Johnson\n\n\ncaret\n\n\n\n\n\n\n\n\n\n\n\nAug 21, 2022\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html",
@@ -39,7 +39,7 @@
     "href": "posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html#conventional-decision-curve",
     "title": "DCA for Quantifying the Additional Benefit of a New Marker by Emily Vertosick and Andrew Vickers",
     "section": "Conventional Decision Curve",
-    "text": "Conventional Decision Curve\n\ndcurvesrtichoke\n\n\n\n\n\nlibrary(dcurves)\n\ndca_prepost <- dca(\n    sigdz ~ pre + post,\n    data = acath_pred,\n    label = list(\n      pre = \"Age and Sex\",\n      post = \"Age, Sex and Cholesterol\"))\n\ndca_prepost %>%\n  plot(smooth = TRUE)  + \n  theme_classic()  +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\n\n\n\nlibrary(rtichoke)\nlibrary(plotly)\n\nperformance_data_dc <- \n  prepare_performance_data(\n  probs = list(\n    \"Age and Sex\" = \n      acath_pred$pre,\n    \"Age, Sex and Cholesterol\" = \n      acath_pred$post\n  ),\n  reals = list(acath_pred$sigdz)\n)\n\nperformance_data_dc %>%\n  plot_decision_curve(\n    col_values = \n      c(\"#00BFC4\", \"#C77CFF\"),\n    size = 350\n  ) %>%\n  layout(\n    yaxis = list(\n      range =\n        c(-0.07, 0.7)\n    )\n  )"
+    "text": "Conventional Decision Curve\n\ndcurvesrtichoke\n\n\n\n\n\nlibrary(dcurves)\n\ndca_prepost <- dca(\n    sigdz ~ pre + post,\n    data = acath_pred,\n    label = list(\n      pre = \"Age and Sex\",\n      post = \"Age, Sex and Cholesterol\"))\n\ndca_prepost %>%\n  plot(smooth = TRUE)  + \n  theme_classic()  +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\n\n\n\nlibrary(rtichoke)\nlibrary(plotly)\n\nperformance_data_dc <- \n  prepare_performance_data(\n  probs = list(\n    \"Age and Sex\" = \n      acath_pred$pre,\n    \"Age, Sex and Cholesterol\" = \n      acath_pred$post\n  ),\n  reals = list(acath_pred$sigdz)\n)\n\nperformance_data_dc %>%\n  plot_decision_curve(\n    col_values = \n      c(\"#00BFC4\", \"#C77CFF\"),\n    size = 350\n  ) %>%\n  plotly::layout(\n    yaxis = list(\n      range =\n        c(-0.07, 0.7)\n    )\n  )"
   },
   {
     "objectID": "posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html#specific-range-of-probability-thresholds",
