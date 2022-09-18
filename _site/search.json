@@ -11,7 +11,11 @@
     "href": "posts.html",
     "title": "Posts",
     "section": "",
+<<<<<<< HEAD
+    "text": "Replications\n\n\nDecision\n\n\nEmily Vertosick\n\n\nAndrew Vickers\n\n\ndcurves\n\n\nrms\n\n\nHmisc\n\n\n\n\n\n\n\n\n\n\n\nSep 18, 2022\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nReplications\n\n\nROC\n\n\nMax Kuhn\n\n\nKjell Johnson\n\n\nFeature Engineering by Max Kuhn and Kjell Johnson\n\n\ncaret\n\n\n\n\n\n\n\n\n\n\n\nAug 21, 2022\n\n\n\n\n\n\nNo matching items"
+=======
     "text": "Replications\n\n\nROC\n\n\nPrecision Recall\n\n\nMax Kuhn\n\n\nKjell Johnson\n\n\nFeature Engineering by Max Kuhn and Kjell Johnson\n\n\nyardstick\n\n\n\n\n\n\n\n\n\n\n\nSep 4, 2022\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nReplications\n\n\nROC\n\n\nMax Kuhn\n\n\nKjell Johnson\n\n\nFeature Engineering by Max Kuhn and Kjell Johnson\n\n\ncaret\n\n\n\n\n\n\n\n\n\n\n\nAug 21, 2022\n\n\n\n\n\n\nNo matching items"
+>>>>>>> 4a10e4b57bd5cae7832cd586c7a93ce0a7fcc496
   },
   {
     "objectID": "index.html",
@@ -21,10 +25,53 @@
     "text": "This blog is dedicated to reproducible examples by rtichoke in order to help new users to have a quick start. For more conventional documentation of the package please visit rtichoke pkgdown website.\nSome of the posts will be replications of existing code that produces the same output as rtichoke by different packages.\nOther posts will be more focused on theoretical issues, but always with a reproducible code.\nI will also share some talks that might be about everything as long as there are some relevant outputs by rtichoke (Most of the talks will be in Hebrew but the slides will always be in English)."
   },
   {
+<<<<<<< HEAD
+    "objectID": "posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html",
+    "href": "posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html",
+    "title": "DCA for Quantifying the Additional Benefit of a New Marker by Emily Vertosick and Andrew Vickers",
+    "section": "",
+    "text": "Prediction Model might gain accuracy if you’ll add more relevant features to existing models, but many times it’s not obvious what is the additional value of additional feature and how to quantify it in terms of Decision Making. The post Decision curve analysis for quantifying the additional benefit of a new marker by Emily Vertosick and Andrew Vickers show a simple example (the code presented here is almost identical to the original code presented in the link)."
+  },
+  {
+    "objectID": "posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html#preparing-the-data",
+    "href": "posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html#preparing-the-data",
+    "title": "DCA for Quantifying the Additional Benefit of a New Marker by Emily Vertosick and Andrew Vickers",
+    "section": "Preparing the Data",
+    "text": "Preparing the Data\n\nLoading the Data with Hmisc\n\nlibrary(Hmisc)\nlibrary(dplyr)\nlibrary(tibble)\n\ngetHdata(acath)\nacath <- subset(acath, !is.na(choleste))\n\n\n\nFitting Logistic Regressions with rms\n\nlibrary(rms)\n\npre <- lrm(sigdz ~ rcs(age,4) * sex, data = acath)\npre_pred <- predict(pre, type='fitted')\n\npost <- lrm(sigdz ~ rcs(age,4) * sex + \n              rcs(choleste,4) + rcs(age,4) %ia% rcs(choleste,4), data = acath)\npost_pred <- predict(post, type='fitted')\n\nacath_pred <- bind_cols(\n    acath,\n    pre_pred %>% enframe(name = NULL, value = \"pre\"),\n    post_pred %>% enframe(name = NULL, value = \"post\")\n  )"
+  },
+  {
+    "objectID": "posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html#conventional-decision-curve",
+    "href": "posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html#conventional-decision-curve",
+    "title": "DCA for Quantifying the Additional Benefit of a New Marker by Emily Vertosick and Andrew Vickers",
+    "section": "Conventional Decision Curve",
+    "text": "Conventional Decision Curve\n\ndcurvesrtichoke\n\n\n\n\n\nlibrary(dcurves)\n\ndca_prepost <- dca(\n    sigdz ~ pre + post,\n    data = acath_pred,\n    label = list(\n      pre = \"Age and Sex\",\n      post = \"Age, Sex and Cholesterol\"))\n\ndca_prepost %>%\n  plot(smooth = TRUE)  + \n  theme_classic()  +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\n\n\n\nlibrary(rtichoke)\nlibrary(plotly)\n\nperformance_data_dc <- \n  prepare_performance_data(\n  probs = list(\n    \"Age and Sex\" = \n      acath_pred$pre,\n    \"Age, Sex and Cholesterol\" = \n      acath_pred$post\n  ),\n  reals = list(acath_pred$sigdz)\n)\n\nperformance_data_dc %>%\n  plot_decision_curve(\n    col_values = \n      c(\"#00BFC4\", \"#C77CFF\"),\n    size = 350\n  ) %>%\n  plotly::layout(\n    yaxis = list(\n      range =\n        c(-0.07, 0.7)\n    )\n  )"
+  },
+  {
+    "objectID": "posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html#specific-range-of-probability-thresholds",
+    "href": "posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html#specific-range-of-probability-thresholds",
+    "title": "DCA for Quantifying the Additional Benefit of a New Marker by Emily Vertosick and Andrew Vickers",
+    "section": "Specific Range of Probability Thresholds",
+    "text": "Specific Range of Probability Thresholds\n\ndcurvesrtichoke\n\n\n\n\n\nlibrary(dcurves)\n\ndca_prepost_15_35 <- dca(\n    sigdz ~ pre + post,\n    data = acath_pred,\n    thresholds = seq(0.15, 0.35, by = 0.05),\n    label = list(\n      pre = \"Age and Sex\",\n      post = \"Age, Sex and Cholesterol\")) %>%\n  plot(type = 'net_benefit', \n       smooth = FALSE, \n       show_ggplot_code = FALSE)\n\ndca_prepost_15_35 + \n  theme_classic()  + \n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\n\n\n\nperformance_data_dc %>% \n  rtichoke::plot_decision_curve(\n    col_values = c(\"#00BFC4\", \"#C77CFF\"),\n    min_p_threshold = 0.15, \n    max_p_threshold = 0.35,\n    size = 350\n  ) %>% \n  plotly::layout(\n    yaxis = list(range =\n                   c(-0.07, 0.7))\n  )"
+  },
+  {
+    "objectID": "posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html#interventions-avoided",
+    "href": "posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html#interventions-avoided",
+    "title": "DCA for Quantifying the Additional Benefit of a New Marker by Emily Vertosick and Andrew Vickers",
+    "section": "Interventions Avoided",
+    "text": "Interventions Avoided\n\ndcurvesrtichoke\n\n\n\n\n\ndca_prepost %>%\n  net_intervention_avoided() %>% \n  plot(type = 'net_intervention_avoided', \n       smooth = FALSE)  + \n  theme_classic()  +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\n\n\n\nperformance_data_dc %>%\n  rtichoke::plot_decision_curve(\n    col_values = c(\"#F8766D\", \"#00BFC4\"),\n    type = \"interventions avoided\",\n    size = 350\n  ) %>%\n  plotly::layout(\n    yaxis = list(range =\n                   c(-10, 100))\n  )"
+  },
+  {
+    "objectID": "posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html#conventional-and-interventions-avoided-combined-rtichoke-code",
+    "href": "posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html#conventional-and-interventions-avoided-combined-rtichoke-code",
+    "title": "DCA for Quantifying the Additional Benefit of a New Marker by Emily Vertosick and Andrew Vickers",
+    "section": "Conventional and Interventions Avoided Combined (rtichoke code)",
+    "text": "Conventional and Interventions Avoided Combined (rtichoke code)\n\n\n\nperformance_data_dc %>%\n  plot_decision_curve(\n    col_values = \n      c(\"#00BFC4\", \"#C77CFF\"),\n    type = \"combined\",\n    size = 500\n  )"
+=======
     "objectID": "posts/2022-09-04-precision-recall/index.html",
     "href": "posts/2022-09-04-precision-recall/index.html",
     "title": "Precision Recall from Feature Engineering by Max Kuhn and Kjell Johnson",
     "section": "",
     "text": "Precision Recall Curve is shown as an alternative to the known ROC curve in the “second part from the ‘Measuring Performance’ Chapter of Feature Engineering and Selection”. It is mentioned that this curve is more appropriate in terms of Information Retrieval.\n\n\nThe code is almost identical to the original code that can be found on github.\nAlternatively you can download the caret object from here and load it into the global environment by running the following command:\n\nload(\"okc_glm_keyword.RData\")\n\n\n\n\nROCPrecision Recall\n\n\n\n\n\nlibrary(yardstick)\nlibrary(ggplot2)\nlibrary(magrittr)\n\nglm_keyword$pred  %>% \n  roc_curve(obs, stem) %>% \n  autoplot()  +\n  theme_classic()\n\n\n\n\n\n\n\n\n\n\n\nlibrary(yardstick)\nlibrary(ggplot2)\nlibrary(magrittr)\n\nglm_keyword$pred  %>% \n  pr_curve(obs, stem) %>% \n  autoplot()  +\n  theme_classic()\n\n\n\n\n\n\n\n\n\n\n\n\n\nROCPrecision Recall\n\n\n\n\n\nlibrary(rtichoke)\n\ncreate_roc_curve(\n  probs = list(\n    glm_keyword$pred$stem),\n  reals = list(\n    glm_keyword$pred$obs == \"stem\"),\n  size = 350\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(rtichoke)\n\ncreate_precision_recall_curve(\n  probs = list(\n    glm_keyword$pred$stem),\n  reals = list(\n    glm_keyword$pred$obs == \"stem\"),\n  size = 350\n)"
+>>>>>>> 4a10e4b57bd5cae7832cd586c7a93ce0a7fcc496
   }
 ]
