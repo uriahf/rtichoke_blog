@@ -1,6 +1,6 @@
 ---
 title: "DCA for Quantifying the Additional Benefit of a New Marker by Emily Vertosick and Andrew Vickers"
-date: "2022-10-02"
+date: "2022-09-18"
 categories: 
   - Replications
   - Decision
@@ -12,7 +12,7 @@ categories:
   - rms
   - Hmisc
 image: "image.jpg"
-draft: true
+draft: false
 ---
 
 ```{r}
@@ -454,7 +454,12 @@ performance_data_dc %>%
 #| eval: false
 #| warning: false
 
-# code
+dca_prepost %>%
+  net_intervention_avoided() %>% 
+  plot(type = 'net_intervention_avoided', 
+       smooth = FALSE)  + 
+  theme_classic()  +
+  theme(legend.position = "none")
 ```
 
 ![](./interventions_avoided.svg)
