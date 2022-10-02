@@ -52,9 +52,6 @@ sim_data2_test <- tibble(
 ```{r}
 #| message: false
 #| warning: false
-
-library(parsnip)
-
 svm_rbf_spec <- svm_rbf() %>%
   set_mode("classification") %>%
   set_engine("kernlab")

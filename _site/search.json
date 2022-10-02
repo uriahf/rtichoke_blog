@@ -116,7 +116,7 @@
     "href": "posts/2022-10-02-ROC-for-SVM/index.html#fitting-support-vector-machine-model",
     "title": "ROC for SVM Model from ISLR",
     "section": "Fitting Support Vector Machine Model",
-    "text": "Fitting Support Vector Machine Model\n\nlibrary(parsnip)\n\nsvm_rbf_spec <- svm_rbf() %>%\n  set_mode(\"classification\") %>%\n  set_engine(\"kernlab\")\n\nsvm_rbf_fit <- svm_rbf_spec %>%\n  fit(y ~ ., data = sim_data2)"
+    "text": "Fitting Support Vector Machine Model\n\nsvm_rbf_spec <- svm_rbf() %>%\n  set_mode(\"classification\") %>%\n  set_engine(\"kernlab\")\n\nsvm_rbf_fit <- svm_rbf_spec %>%\n  fit(y ~ ., data = sim_data2)"
   },
   {
     "objectID": "posts/2022-10-02-ROC-for-SVM/index.html#performance-data",
