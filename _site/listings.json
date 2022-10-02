@@ -2,11 +2,9 @@
   {
     "listing": "/posts.html",
     "items": [
-<<<<<<< HEAD
+      "/posts/2022-10-02-ROC-for-SVM/index.html",
       "/posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html",
-=======
       "/posts/2022-09-04-precision-recall/index.html",
->>>>>>> 4a10e4b57bd5cae7832cd586c7a93ce0a7fcc496
       "/posts/2022-08-21-cox-box-transformation/index.html"
     ]
   }

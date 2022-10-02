@@ -1,0 +1,172 @@
+---
+title: "ROC for SVM Model from ISLR"
+date: "2022-10-02"
+categories: 
+  - ROC
+  - Performance Data
+  - ISLR
+  - Replications
+  - yardstick
+  - Gareth James
+  - Daniela Witten
+  - Trevor Hastie
+  - Rob Tibshirani
+image: "image.png"
+draft: false
+---
+
+## Introduction to Statistical Learning with Tidy Models
+
+The following example of Support Vector Machine is taken from [Introduction to Statistical Learning](https://www.statlearning.com/): a great introductory book to Data Science by [Gareth James](http://faculty.marshall.usc.edu/gareth-james/), [Daniela Witten](https://www.danielawitten.com/), [Trevor Hastie](https://hastie.su.domains/) and [Rob Tibshirani](https://tibshirani.su.domains/). 
+
+The [original code](https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/09-support-vector-machines.html) is taken from [ISLR tidymodels labs](https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/) by [Emil Hvitfeldt](https://www.emilhvitfeldt.com/).
+
+## Simulating the Data
+
+```{r}
+#| message: false
+#| warning: false
+
+library(tidymodels)
+library(dplyr)
+
+set.seed(1)
+
+sim_data2 <- tibble(
+  x1 = rnorm(200) + rep(c(2, -2, 0), c(100, 50, 50)),
+  x2 = rnorm(200) + rep(c(2, -2, 0), c(100, 50, 50)),
+  y  = factor(rep(c(1, 2), c(150, 50)))
+)
+
+set.seed(2)
+
+sim_data2_test <- tibble(
+  x1 = rnorm(200) + rep(c(2, -2, 0), c(100, 50, 50)),
+  x2 = rnorm(200) + rep(c(2, -2, 0), c(100, 50, 50)),
+  y  = factor(rep(c(1, 2), c(150, 50)))
+)
+```
+
+## Fitting Support Vector Machine Model
+
+```{r}
+#| message: false
+#| warning: false
+
+library(parsnip)
+
+svm_rbf_spec <- svm_rbf() %>%
+  set_mode("classification") %>%
+  set_engine("kernlab")
+
+svm_rbf_fit <- svm_rbf_spec %>%
+  fit(y ~ ., data = sim_data2)
+```
+
+## Performance Data
+
+::: panel-tabset
+
+### yardstick
+
+```{r}
+#| message: false
+#| warning: false
+
+yardstick_roc <- augment(svm_rbf_fit, new_data = sim_data2_test) %>%
+  roc_curve(truth = y, estimate = .pred_1)
+
+yardstick_roc 
+```
+
+### rtichoke
+
+```{r}
+#| message: false
+#| warning: false
+
+library(rtichoke)
+
+svm_probs <- predict(svm_rbf_fit, 
+        new_data = sim_data2_test,
+        type = 'prob') |> 
+  pull(.pred_1)
+
+svm_performance_data <- prepare_performance_data(
+  probs = list(svm_probs),
+  reals = list(sim_data2_test$y == 1)
+)
+
+svm_performance_data |> 
+  select(probability_threshold, specificity, sensitivity)
+```
+
+:::
+
+## ROC Curve
+
+```{r}
+#| include: false
+#| eval: false
+# 
+# yardstick_roc |>
+#   autoplot() +
+#   theme_classic() +
+#   theme(
+#     rect = element_rect(fill='transparent'),
+#     panel.background = element_rect(fill='transparent',
+#                                  colour = NA_character_),
+#         plot.background = element_rect(fill='transparent',
+#                                   colour = NA_character_))
+# 
+# ggsave("~/rtichoke_blog/posts/2022-10-02-ROC-for-SVM/roc_svm.svg",
+#        bg='transparent',
+#        height = 1200,
+#        width = 1200,
+#        units = "px")
+
+```
+
+::: panel-tabset
+### yardstick
+::: {layout-ncol="2"}
+
+```{r}
+#| message: false
+#| warning: false
+#| eval: false
+
+yardstick_roc |> 
+  autoplot() +
+  theme_classic()
+```
+
+![](roc_svm.svg)
+
+:::
+
+### rtichoke
+::: {layout-ncol="2"}
+```{r}
+#| message: false
+#| warning: false
+#| eval: false
+
+svm_performance_data |> 
+  plot_roc_curve(size = 350)
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+
+svm_performance_data |> 
+  plot_roc_curve(size = 350) |>  
+  plotly::layout(plot_bgcolor = "#fff7f5", 
+               paper_bgcolor= "#fff7f5")
+```
+
+:::
+
+:::
