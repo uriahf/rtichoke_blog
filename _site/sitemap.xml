@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://rtichoke-blog.netlify.app/index.html</loc>
-    <lastmod>2022-08-31T12:49:59.115Z</lastmod>
+    <loc>https://rtichoke-blog.netlify.app/posts.html</loc>
+    <lastmod>2022-10-02T20:58:06.564Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rtichoke-blog.netlify.app/about_me.html</loc>
+    <lastmod>2022-10-01T10:59:53.189Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rtichoke-blog.netlify.app/posts/2022-08-21-cox-box-transformation/index.html</loc>
+    <lastmod>2022-10-02T20:51:12.149Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rtichoke-blog.netlify.app/posts/2022-09-04-precision-recall/index.html</loc>
+    <lastmod>2022-10-01T10:59:56.286Z</lastmod>
   </url>
   <url>
     <loc>https://rtichoke-blog.netlify.app/posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html</loc>
-    <lastmod>2022-09-18T06:39:33.772Z</lastmod>
+    <lastmod>2022-10-02T19:24:29.652Z</lastmod>
   </url>
   <url>
-    <loc>https://rtichoke-blog.netlify.app/posts.html</loc>
-    <lastmod>2022-09-18T06:39:34.627Z</lastmod>
+    <loc>https://rtichoke-blog.netlify.app/index.html</loc>
+    <lastmod>2022-10-02T20:36:42.516Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rtichoke-blog.netlify.app/posts/2022-10-02-ROC-for-SVM/index.html</loc>
+    <lastmod>2022-10-02T20:56:53.123Z</lastmod>
   </url>
 </urlset>

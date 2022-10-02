@@ -272,6 +272,7 @@ plotly::layout(plot_bgcolor = "#fff7f5",
 :::
 :::
 
+```{=html}
 <script src="https://utteranc.es/client.js"
         repo="[ENTER REPO HERE]"
         issue-term="pathname"
@@ -279,3 +280,4 @@ plotly::layout(plot_bgcolor = "#fff7f5",
         crossorigin="anonymous"
         async>
 </script>
+```

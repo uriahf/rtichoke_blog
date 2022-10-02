@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "posts.html",
+    "href": "posts.html",
+    "title": "Posts",
+    "section": "",
+    "text": "ROC\n\n\nPerformance Data\n\n\nISLR\n\n\nReplications\n\n\nyardstick\n\n\nGareth James\n\n\nDaniela Witten\n\n\nTrevor Hastie\n\n\nRob Tibshirani\n\n\n\n\n\n\n\n\n\n\n\nOct 2, 2022\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nReplications\n\n\nDecision\n\n\nEmily Vertosick\n\n\nAndrew Vickers\n\n\ndcurves\n\n\nrms\n\n\nHmisc\n\n\n\n\n\n\n\n\n\n\n\nSep 18, 2022\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nReplications\n\n\nROC\n\n\nPrecision Recall\n\n\nMax Kuhn\n\n\nKjell Johnson\n\n\nFeature Engineering by Max Kuhn and Kjell Johnson\n\n\nyardstick\n\n\n\n\n\n\n\n\n\n\n\nSep 4, 2022\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nReplications\n\n\nROC\n\n\nMax Kuhn\n\n\nKjell Johnson\n\n\nFeature Engineering by Max Kuhn and Kjell Johnson\n\n\ncaret\n\n\n\n\n\n\n\n\n\n\n\nAug 21, 2022\n\n\n\n\n\n\nNo matching items"
+  },
+  {
     "objectID": "about_me.html",
     "href": "about_me.html",
     "title": "Uriah Finkel",
@@ -7,25 +14,41 @@
     "text": "Data Scientist in Clalit Innovation\nCo-Admin of Israeli R community “R for the Masses”"
   },
   {
-    "objectID": "posts.html",
-    "href": "posts.html",
-    "title": "Posts",
+    "objectID": "posts/2022-08-21-cox-box-transformation/index.html",
+    "href": "posts/2022-08-21-cox-box-transformation/index.html",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
     "section": "",
-<<<<<<< HEAD
-    "text": "Replications\n\n\nDecision\n\n\nEmily Vertosick\n\n\nAndrew Vickers\n\n\ndcurves\n\n\nrms\n\n\nHmisc\n\n\n\n\n\n\n\n\n\n\n\nSep 18, 2022\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nReplications\n\n\nROC\n\n\nMax Kuhn\n\n\nKjell Johnson\n\n\nFeature Engineering by Max Kuhn and Kjell Johnson\n\n\ncaret\n\n\n\n\n\n\n\n\n\n\n\nAug 21, 2022\n\n\n\n\n\n\nNo matching items"
-=======
-    "text": "Replications\n\n\nROC\n\n\nPrecision Recall\n\n\nMax Kuhn\n\n\nKjell Johnson\n\n\nFeature Engineering by Max Kuhn and Kjell Johnson\n\n\nyardstick\n\n\n\n\n\n\n\n\n\n\n\nSep 4, 2022\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nReplications\n\n\nROC\n\n\nMax Kuhn\n\n\nKjell Johnson\n\n\nFeature Engineering by Max Kuhn and Kjell Johnson\n\n\ncaret\n\n\n\n\n\n\n\n\n\n\n\nAug 21, 2022\n\n\n\n\n\n\nNo matching items"
->>>>>>> 4a10e4b57bd5cae7832cd586c7a93ce0a7fcc496
+    "text": "This blog will be dedicated to the {rtichoke} package, which means that it will contain posts that are related to performance metrics and the possible related usability of {rtichoke}."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "rtichoke blog",
-    "section": "",
-    "text": "This blog is dedicated to reproducible examples by rtichoke in order to help new users to have a quick start. For more conventional documentation of the package please visit rtichoke pkgdown website.\nSome of the posts will be replications of existing code that produces the same output as rtichoke by different packages.\nOther posts will be more focused on theoretical issues, but always with a reproducible code.\nI will also share some talks that might be about everything as long as there are some relevant outputs by rtichoke (Most of the talks will be in Hebrew but the slides will always be in English)."
+    "objectID": "posts/2022-08-21-cox-box-transformation/index.html#replications",
+    "href": "posts/2022-08-21-cox-box-transformation/index.html#replications",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "Replications",
+    "text": "Replications\nTo make the package easier to use I plan to reproduce other people’s code with rtichoke, posts of this kind will be available under the category “replications”.\nMy first choice is to replicate the first example from the book “Feature Engineering and Selection: A Practical Approach for Predictive Models by Max Kuhn and Kjell Johnson”.\nIn this example you can see how Box-Cox transformation improves the discrimination capability of the logistic regression model without using any additional information."
   },
   {
-<<<<<<< HEAD
+    "objectID": "posts/2022-08-21-cox-box-transformation/index.html#original-code",
+    "href": "posts/2022-08-21-cox-box-transformation/index.html#original-code",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "Original Code",
+    "text": "Original Code\nThe code is almost identical to the original code that can be found on github.\n\nPreparing the Data\n\nlibrary(caret)\nlibrary(tidymodels)\nlibrary(ggplot2)\n\n\ndata(segmentationData)\n\nsegmentationData <- \n  segmentationData %>% \n  dplyr::select(EqSphereAreaCh1, PerimCh1, Class, Case) %>% \n  setNames(c(\"PredictorA\", \"PredictorB\", \"Class\", \"Case\")) %>% \n  mutate(Class = factor(ifelse(Class == \"PS\", \"One\", \"Two\")))\n\nexample_train <- \n  segmentationData %>% \n  dplyr::filter(Case == \"Train\") %>% \n  dplyr::select(-Case)\n\nexample_test  <- \n  segmentationData %>% \n  dplyr::filter(Case == \"Test\") %>% \n  dplyr::select(-Case)\n\n\n\nTraining the Models\n\nexample_ctrl <- \n  trainControl(method = \"none\",\n               classProbs = TRUE,\n               summaryFunction = twoClassSummary)\n\nnatural_terms <- train(Class ~ PredictorA + PredictorB,\n                       data = example_train,\n                       method = \"glm\",\n                       metric = \"ROC\",\n                       trControl = example_ctrl)\n\ntrans_terms <- train(Class ~ PredictorA + PredictorB,\n                     data = example_train,\n                     method = \"glm\",\n                     preProc = \"BoxCox\",\n                     metric = \"ROC\",\n                     trControl = example_ctrl)\n\n\n\nCreating Predictions\n\noriginal_probs <- predict(natural_terms, example_test, type = \"prob\")[,1]\n\ntransformed_probs <- predict(trans_terms, example_test, type = \"prob\")[,1]\n\noutcomes <- example_test$Class == \"One\"\n\n\n\nCreating ROC Curve with yardstick\n\nnatural_dat <-\n  example_test %>% \n  mutate(\n    prob = original_probs) %>% \n  roc_curve(Class, prob) %>% \n  mutate(Format = \"Natural Units\")\n\ntrans_dat <-\n  example_test %>% \n  mutate(\n    prob = transformed_probs) %>% \n  roc_curve(Class, prob) %>% \n  mutate(Format = \"Inverse Units\") \n\nboth_dat <- \n  bind_rows(natural_dat, trans_dat) %>%\n  mutate(\n    Format = factor(Format, levels = c(\"Natural Units\", \"Inverse Units\")))\n\ntrans_roc_plot <- \n  ggplot(both_dat) +\n  geom_step(aes(x = 1 - specificity, y = sensitivity, color = Format)) + \n  coord_equal() + \n  xlab(\"False Positive Rate\") + \n  ylab(\"True Positive Rate\") + \n  theme(legend.position = c(.8, .2)) + \n  scale_colour_manual(\n    values = c(\"Natural Units\" = \"grey\", \n               \"Inverse Units\" = \"black\")) + \n  geom_abline(intercept = 0, slope = 1, col = \"grey\", lty = 2) +\n  theme_classic()\n\ntrans_roc_plot"
+  },
+  {
+    "objectID": "posts/2022-08-21-cox-box-transformation/index.html#rtichoke-code",
+    "href": "posts/2022-08-21-cox-box-transformation/index.html#rtichoke-code",
+    "title": "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "rtichoke code",
+    "text": "rtichoke code\n\nCreating ROC Curve with rtichoke\n\nBy Probability ThresholdBy Percent Positives Conditional Rate\n\n\n\n\n\nlibrary(rtichoke)\n\ncreate_roc_curve(\n  probs = list(\n    \"Natural Units\" = original_probs,\n    \"Inverse Units\" = transformed_probs\n  ),\n  reals = list(\n    outcomes\n  ),\n  size = 350, \n  col_values = c(\"grey\", \"black\")\n) \n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(rtichoke)\n\ncreate_roc_curve(\n  probs = list(\n    \"Natural Units\" = original_probs,\n    \"Inverse Units\" = transformed_probs\n  ),\n  reals = list(\n    outcomes\n  ),\n  stratified_by = \"ppcr\",\n  size = 350, \n  col_values = c(\"grey\", \"black\")\n)"
+  },
+  {
+    "objectID": "posts/2022-09-04-precision-recall/index.html",
+    "href": "posts/2022-09-04-precision-recall/index.html",
+    "title": "Precision Recall from Feature Engineering by Max Kuhn and Kjell Johnson",
+    "section": "",
+    "text": "Precision Recall Curve is shown as an alternative to the known ROC curve in the “second part from the ‘Measuring Performance’ Chapter of Feature Engineering and Selection”. It is mentioned that this curve is more appropriate in terms of Information Retrieval.\n\n\nThe code is almost identical to the original code that can be found on github.\nAlternatively you can download the caret object from here and load it into the global environment by running the following command:\n\nload(\"okc_glm_keyword.RData\")\n\n\n\n\nROCPrecision Recall\n\n\n\n\n\nlibrary(yardstick)\nlibrary(ggplot2)\nlibrary(magrittr)\n\nglm_keyword$pred  %>% \n  roc_curve(obs, stem) %>% \n  autoplot()  +\n  theme_classic()\n\n\n\n\n\n\n\n\n\n\n\nlibrary(yardstick)\nlibrary(ggplot2)\nlibrary(magrittr)\n\nglm_keyword$pred  %>% \n  pr_curve(obs, stem) %>% \n  autoplot()  +\n  theme_classic()\n\n\n\n\n\n\n\n\n\n\n\n\n\nROCPrecision Recall\n\n\n\n\n\nlibrary(rtichoke)\n\ncreate_roc_curve(\n  probs = list(\n    glm_keyword$pred$stem),\n  reals = list(\n    glm_keyword$pred$obs == \"stem\"),\n  size = 350\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(rtichoke)\n\ncreate_precision_recall_curve(\n  probs = list(\n    glm_keyword$pred$stem),\n  reals = list(\n    glm_keyword$pred$obs == \"stem\"),\n  size = 350\n)"
+  },
+  {
     "objectID": "posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html",
     "href": "posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html",
     "title": "DCA for Quantifying the Additional Benefit of a New Marker by Emily Vertosick and Andrew Vickers",
@@ -66,12 +89,47 @@
     "title": "DCA for Quantifying the Additional Benefit of a New Marker by Emily Vertosick and Andrew Vickers",
     "section": "Conventional and Interventions Avoided Combined (rtichoke code)",
     "text": "Conventional and Interventions Avoided Combined (rtichoke code)\n\n\n\nperformance_data_dc %>%\n  plot_decision_curve(\n    col_values = \n      c(\"#00BFC4\", \"#C77CFF\"),\n    type = \"combined\",\n    size = 500\n  )"
-=======
-    "objectID": "posts/2022-09-04-precision-recall/index.html",
-    "href": "posts/2022-09-04-precision-recall/index.html",
-    "title": "Precision Recall from Feature Engineering by Max Kuhn and Kjell Johnson",
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "rtichoke blog",
     "section": "",
-    "text": "Precision Recall Curve is shown as an alternative to the known ROC curve in the “second part from the ‘Measuring Performance’ Chapter of Feature Engineering and Selection”. It is mentioned that this curve is more appropriate in terms of Information Retrieval.\n\n\nThe code is almost identical to the original code that can be found on github.\nAlternatively you can download the caret object from here and load it into the global environment by running the following command:\n\nload(\"okc_glm_keyword.RData\")\n\n\n\n\nROCPrecision Recall\n\n\n\n\n\nlibrary(yardstick)\nlibrary(ggplot2)\nlibrary(magrittr)\n\nglm_keyword$pred  %>% \n  roc_curve(obs, stem) %>% \n  autoplot()  +\n  theme_classic()\n\n\n\n\n\n\n\n\n\n\n\nlibrary(yardstick)\nlibrary(ggplot2)\nlibrary(magrittr)\n\nglm_keyword$pred  %>% \n  pr_curve(obs, stem) %>% \n  autoplot()  +\n  theme_classic()\n\n\n\n\n\n\n\n\n\n\n\n\n\nROCPrecision Recall\n\n\n\n\n\nlibrary(rtichoke)\n\ncreate_roc_curve(\n  probs = list(\n    glm_keyword$pred$stem),\n  reals = list(\n    glm_keyword$pred$obs == \"stem\"),\n  size = 350\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(rtichoke)\n\ncreate_precision_recall_curve(\n  probs = list(\n    glm_keyword$pred$stem),\n  reals = list(\n    glm_keyword$pred$obs == \"stem\"),\n  size = 350\n)"
->>>>>>> 4a10e4b57bd5cae7832cd586c7a93ce0a7fcc496
+    "text": "This blog is dedicated to reproducible examples by rtichoke in order to help new users to have a quick start. For more conventional documentation of the package please visit rtichoke pkgdown website.\nSome of the posts will be replications of existing code that produces the same output as rtichoke by different packages.\nOther posts will be more focused on theoretical issues, but always with a reproducible code.\nI will also share some talks that might be about everything as long as there are some relevant outputs by rtichoke (Most of the talks will be in Hebrew but the slides will always be in English)."
+  },
+  {
+    "objectID": "posts/2022-10-02-ROC-for-SVM/index.html",
+    "href": "posts/2022-10-02-ROC-for-SVM/index.html",
+    "title": "ROC for SVM Model from ISLR",
+    "section": "",
+    "text": "The following example of Support Vector Machine is taken from Introduction to Statistical Learning: a great introductory book to Data Science by Gareth James, Daniela Witten, Trevor Hastie and Rob Tibshirani.\nThe original code is taken from ISLR tidymodels labs by Emil Hvitfeldt."
+  },
+  {
+    "objectID": "posts/2022-10-02-ROC-for-SVM/index.html#simulating-the-data",
+    "href": "posts/2022-10-02-ROC-for-SVM/index.html#simulating-the-data",
+    "title": "ROC for SVM Model from ISLR",
+    "section": "Simulating the Data",
+    "text": "Simulating the Data\n\nlibrary(tidymodels)\nlibrary(dplyr)\n\nset.seed(1)\n\nsim_data2 <- tibble(\n  x1 = rnorm(200) + rep(c(2, -2, 0), c(100, 50, 50)),\n  x2 = rnorm(200) + rep(c(2, -2, 0), c(100, 50, 50)),\n  y  = factor(rep(c(1, 2), c(150, 50)))\n)\n\nset.seed(2)\n\nsim_data2_test <- tibble(\n  x1 = rnorm(200) + rep(c(2, -2, 0), c(100, 50, 50)),\n  x2 = rnorm(200) + rep(c(2, -2, 0), c(100, 50, 50)),\n  y  = factor(rep(c(1, 2), c(150, 50)))\n)"
+  },
+  {
+    "objectID": "posts/2022-10-02-ROC-for-SVM/index.html#fitting-support-vector-machine-model",
+    "href": "posts/2022-10-02-ROC-for-SVM/index.html#fitting-support-vector-machine-model",
+    "title": "ROC for SVM Model from ISLR",
+    "section": "Fitting Support Vector Machine Model",
+    "text": "Fitting Support Vector Machine Model\n\nlibrary(parsnip)\n\nsvm_rbf_spec <- svm_rbf() %>%\n  set_mode(\"classification\") %>%\n  set_engine(\"kernlab\")\n\nsvm_rbf_fit <- svm_rbf_spec %>%\n  fit(y ~ ., data = sim_data2)"
+  },
+  {
+    "objectID": "posts/2022-10-02-ROC-for-SVM/index.html#performance-data",
+    "href": "posts/2022-10-02-ROC-for-SVM/index.html#performance-data",
+    "title": "ROC for SVM Model from ISLR",
+    "section": "Performance Data",
+    "text": "Performance Data\n\nyardstickrtichoke\n\n\n\nyardstick_roc <- augment(svm_rbf_fit, new_data = sim_data2_test) %>%\n  roc_curve(truth = y, estimate = .pred_1)\n\nyardstick_roc \n\n# A tibble: 202 × 3\n   .threshold specificity sensitivity\n        <dbl>       <dbl>       <dbl>\n 1  -Inf           0                1\n 2     0.0763      0                1\n 3     0.0799      0.0200           1\n 4     0.0854      0.0400           1\n 5     0.0961      0.0600           1\n 6     0.0991      0.0800           1\n 7     0.101       0.1              1\n 8     0.104       0.12             1\n 9     0.107       0.14             1\n10     0.108       0.16             1\n# … with 192 more rows\n\n\n\n\n\nlibrary(rtichoke)\n\nsvm_probs <- predict(svm_rbf_fit, \n        new_data = sim_data2_test,\n        type = 'prob') |> \n  pull(.pred_1)\n\nsvm_performance_data <- prepare_performance_data(\n  probs = list(svm_probs),\n  reals = list(sim_data2_test$y == 1)\n)\n\nsvm_performance_data |> \n  select(probability_threshold, specificity, sensitivity)\n\n# A tibble: 101 × 3\n   probability_threshold specificity sensitivity\n                   <dbl>       <dbl>       <dbl>\n 1                  0           0              1\n 2                  0.01        0              1\n 3                  0.02        0              1\n 4                  0.03        0              1\n 5                  0.04        0              1\n 6                  0.05        0              1\n 7                  0.06        0              1\n 8                  0.07        0              1\n 9                  0.08        0.04           1\n10                  0.09        0.06           1\n# … with 91 more rows"
+  },
+  {
+    "objectID": "posts/2022-10-02-ROC-for-SVM/index.html#roc-curve",
+    "href": "posts/2022-10-02-ROC-for-SVM/index.html#roc-curve",
+    "title": "ROC for SVM Model from ISLR",
+    "section": "ROC Curve",
+    "text": "ROC Curve\n\nyardstickrtichoke\n\n\n\n\n\nyardstick_roc |> \n  autoplot() +\n  theme_classic()\n\n\n\n\n\n\n\n\n\n\n\nsvm_performance_data |> \n  plot_roc_curve(size = 350)"
   }
 ]
