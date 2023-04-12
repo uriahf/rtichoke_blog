@@ -1,0 +1,159 @@
+---
+title: "ABCD for Model Validation"
+date: "2022-10-16"
+categories: 
+  - Yvonne Vergouwe
+  - Ewout W. Steyerberg
+draft: true
+bibliography: references.bib
+---
+
+```{=html}
+<style type="text/css">
+.main-container {
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+```
+## ABCD for Model Validation
+
+The following reproducible example is inspired heavily by [@steyerberg2014][@steyerberg2014].
+
+The ABCD four measures stand for:
+
+**A**lpha, Calibration-in-the-large\
+**B**eta, Calibration slope\
+**C**-statistic (also known as AUC or AUROC)\
+**D**ecision-curve analysis
+
+With rtichoke you can create interactive vizualizations for all relevant aspects: Calibration (A + B), Discrimination (C) and Decusion-Curve (D).
+
+Unfortunately only a sample of the original data is available and the original code seems to be outdated, therefore I tried my best to make a light reproducible example.
+
+## Reading GUSTO-I trial sample data
+
+```{r}
+#| message: false
+#| warning: false
+
+library(haven)
+
+sample2 <- read_sav("C:/Users/Admin/Downloads/gusto/sample2.sav")
+```
+
+## Fitting Simple and Complex logistic regressions with {rms} {rms=""}
+
+```{r}
+#| message: false
+#| warning: false
+library(rms)
+age_moodel <- lrm(day30~ age, data=sample2)
+complex_model <-lrm(day30~ age + killip + hrt + hyp ,
+                    # +  SYSBP120 + PULSE + PULSE50,
+          data=sample2)
+
+age_model_probs <- predict(age_moodel, type = 'fitted')
+complex_model_probs <- predict(complex_model, type = 'fitted')
+
+```
+
+## Calibration
+
+::: panel-tabset
+### Smooth
+
+```{r}
+#| message: false
+#| warning: false
+
+library(rtichoke)
+
+create_calibration_curve(
+  probs = list("By Age" = age_model_probs,
+               "Complex Model" = complex_model_probs),
+  reals = list(sample2$day30),
+  type = "smooth",
+  size = 500
+) |>  
+  plotly::layout(plot_bgcolor = "#fff7f5", 
+               paper_bgcolor= "#fff7f5")
+
+```
+
+### Discrete
+
+```{r}
+#| message: false
+#| warning: false
+
+library(rtichoke)
+
+create_calibration_curve(
+  probs = list("By Age" = age_model_probs,
+               "Complex Model" = complex_model_probs),
+  reals = list(sample2$day30),
+  type = "discrete",
+  size = 500
+) |>  
+  plotly::layout(plot_bgcolor = "#fff7f5", 
+               paper_bgcolor= "#fff7f5")
+
+```
+:::
+
+## Discrimination (ROC Curve)
+
+```{r}
+#| message: false
+#| warning: false
+
+create_roc_curve(
+  probs = list("By Age" = age_model_probs,
+               "Complex Model" = complex_model_probs),
+  reals = list(sample2$day30),
+  size = 500
+) |>  
+  plotly::layout(plot_bgcolor = "#fff7f5", 
+               paper_bgcolor= "#fff7f5")
+
+```
+
+## Clinical Utility
+
+```{r}
+create_decision_curve(
+  probs = list("By Age" = age_model_probs,
+               "Complex Model" = complex_model_probs),
+  reals = list(sample2$day30),
+  min_p_threshold = 0,
+  max_p_threshold = 0.3,
+  size = 500
+) |>  
+  plotly::layout(plot_bgcolor = "#fff7f5", 
+               paper_bgcolor= "#fff7f5")
+```
+
+```{r}
+
+create_performance_table(
+    probs = list("By Age" = age_model_probs,
+               "Complex Model" = complex_model_probs),
+    reals = list(sample2$day30)
+)
+```
+
+```{r}
+
+create_performance_table(
+    probs = list("By Age" = age_model_probs,
+               "Complex Model" = complex_model_probs),
+    reals = list(sample2$day30), 
+    stratified_by = "ppcr"
+)
+```
+
+:::
+
+:::

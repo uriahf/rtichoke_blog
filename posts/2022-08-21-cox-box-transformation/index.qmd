@@ -58,19 +58,19 @@ library(ggplot2)
 data(segmentationData)
 
 segmentationData <- 
-  segmentationData %>% 
-  dplyr::select(EqSphereAreaCh1, PerimCh1, Class, Case) %>% 
-  setNames(c("PredictorA", "PredictorB", "Class", "Case")) %>% 
+  segmentationData |> 
+  dplyr::select(EqSphereAreaCh1, PerimCh1, Class, Case) |> 
+  setNames(c("PredictorA", "PredictorB", "Class", "Case")) |> 
   mutate(Class = factor(ifelse(Class == "PS", "One", "Two")))
 
 example_train <- 
-  segmentationData %>% 
-  dplyr::filter(Case == "Train") %>% 
+  segmentationData |> 
+  dplyr::filter(Case == "Train") |> 
   dplyr::select(-Case)
 
 example_test  <- 
-  segmentationData %>% 
-  dplyr::filter(Case == "Test") %>% 
+  segmentationData |> 
+  dplyr::filter(Case == "Test") |> 
   dplyr::select(-Case)
 ```
 
@@ -119,21 +119,21 @@ outcomes <- example_test$Class == "One"
 
 
 natural_dat <-
-  example_test %>% 
+  example_test |> 
   mutate(
-    prob = original_probs) %>% 
-  roc_curve(Class, prob) %>% 
+    prob = original_probs) |> 
+  roc_curve(Class, prob) |> 
   mutate(Format = "Natural Units")
 
 trans_dat <-
-  example_test %>% 
+  example_test |> 
   mutate(
-    prob = transformed_probs) %>% 
-  roc_curve(Class, prob) %>% 
+    prob = transformed_probs) |> 
+  roc_curve(Class, prob) |> 
   mutate(Format = "Inverse Units") 
 
 both_dat <- 
-  bind_rows(natural_dat, trans_dat) %>%
+  bind_rows(natural_dat, trans_dat) |>
   mutate(
     Format = factor(Format, levels = c("Natural Units", "Inverse Units")))
 
@@ -191,7 +191,7 @@ create_roc_curve(
     outcomes
   ),
   size = 350, 
-  col_values = c("grey", "black")
+  color_values = c("grey", "black")
 ) 
 
 ```
@@ -212,10 +212,8 @@ create_roc_curve(
     outcomes
   ),
   size = 350, 
-  col_values = c("grey", "black")
-) %>% 
-plotly::layout(plot_bgcolor = "#fff7f5", 
-               paper_bgcolor= "#fff7f5")
+  color_values = c("grey", "black")
+)
 
 ```
 :::
@@ -241,7 +239,7 @@ create_roc_curve(
   ),
   stratified_by = "ppcr",
   size = 350, 
-  col_values = c("grey", "black")
+  color_values = c("grey", "black")
 ) 
 
 ```
@@ -263,10 +261,8 @@ create_roc_curve(
   ),
   stratified_by = "ppcr",
   size = 350, 
-  col_values = c("grey", "black")
-) %>% 
-plotly::layout(plot_bgcolor = "#fff7f5", 
-               paper_bgcolor= "#fff7f5")
+  color_values = c("grey", "black")
+) 
 
 ```
 :::

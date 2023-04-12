@@ -167,9 +167,7 @@ create_roc_curve(
   reals = list(
     glm_keyword_pred$obs == "stem"),
   size = 350
-) %>% 
-plotly::layout(plot_bgcolor = "#fff7f5", 
-               paper_bgcolor= "#fff7f5")
+) 
 
 ```
 :::
@@ -207,9 +205,7 @@ create_precision_recall_curve(
   reals = list(
     glm_keyword_pred$obs == "stem"),
   size = 350
-) %>% 
-plotly::layout(plot_bgcolor = "#fff7f5", 
-               paper_bgcolor= "#fff7f5")
+) 
 
 
 ```

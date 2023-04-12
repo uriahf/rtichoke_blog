@@ -43,8 +43,8 @@ post_pred <- predict(post, type='fitted')
 acath_pred <-
   bind_cols(
     acath,
-    pre_pred %>% enframe(name = NULL, value = "pre"),
-    post_pred %>% enframe(name = NULL, value = "post")
+    pre_pred |> enframe(name = NULL, value = "pre"),
+    post_pred |> enframe(name = NULL, value = "post")
   )
 
 # decision curve
@@ -57,7 +57,7 @@ dca_prepost <-
   )
 
 dca_prepost_smooth <-
-  dca_prepost %>%
+  dca_prepost |>
   plot(smooth = TRUE)
 
 dca_prepost_15_35 <-
@@ -67,16 +67,16 @@ dca_prepost_15_35 <-
     thresholds = seq(0.15, 0.35, by = 0.05),
     label = list(pre = "Age and Sex", post = "Age, Sex and Cholesterol"),
     # show_ggplot_code = TRUE
-  ) %>%
+  ) |>
   plot(type = 'net_benefit', 
        smooth = FALSE, 
        show_ggplot_code = FALSE)
 
 # net interventions avoided
-dca_prepost_netint_ob <- dca_prepost %>%
+dca_prepost_netint_ob <- dca_prepost |>
   dcurves::net_intervention_avoided() 
 
-dca_prepost_netint <- dca_prepost_netint_ob %>% 
+dca_prepost_netint <- dca_prepost_netint_ob |> 
   plot(x, 
        type = 'net_intervention_avoided', 
        smooth = FALSE, 
@@ -84,15 +84,15 @@ dca_prepost_netint <- dca_prepost_netint_ob %>%
 
 # estimates table
 df_dca_tbl <-
-  dca_prepost_netint_ob$dca %>%
-  filter(variable %in% c("pre", "post")) %>%
+  dca_prepost_netint_ob$dca |>
+  filter(variable %in% c("pre", "post")) |>
   # keep 5-50%, by 5%
   transmute(
     threshold100 = threshold*100,
     groupvar = factor(variable, levels = c("pre", "post")),
     net_benefit, net_intervention_avoided
-  ) %>%
-  filter(threshold100 > 1 & threshold100 <= 50 & round(threshold100 %% 5) == 0) %>%
+  ) |>
+  filter(threshold100 > 1 & threshold100 <= 50 & round(threshold100 %% 5) == 0) |>
   mutate(threshold100 = factor(str_glue("{threshold100}%"),
                                levels = c("5%", "10%", "15%", "20%", "25%",
                                           "30%", "35%", "40%", "45%", "50%")))
@@ -106,8 +106,8 @@ dca_tbl_continuous <-
     by = groupvar,
     statistic = list(everything() ~ "{median}"),
     digits = list(everything() ~ 4)
-  ) %>%
-  modify_footnote(everything() ~ NA) %>%
+  ) |>
+  modify_footnote(everything() ~ NA) |>
   modify_header(update = list(
     label ~ "**Threshold**",
     stat_1 ~ "**Net Benefit (Age+Sex)**",
@@ -115,18 +115,18 @@ dca_tbl_continuous <-
   ))
 
 df_diff_tbl <-
-  df_dca_tbl %>%
+  df_dca_tbl |>
   # First, reshape two columns to long
   pivot_longer(
     cols = c(starts_with("net_"))
-  ) %>%
+  ) |>
   # Create name variable
-  unite(name, c(groupvar, name), sep = "_") %>%
+  unite(name, c(groupvar, name), sep = "_") |>
   # Reshape to wide to get difference
   pivot_wider(
     names_from = "name",
     values_from = "value"
-  ) %>%
+  ) |>
   # Calculate differences
   transmute(
     threshold100,
@@ -136,19 +136,19 @@ df_diff_tbl <-
 
 # Merge in with continuous table
 estimate_tbl <-
-  dca_tbl_continuous %>%
+  dca_tbl_continuous |>
   modify_table_body(
-    ~ .x %>%
+    ~ .x |>
       left_join(
         df_diff_tbl,
         by = c("label" = "threshold100")
-      ) %>%
+      ) |>
       filter(row_type != "label")
-  ) %>%
+  ) |>
   modify_header(
     diff_net_benefit = "**Difference in Net Benefit**",
     diff_net_intavoid = "**Net Difference in Interventions Avoided per 100 patients**"
-  ) %>%
+  ) |>
   modify_fmt_fun(c(diff_net_benefit, diff_net_intavoid) ~ function(x) { style_sigfig(x, digits = 4)})
 
 
@@ -159,11 +159,11 @@ performance_data_dc <- rtichoke::prepare_performance_data(
 ) 
 
 
-conventional_dc <- performance_data_dc %>% 
+conventional_dc <- performance_data_dc |> 
   rtichoke::plot_decision_curve(
-    col_values = c("#00BFC4", "#C77CFF"),
+    color_values = c("#00BFC4", "#C77CFF"),
     size = 400
-  ) %>% 
+  ) |> 
   plotly::layout(
     yaxis = list(range =
                    c(-0.07, 0.7))
@@ -208,8 +208,8 @@ post_pred <- predict(post, type='fitted')
 
 acath_pred <- bind_cols(
     acath,
-    pre_pred %>% enframe(name = NULL, value = "pre"),
-    post_pred %>% enframe(name = NULL, value = "post")
+    pre_pred |> enframe(name = NULL, value = "pre"),
+    post_pred |> enframe(name = NULL, value = "post")
   )
 ```
 
@@ -233,7 +233,7 @@ dca_prepost <- dca(
       pre = "Age and Sex",
       post = "Age, Sex and Cholesterol"))
 
-dca_prepost %>%
+dca_prepost |>
   plot(smooth = TRUE)  + 
   theme_classic()  +
   theme(legend.position = "none")
@@ -290,12 +290,12 @@ performance_data_dc <-
   reals = list(acath_pred$sigdz)
 )
 
-performance_data_dc %>%
+performance_data_dc |>
   plot_decision_curve(
-    col_values = 
+    color_values = 
       c("#00BFC4", "#C77CFF"),
     size = 350
-  ) %>%
+  ) |>
   plotly::layout(
     yaxis = list(
       range =
@@ -319,17 +319,17 @@ performance_data_dc <- rtichoke::prepare_performance_data(
   reals = list(acath_pred$sigdz)
 ) 
 
-conventional_dc <- performance_data_dc %>% 
+conventional_dc <- performance_data_dc |> 
   rtichoke::plot_decision_curve(
-    col_values = c("#00BFC4", "#C77CFF"),
+    color_values = c("#00BFC4", "#C77CFF"),
     size = 350
-  ) %>% 
+  ) |> 
   plotly::layout(
     yaxis = list(range =
                    c(-0.07, 0.7))
   )
 
-conventional_dc %>% 
+conventional_dc |> 
   plotly::layout(plot_bgcolor = "#fff7f5", 
                 paper_bgcolor= "#fff7f5")
 ```
@@ -354,7 +354,7 @@ dca_prepost_15_35 <- dca(
     thresholds = seq(0.15, 0.35, by = 0.05),
     label = list(
       pre = "Age and Sex",
-      post = "Age, Sex and Cholesterol")) %>%
+      post = "Age, Sex and Cholesterol")) |>
   plot(type = 'net_benefit', 
        smooth = FALSE, 
        show_ggplot_code = FALSE)
@@ -402,13 +402,13 @@ dca_prepost_15_35 +
 #| eval: false
 #| warning: false
 
-performance_data_dc %>% 
+performance_data_dc |> 
   rtichoke::plot_decision_curve(
-    col_values = c("#00BFC4", "#C77CFF"),
+    color_values = c("#00BFC4", "#C77CFF"),
     min_p_threshold = 0.15, 
     max_p_threshold = 0.35,
     size = 350
-  ) %>% 
+  ) |> 
   plotly::layout(
     yaxis = list(range =
                    c(-0.07, 0.7))
@@ -420,17 +420,17 @@ performance_data_dc %>%
 #| echo: false
 #| warning: false
 
-performance_data_dc %>% 
+performance_data_dc |> 
   rtichoke::plot_decision_curve(
-    col_values = c("#00BFC4", "#C77CFF"),
+    color_values = c("#00BFC4", "#C77CFF"),
     min_p_threshold = 0.15, 
     max_p_threshold = 0.35,
     size = 350
-  ) %>% 
+  ) |> 
   plotly::layout(
     yaxis = list(range =
                    c(-0.07, 0.7))
-  ) %>% 
+  ) |> 
   plotly::layout(plot_bgcolor = "#fff7f5", 
                 paper_bgcolor= "#fff7f5")
 ```
@@ -448,8 +448,8 @@ performance_data_dc %>%
 #| eval: false
 #| warning: false
 
-dca_prepost %>%
-  net_intervention_avoided() %>% 
+dca_prepost |>
+  net_intervention_avoided() |> 
   plot(type = 'net_intervention_avoided', 
        smooth = FALSE)  + 
   theme_classic()  +
@@ -467,12 +467,12 @@ dca_prepost %>%
 #| eval: false
 #| warning: false
 
-performance_data_dc %>%
+performance_data_dc |>
   rtichoke::plot_decision_curve(
-    col_values = c("#F8766D", "#00BFC4"),
+    color_values = c("#F8766D", "#00BFC4"),
     type = "interventions avoided",
     size = 350
-  ) %>%
+  ) |>
   plotly::layout(
     yaxis = list(range =
                    c(-10, 100))
@@ -485,18 +485,16 @@ performance_data_dc %>%
 #| echo: false
 #| warning: false
 
-performance_data_dc %>%  
+performance_data_dc |>  
   rtichoke::plot_decision_curve( 
-    col_values = c("#F8766D", "#00BFC4"), 
+    color_values = c("#F8766D", "#00BFC4"), 
     type = "interventions avoided",
     size = 350
-  ) %>%  
+  ) |>  
   plotly::layout(
     yaxis = list(range = 
                    c(-10, 100)) 
-  ) %>% 
-plotly::layout(plot_bgcolor = "#fff7f5", 
-               paper_bgcolor= "#fff7f5") 
+  ) 
 ```
 :::
 :::
@@ -509,9 +507,9 @@ plotly::layout(plot_bgcolor = "#fff7f5",
 #| eval: false
 #| warning: false
 
-performance_data_dc %>%
+performance_data_dc |>
   plot_decision_curve(
-    col_values = 
+    color_values = 
       c("#00BFC4", "#C77CFF"),
     type = "combined",
     size = 500
@@ -524,15 +522,13 @@ performance_data_dc %>%
 #| echo: false
 #| warning: false
 
-performance_data_dc %>%
+performance_data_dc |>
 
   rtichoke::plot_decision_curve(
-    col_values = c("#00BFC4", "#C77CFF"),
+    color_values = c("#00BFC4", "#C77CFF"),
     type = "combined",
     size = 500
-  ) %>%
-plotly::layout(plot_bgcolor = "#fff7f5",
-               paper_bgcolor= "#fff7f5")
+  ) 
 
 ```
 :::

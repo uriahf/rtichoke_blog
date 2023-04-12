@@ -17,7 +17,7 @@ draft: false
 
 ## Introduction to Statistical Learning with Tidy Models
 
-The following example of Support Vector Machine is taken from [Introduction to Statistical Learning](https://www.statlearning.com/): a great introductory book to Data Science by [Gareth James](http://faculty.marshall.usc.edu/gareth-james/), [Daniela Witten](https://www.danielawitten.com/), [Trevor Hastie](https://hastie.su.domains/) and [Rob Tibshirani](https://tibshirani.su.domains/). 
+The following example of Support Vector Machine is taken from [Introduction to Statistical Learning](https://www.statlearning.com/): a great introductory book to Data Science by [Gareth James](http://faculty.marshall.usc.edu/gareth-james/), [Daniela Witten](https://www.danielawitten.com/), [Trevor Hastie](https://hastie.su.domains/) and [Rob Tibshirani](https://tibshirani.su.domains/).
 
 The [original code](https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/09-support-vector-machines.html) is taken from [ISLR tidymodels labs](https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/) by [Emil Hvitfeldt](https://www.emilhvitfeldt.com/).
 
@@ -52,25 +52,24 @@ sim_data2_test <- tibble(
 ```{r}
 #| message: false
 #| warning: false
-svm_rbf_spec <- svm_rbf() %>%
-  set_mode("classification") %>%
+svm_rbf_spec <- svm_rbf() |>
+  set_mode("classification") |>
   set_engine("kernlab")
 
-svm_rbf_fit <- svm_rbf_spec %>%
+svm_rbf_fit <- svm_rbf_spec |>
   fit(y ~ ., data = sim_data2)
 ```
 
 ## Performance Data
 
 ::: panel-tabset
-
 ### yardstick
 
 ```{r}
 #| message: false
 #| warning: false
 
-yardstick_roc <- augment(svm_rbf_fit, new_data = sim_data2_test) %>%
+yardstick_roc <- augment(svm_rbf_fit, new_data = sim_data2_test) |>
   roc_curve(truth = y, estimate = .pred_1)
 
 yardstick_roc 
@@ -97,7 +96,6 @@ svm_performance_data <- prepare_performance_data(
 svm_performance_data |> 
   select(probability_threshold, specificity, sensitivity)
 ```
-
 :::
 
 ## ROC Curve
@@ -126,8 +124,8 @@ svm_performance_data |>
 
 ::: panel-tabset
 ### yardstick
-::: {layout-ncol="2"}
 
+::: {layout-ncol="2"}
 ```{r}
 #| message: false
 #| warning: false
@@ -139,10 +137,10 @@ yardstick_roc |>
 ```
 
 ![](roc_svm.svg)
-
 :::
 
 ### rtichoke
+
 ::: {layout-ncol="2"}
 ```{r}
 #| message: false
@@ -159,11 +157,7 @@ svm_performance_data |>
 #| echo: false
 
 svm_performance_data |> 
-  plot_roc_curve(size = 350) |>  
-  plotly::layout(plot_bgcolor = "#fff7f5", 
-               paper_bgcolor= "#fff7f5")
+  plot_roc_curve(size = 350) 
 ```
-
 :::
-
 :::
