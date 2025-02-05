@@ -13,4 +13,8 @@ image: "image.svg"
 
 ![](medsannouncement.png)
 
+I was invited to talk about Discrimination Performance Metrics by the Medical Data Science Israel community!
+
+The slides are available:
+
 {{< revealjs file="https://predictionperformancediscrimination.netlify.app" height="500px" class="ratio ratio-16x9" >}}

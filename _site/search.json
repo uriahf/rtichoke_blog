@@ -4,7 +4,7 @@
     "href": "posts.html",
     "title": "Posts",
     "section": "",
-    "text": "Performance Metrics: Discrimination\n\n\n\n\n\n\nTalks\n\n\nROC\n\n\nPrecision Recall\n\n\nLift\n\n\n\n\n\n\n\n\n\nFeb 5, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nABCD for Model Validation\n\n\n\n\n\n\nYvonne Vergouwe\n\n\nEwout W. Steyerberg\n\n\n\n\n\n\n\n\n\nOct 16, 2022\n\n\n\n\n\n\n\n\n\n\n\n\nROC for SVM Model from ISLR\n\n\n\n\n\n\nROC\n\n\nPerformance Data\n\n\nISLR\n\n\nReplications\n\n\nyardstick\n\n\nGareth James\n\n\nDaniela Witten\n\n\nTrevor Hastie\n\n\nRob Tibshirani\n\n\n\n\n\n\n\n\n\nOct 2, 2022\n\n\n\n\n\n\n\n\n\n\n\n\nDCA for Quantifying the Additional Benefit of a New Marker by Emily Vertosick and Andrew Vickers\n\n\n\n\n\n\nReplications\n\n\nDecision\n\n\nEmily Vertosick\n\n\nAndrew Vickers\n\n\ndcurves\n\n\nrms\n\n\nHmisc\n\n\n\n\n\n\n\n\n\nSep 18, 2022\n\n\n\n\n\n\n\n\n\n\n\n\nFrom Haifa University to Clalit innovation\n\n\n\n\n\n\nROC\n\n\nDecision\n\n\n\n\n\n\n\n\n\nSep 18, 2022\n\n\n\n\n\n\n\n\n\n\n\n\nPrecision Recall from Feature Engineering by Max Kuhn and Kjell Johnson\n\n\n\n\n\n\nReplications\n\n\nROC\n\n\nPrecision Recall\n\n\nMax Kuhn\n\n\nKjell Johnson\n\n\nFeature Engineering by Max Kuhn and Kjell Johnson\n\n\nyardstick\n\n\n\n\n\n\n\n\n\nSep 4, 2022\n\n\n\n\n\n\n\n\n\n\n\n\nBox-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson\n\n\n\n\n\n\nReplications\n\n\nROC\n\n\nMax Kuhn\n\n\nKjell Johnson\n\n\nFeature Engineering by Max Kuhn and Kjell Johnson\n\n\ncaret\n\n\n\n\n\n\n\n\n\nAug 21, 2022\n\n\n\n\n\n\nNo matching items"
+    "text": "Performance Metrics: Discrimination\n\n\n\n\n\n\nTalks\n\n\nROC\n\n\nPrecision Recall\n\n\nLift\n\n\n\n\n\n\n\n\n\nFeb 5, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nROC for SVM Model from ISLR\n\n\n\n\n\n\nROC\n\n\nPerformance Data\n\n\nISLR\n\n\nReplications\n\n\nyardstick\n\n\nGareth James\n\n\nDaniela Witten\n\n\nTrevor Hastie\n\n\nRob Tibshirani\n\n\n\n\n\n\n\n\n\nOct 2, 2022\n\n\n\n\n\n\n\n\n\n\n\n\nDCA for Quantifying the Additional Benefit of a New Marker by Emily Vertosick and Andrew Vickers\n\n\n\n\n\n\nReplications\n\n\nDecision\n\n\nEmily Vertosick\n\n\nAndrew Vickers\n\n\ndcurves\n\n\nrms\n\n\nHmisc\n\n\n\n\n\n\n\n\n\nSep 18, 2022\n\n\n\n\n\n\n\n\n\n\n\n\nPrecision Recall from Feature Engineering by Max Kuhn and Kjell Johnson\n\n\n\n\n\n\nReplications\n\n\nROC\n\n\nPrecision Recall\n\n\nMax Kuhn\n\n\nKjell Johnson\n\n\nFeature Engineering by Max Kuhn and Kjell Johnson\n\n\nyardstick\n\n\n\n\n\n\n\n\n\nSep 4, 2022\n\n\n\n\n\n\n\n\n\n\n\n\nBox-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson\n\n\n\n\n\n\nReplications\n\n\nROC\n\n\nMax Kuhn\n\n\nKjell Johnson\n\n\nFeature Engineering by Max Kuhn and Kjell Johnson\n\n\ncaret\n\n\n\n\n\n\n\n\n\nAug 21, 2022\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/2022-09-04-precision-recall/index.html",
@@ -165,13 +165,13 @@
     "href": "posts/2025-05-02-discrimination-talk/index.html",
     "title": "Performance Metrics: Discrimination",
     "section": "",
-    "text": "I was invited by MeDS to give a talk about Discrimination Performance Metrics.\n    View slides in full screen"
+    "text": "I was invited to talk about Discrimination Performance Metrics by the Medical Data Science Israel community!\nThe slides are available:\n    View slides in full screen"
   },
   {
     "objectID": "posts/2025-05-02-discrimination-talk/index.html#performance-metrics-discrimination",
     "href": "posts/2025-05-02-discrimination-talk/index.html#performance-metrics-discrimination",
     "title": "Performance Metrics: Discrimination",
     "section": "",
-    "text": "I was invited by MeDS to give a talk about Discrimination Performance Metrics.\n    View slides in full screen"
+    "text": "I was invited to talk about Discrimination Performance Metrics by the Medical Data Science Israel community!\nThe slides are available:\n    View slides in full screen"
   }
 ]

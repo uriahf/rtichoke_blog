@@ -23,7 +23,8 @@
 <section id="performance-metrics-discrimination" class="level2">
 <h2 class="anchored" data-anchor-id="performance-metrics-discrimination">Performance Metrics: Discrimination</h2>
 <p><img src="https://rtichoke-blog.netlify.app/posts/2025-05-02-discrimination-talk/medsannouncement.png" class="img-fluid"></p>
-<p>I was invited by MeDS to give a talk about Discrimination Performance Metrics.</p>
+<p>I was invited to talk about Discrimination Performance Metrics by the Medical Data Science Israel community!</p>
+<p>The slides are available:</p>
     <p><a href="https://predictionperformancediscrimination.netlify.app" target="_blank">View slides in full screen</a></p>
        <div class="ratio ratio-16x9">
       <iframe class="slide-deck" src="https://predictionperformancediscrimination.netlify.app" height="500px"></iframe>
@@ -41,15 +42,6 @@
   <guid>https://rtichoke-blog.netlify.app/posts/2025-05-02-discrimination-talk/</guid>
   <pubDate>Tue, 04 Feb 2025 22:00:00 GMT</pubDate>
   <media:content url="https://rtichoke-blog.netlify.app/posts/2025-05-02-discrimination-talk/image.svg" medium="image" type="image/svg+xml"/>
-</item>
-<item>
-  <title></title>
-  <link>https://rtichoke-blog.netlify.app/posts/2022-10-16-ABCD-for-model-validation/</link>
-  <description><![CDATA[ undefined ]]></description>
-  <category>Yvonne Vergouwe</category>
-  <category>Ewout W. Steyerberg</category>
-  <guid>https://rtichoke-blog.netlify.app/posts/2022-10-16-ABCD-for-model-validation/</guid>
-  <pubDate>Sat, 15 Oct 2022 21:00:00 GMT</pubDate>
 </item>
 <item>
   <title>ROC for SVM Model from ISLR</title>
@@ -1145,16 +1137,6 @@ font-style: inherit;">500</span></span>
   <guid>https://rtichoke-blog.netlify.app/posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/</guid>
   <pubDate>Sat, 17 Sep 2022 21:00:00 GMT</pubDate>
   <media:content url="https://rtichoke-blog.netlify.app/posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/image.jpg" medium="image" type="image/jpeg"/>
-</item>
-<item>
-  <title></title>
-  <link>https://rtichoke-blog.netlify.app/posts/2022-09-18-From-Haifa-University-to-Clalit Innovation/</link>
-  <description><![CDATA[ undefined ]]></description>
-  <category>ROC</category>
-  <category>Decision</category>
-  <guid>https://rtichoke-blog.netlify.app/posts/2022-09-18-From-Haifa-University-to-Clalit Innovation/</guid>
-  <pubDate>Sat, 17 Sep 2022 21:00:00 GMT</pubDate>
-  <media:content url="https://rtichoke-blog.netlify.app/posts/2022-09-18-From-Haifa-University-to-Clalit Innovation/image.png" medium="image" type="image/png" height="110" width="144"/>
 </item>
 <item>
   <title>Precision Recall from Feature Engineering by Max Kuhn and Kjell Johnson</title>
