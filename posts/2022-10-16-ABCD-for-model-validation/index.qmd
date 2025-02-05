@@ -17,6 +17,7 @@ bibliography: references.bib
 }
 </style>
 ```
+
 ## ABCD for Model Validation
 
 The following reproducible example is inspired heavily by [@steyerberg2014][@steyerberg2014].
@@ -135,6 +136,11 @@ create_decision_curve(
                paper_bgcolor= "#fff7f5")
 ```
 
+## Performance Table
+
+::: panel-tabset
+## By Probability Threshold
+
 ```{r}
 
 create_performance_table(
@@ -143,6 +149,8 @@ create_performance_table(
     reals = list(sample2$day30)
 )
 ```
+
+## By Percent Positives Conditional Rate
 
 ```{r}
 
@@ -153,7 +161,4 @@ create_performance_table(
     stratified_by = "ppcr"
 )
 ```
-
-:::
-
 :::
