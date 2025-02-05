@@ -1,0 +1,16 @@
+---
+title: "Performance Metrics: Discrimination"
+date: "2025-02-05"
+categories: 
+  - Talks
+  - ROC
+  - Precision Recall
+  - Lift
+image: "image.svg"
+---
+
+## Performance Metrics: Discrimination
+
+![](medsannouncement.png)
+
+{{< revealjs file="https://predictionperformancediscrimination.netlify.app" height="500px" class="ratio ratio-16x9" >}}

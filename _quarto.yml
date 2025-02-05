@@ -18,6 +18,8 @@ website:
         href: https://www.facebook.com/groups/rforthemasses
       - icon: linkedin
         href: https://www.linkedin.com/in/uriah-finkel
+      - icon: telegram
+        href: https://t.me/as_if_uriah
       - icon: rss
         href: posts.xml  
 format:

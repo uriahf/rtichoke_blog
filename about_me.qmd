@@ -16,6 +16,9 @@ about:
     - icon: linkedin
       href: https://www.linkedin.com/in/uriah-finkel
       text: Linkedin
+    - icon: telegram
+      text: As If
+      href: https://t.me/as_if_uriah
 ---
 
 Author of [rtichoke](https://uriahf.github.io/rtichoke/)
