@@ -24,7 +24,6 @@ website:
         href: posts.xml  
 format:
   html:
-    theme: theme.scss
+    theme: [default, brand]
 
 editor: visual
-
