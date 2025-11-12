@@ -1,0 +1,35 @@
+color:
+  palette:
+    cream:   "#fff7f5"
+    orange:  "#c54b29"
+    black:   "#000000"
+    link:    "#ce3d15"
+    primary: "#FEF0EC"
+  background: cream
+  foreground: black
+  primary: orange
+  link: link
+  
+typography:
+  # 1) Register the font files (array!)
+  fonts:
+    - family: Commissioner
+      source: file
+      files:
+        - path: static/fonts/commissioner-v13-latin-regular.woff2
+          weight: 400
+          style: normal
+        - path: static/fonts/commissioner-v13-latin-regular.woff
+          weight: 400
+          style: normal
+    - family: Fraunces
+      source: file
+      files:
+        - path: static/fonts/Fraunces9pt-Light.woff2
+          weight: 300
+          style: normal
+          
+  base: Commissioner
+  headings: 
+    family: Fraunces
+    color: link
