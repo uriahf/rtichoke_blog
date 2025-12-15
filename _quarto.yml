@@ -4,7 +4,9 @@ project:
 website:
   title: "rtichoke blog"
   site-url: https://rtichoke-blog.netlify.app
+  search: false
   navbar:
+    search: false
     title: rtichoke blog
     right:
       - text: R examples
