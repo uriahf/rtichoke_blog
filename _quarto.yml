@@ -11,10 +11,12 @@ website:
         href: posts.qmd
       - text: Python examples
         href: https://uriahf.github.io/rtichoke_blog_python
+      - text: Talks
+        href: talks.qmd
       - text: About Me
         href: about_me.qmd
       - icon: github
-        href: https://github.com/uriahf/rtichoke
+        href: https://github.com/uriahf
       - icon: twitter
         href: https://twitter.com/finkeluriah
       - icon: facebook

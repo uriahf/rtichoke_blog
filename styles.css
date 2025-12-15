@@ -26,7 +26,6 @@ a:focus {
   text-decoration-color: currentColor;
 }
 
-/* Navbar and header accents */
 .navbar,
 .navbar-default {
   background-color: var(--rtichoke-bg);
@@ -47,20 +46,34 @@ a:focus {
   color: var(--rtichoke-accent) !important;
 }
 
-.quarto-title-block .title {
-  color: var(--rtichoke-primary);
-  letter-spacing: 0.02em;
+#title-block-header .title,
+.quarto-title-block .title,
+.quarto-title-block h1,
+main.content h1 {
+  color: var(--rtichoke-primary) !important;
 }
 
-.page-layout-full .quarto-title-block {
-  border-radius: 16px;
-  background: linear-gradient(145deg, #fff, var(--rtichoke-soft));
-  padding: 1.6rem;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
-  border: 1px solid var(--rtichoke-border);
+
+.quarto-title-block:empty {
+  display: none !important;
 }
 
-/* Listing styles */
+.quarto-title-block {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+.quarto-listing-filter,
+.quarto-listing .quarto-listing-filter,
+.quarto-listing .listing-actions,
+.quarto-listing .listing-search,
+.quarto-listing .listing-tools,
+.quarto-listing .listing-toolbar {
+  display: none !important;
+}
+
 .quarto-listing {
   display: grid;
   gap: 1.5rem;
@@ -109,7 +122,6 @@ a:focus {
   letter-spacing: 0.02em;
 }
 
-/* Content blocks */
 blockquote {
   border-left: 4px solid var(--rtichoke-primary);
   background: var(--rtichoke-soft);
@@ -120,8 +132,7 @@ blockquote {
 
 pre.sourceCode,
 code {
-  font-family: "JetBrains Mono", "Fira Code", "SFMono-Regular", Consolas, monosp
-ace;
+  font-family: "JetBrains Mono", "Fira Code", "SFMono-Regular", Consolas, monospace;
 }
 
 div.sourceCode,
