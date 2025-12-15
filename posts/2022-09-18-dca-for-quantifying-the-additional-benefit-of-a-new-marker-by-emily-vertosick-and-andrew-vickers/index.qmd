@@ -2,10 +2,7 @@
 title: "DCA for Quantifying the Additional Benefit of a New Marker by Emily Vertosick and Andrew Vickers"
 date: "2022-09-18"
 categories: 
-  - Replications
   - Decision
-  - Emily Vertosick
-  - Andrew Vickers
   - dcurves
   - rms
   - Hmisc
@@ -215,7 +212,7 @@ acath_pred <- bind_cols(
 
 ## Conventional Decision Curve
 
-::: panel-tabset
+::::: panel-tabset
 ### dcurves
 
 ::: {layout-ncol="2"}
@@ -334,11 +331,11 @@ conventional_dc |>
                 paper_bgcolor= "#fff7f5")
 ```
 :::
-:::
+:::::
 
 ## Specific Range of Probability Thresholds
 
-::: panel-tabset
+::::: panel-tabset
 ### dcurves
 
 ::: {layout-ncol="2"}
@@ -435,11 +432,11 @@ performance_data_dc |>
                 paper_bgcolor= "#fff7f5")
 ```
 :::
-:::
+:::::
 
 ## Interventions Avoided
 
-::: panel-tabset
+::::: panel-tabset
 ### dcurves
 
 ::: {layout-ncol="2"}
@@ -497,7 +494,7 @@ performance_data_dc |>
   ) 
 ```
 :::
-:::
+:::::
 
 ## Conventional and Interventions Avoided Combined (rtichoke code)
 
