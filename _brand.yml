@@ -1,13 +1,18 @@
 color:
   palette:
-    cream:   "#fff7f5"
-    orange:  "#c54b29"
-    black:   "#000000"
-    link:    "#ce3d15"
+    white: "#fff7f5"
+    black: "#000000"
+    navbar-bg: white  # alias
+    navbar-fg: "#c54b29"
+    navbar-hl: "#c54b29"
     primary: "#FEF0EC"
-  background: cream
+    link: "#ce3d15"
+  background: white
   foreground: black
-  primary: orange
+  primary: primary
+  light: white
+  dark: black
+  danger: navbar-fg
   link: link
   
 typography:
