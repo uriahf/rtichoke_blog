@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://rtichoke-blog.netlify.app/talks.html</loc>
+    <lastmod>2025-12-15T12:35:10.401Z</lastmod>
+  </url>
+  <url>
     <loc>https://rtichoke-blog.netlify.app/posts.html</loc>
-    <lastmod>2022-10-01T08:37:09.071Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rtichoke-blog.netlify.app/posts/2022-09-04-precision-recall/index.html</loc>
-    <lastmod>2023-04-12T22:45:17.136Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rtichoke-blog.netlify.app/index.html</loc>
-    <lastmod>2022-08-19T14:35:46.264Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rtichoke-blog.netlify.app/about_me.html</loc>
-    <lastmod>2025-02-05T14:28:37.861Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rtichoke-blog.netlify.app/posts/2022-08-21-cox-box-transformation/index.html</loc>
-    <lastmod>2023-04-12T22:40:11.003Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rtichoke-blog.netlify.app/posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html</loc>
-    <lastmod>2023-04-12T22:50:39.882Z</lastmod>
+    <lastmod>2025-12-15T12:28:21.281Z</lastmod>
   </url>
   <url>
     <loc>https://rtichoke-blog.netlify.app/posts/2022-10-02-ROC-for-SVM/index.html</loc>
-    <lastmod>2023-04-12T22:51:59.606Z</lastmod>
+    <lastmod>2025-12-15T13:06:31.894Z</lastmod>
   </url>
   <url>
-    <loc>https://rtichoke-blog.netlify.app/posts/2025-05-02-discrimination-talk/index.html</loc>
-    <lastmod>2025-02-05T15:39:14.118Z</lastmod>
+    <loc>https://rtichoke-blog.netlify.app/posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html</loc>
+    <lastmod>2025-12-15T13:05:58.732Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rtichoke-blog.netlify.app/posts/2022-08-21-cox-box-transformation/index.html</loc>
+    <lastmod>2025-12-15T13:05:17.917Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rtichoke-blog.netlify.app/about_me.html</loc>
+    <lastmod>2025-11-11T21:03:36.777Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rtichoke-blog.netlify.app/index.html</loc>
+    <lastmod>2025-12-15T12:41:24.912Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rtichoke-blog.netlify.app/posts/2022-09-04-precision-recall/index.html</loc>
+    <lastmod>2025-12-15T13:05:42.367Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rtichoke-blog.netlify.app/talks/2025-05-02-discrimination-talk/index.html</loc>
+    <lastmod>2025-11-11T21:03:36.980Z</lastmod>
   </url>
 </urlset>

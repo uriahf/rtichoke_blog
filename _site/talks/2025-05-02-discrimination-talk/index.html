@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-02-05">
 
-<title>R Examples – rtichoke blog</title>
+<title>Performance Metrics: Discrimination – rtichoke blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,30 +24,28 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-dcae2d920720aeedccfe79341deff927.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-3af4ae2c2c99706a2b348a6ec1c34fb0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dcae2d920720aeedccfe79341deff927.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-dcae2d920720aeedccfe79341deff927.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-3af4ae2c2c99706a2b348a6ec1c34fb0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dcae2d920720aeedccfe79341deff927.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,79 +73,29 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
+ 
+  <style>
+  .slide-deck {
+      border: 3px solid #dee2e6;
+      width: 100%;
   }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
+  </style>
+  
 
-<link rel="stylesheet" href="styles.css">
-<link rel="alternate" type="application/rss+xml" title="rtichoke blog" href="posts.xml" data-external="1"></head>
 
-<body class="nav-fixed quarto-light">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">rtichoke blog</span>
     </a>
   </div>
@@ -157,7 +106,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./posts.html" aria-current="page"> 
+    <a class="nav-link" href="../../posts.html"> 
 <span class="menu-text">R examples</span></a>
   </li>  
   <li class="nav-item">
@@ -165,11 +114,11 @@ window.Quarto = {
 <span class="menu-text">Python examples</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./talks.html"> 
+    <a class="nav-link" href="../../talks.html"> 
 <span class="menu-text">Talks</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about_me.html"> 
+    <a class="nav-link" href="../../about_me.html"> 
 <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item compact">
@@ -198,7 +147,7 @@ window.Quarto = {
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="./posts.xml"> <i class="bi bi-rss" role="img">
+    <a class="nav-link" href="../../posts.xml"> <i class="bi bi-rss" role="img">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -210,166 +159,59 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">R Examples</h1>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page-left">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Y2FyZXQ=">caret <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGN1cnZlcw==">dcurves <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGVjaXNpb24=">Decision <span class="quarto-category-count">(1)</span></div><div class="category" data-category="SG1pc2M=">Hmisc <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UGVyZm9ybWFuY2UlMjBEYXRh">Performance Data <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UHJlY2lzaW9uJTIwUmVjYWxs">Precision Recall <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cm1z">rms <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Uk9D">ROC <span class="quarto-category-count">(3)</span></div><div class="category" data-category="eWFyZHN0aWNr">yardstick <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Performance Metrics: Discrimination</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Talks</div>
+    <div class="quarto-category">ROC</div>
+    <div class="quarto-category">Precision Recall</div>
+    <div class="quarto-category">Lift</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 5, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
+</header>
 
 
+<section id="performance-metrics-discrimination" class="level2">
+<h2 class="anchored" data-anchor-id="performance-metrics-discrimination">Performance Metrics: Discrimination</h2>
+<p><img src="medsannouncement.png" class="img-fluid"></p>
+<p>I was invited to talk about Discrimination Performance Metrics by the Medical Data Science Israel community!</p>
+<p>The slides are available:</p>
+    <p><a href="https://predictionperformancediscrimination.netlify.app" target="_blank">View slides in full screen</a></p>
+       <div class="ratio ratio-16x9">
+      <iframe class="slide-deck" src="https://predictionperformancediscrimination.netlify.app" height="500px"></iframe>
+    </div>
+  
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Uk9DJTJDUGVyZm9ybWFuY2UlMjBEYXRh" data-listing-date-sort="1664658000000" data-listing-file-modified-sort="1765803991894" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="413">
-<div class="thumbnail"><a href="./posts/2022-10-02-ROC-for-SVM/index.html" class="no-external">
+</section>
 
-<img loading="lazy" src="./posts/2022-10-02-ROC-for-SVM/image.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2022-10-02-ROC-for-SVM/index.html" class="no-external">ROC for SVM Model from ISLR</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Uk9D'); return false;">ROC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UGVyZm9ybWFuY2UlMjBEYXRh'); return false;">Performance Data</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2022-10-02-ROC-for-SVM/index.html" class="no-external">
-The following example of Support Vector Machine is taken from Introduction to Statistical Learning: a great introductory book to Data Science by Gareth James, Daniela Witten, …
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2022-10-02-ROC-for-SVM/index.html" class="no-external">
-<div class="listing-date">
-Oct 2, 2022
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="RGVjaXNpb24lMkNkY3VydmVzJTJDcm1zJTJDSG1pc2M=" data-listing-date-sort="1663448400000" data-listing-file-modified-sort="1765803958732" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2059">
-<div class="thumbnail"><a href="./posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/image.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html" class="no-external">DCA for Quantifying the Additional Benefit of a New Marker by Emily Vertosick and Andrew Vickers</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('RGVjaXNpb24='); return false;">Decision</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('ZGN1cnZlcw=='); return false;">dcurves</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('cm1z'); return false;">rms</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('SG1pc2M='); return false;">Hmisc</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html" class="no-external">
-Prediction Model might gain accuracy if you’ll add more relevant features to existing models, but many times it’s not obvious what is the additional value of additional…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/index.html" class="no-external">
-<div class="listing-date">
-Sep 18, 2022
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="Uk9DJTJDUHJlY2lzaW9uJTIwUmVjYWxsJTJDeWFyZHN0aWNr" data-listing-date-sort="1662238800000" data-listing-file-modified-sort="1765803942367" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="498">
-<div class="thumbnail"><a href="./posts/2022-09-04-precision-recall/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/2022-09-04-precision-recall/image.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2022-09-04-precision-recall/index.html" class="no-external">Precision Recall from Feature Engineering by Max Kuhn and Kjell Johnson</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Uk9D'); return false;">ROC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UHJlY2lzaW9uJTIwUmVjYWxs'); return false;">Precision Recall</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('eWFyZHN0aWNr'); return false;">yardstick</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2022-09-04-precision-recall/index.html" class="no-external">
-Precision Recall Curve is shown as an alternative to the known ROC curve in the “second part from the ‘Measuring Performance’ Chapter of Feature Engineering and Selection”.…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2022-09-04-precision-recall/index.html" class="no-external">
-<div class="listing-date">
-Sep 4, 2022
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="Uk9DJTJDY2FyZXQ=" data-listing-date-sort="1661029200000" data-listing-file-modified-sort="1765803917917" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1011">
-<div class="thumbnail"><a href="./posts/2022-08-21-cox-box-transformation/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/2022-08-21-cox-box-transformation/image.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2022-08-21-cox-box-transformation/index.html" class="no-external">Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Uk9D'); return false;">ROC</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Y2FyZXQ='); return false;">caret</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2022-08-21-cox-box-transformation/index.html" class="no-external">
-This blog will be dedicated to the {rtichoke} package, which means that it will contain posts that are related to performance metrics and the possible related usability of…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2022-08-21-cox-box-transformation/index.html" class="no-external">
-<div class="listing-date">
-Aug 21, 2022
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
