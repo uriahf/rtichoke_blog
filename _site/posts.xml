@@ -9,8 +9,8 @@
 <link>https://rtichoke-blog.netlify.app/posts.html</link>
 <atom:link href="https://rtichoke-blog.netlify.app/posts.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.6.39</generator>
-<lastBuildDate>Tue, 04 Feb 2025 22:00:00 GMT</lastBuildDate>
+<generator>quarto-1.8.26</generator>
+<lastBuildDate>Wed, 05 Feb 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Performance Metrics: Discrimination</title>
   <link>https://rtichoke-blog.netlify.app/posts/2025-05-02-discrimination-talk/</link>
@@ -40,7 +40,7 @@
   <category>Precision Recall</category>
   <category>Lift</category>
   <guid>https://rtichoke-blog.netlify.app/posts/2025-05-02-discrimination-talk/</guid>
-  <pubDate>Tue, 04 Feb 2025 22:00:00 GMT</pubDate>
+  <pubDate>Wed, 05 Feb 2025 00:00:00 GMT</pubDate>
   <media:content url="https://rtichoke-blog.netlify.app/posts/2025-05-02-discrimination-talk/image.svg" medium="image" type="image/svg+xml"/>
 </item>
 <item>
@@ -60,7 +60,7 @@
 <section id="simulating-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="simulating-the-data">Simulating the Data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(tidymodels)</span>
 <span id="cb1-2"><span class="fu" style="color: #4758AB;
@@ -245,13 +245,13 @@ background-color: null;
 font-style: inherit;">150</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">50</span>)))</span>
-<span id="cb1-18">)</span></code></pre></div>
+<span id="cb1-18">)</span></code></pre></div></div>
 </div>
 </section>
 <section id="fitting-support-vector-machine-model" class="level2">
 <h2 class="anchored" data-anchor-id="fitting-support-vector-machine-model">Fitting Support Vector Machine Model</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">svm_rbf_spec <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">svm_rbf_spec <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -282,17 +282,17 @@ font-style: inherit;">fit</span>(y <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">~</span> ., <span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">data =</span> sim_data2)</span></code></pre></div>
+font-style: inherit;">data =</span> sim_data2)</span></code></pre></div></div>
 </div>
 </section>
 <section id="performance-data" class="level2">
 <h2 class="anchored" data-anchor-id="performance-data">Performance Data</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true">yardstick</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false">rtichoke</a></li></ul>
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">yardstick</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">rtichoke</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">yardstick_roc <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">yardstick_roc <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -309,7 +309,7 @@ font-style: inherit;">truth =</span> y, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">estimate =</span> .pred_1)</span>
 <span id="cb3-3"></span>
-<span id="cb3-4">yardstick_roc </span></code></pre></div>
+<span id="cb3-4">yardstick_roc </span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 202 × 3
    .threshold specificity sensitivity
@@ -330,7 +330,7 @@ font-style: inherit;">estimate =</span> .pred_1)</span>
 </div>
 <div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(rtichoke)</span>
 <span id="cb5-2"></span>
@@ -381,7 +381,7 @@ background-color: null;
 font-style: inherit;">|&gt;</span> </span>
 <span id="cb5-14">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">select</span>(probability_threshold, specificity, sensitivity)</span></code></pre></div>
+font-style: inherit;">select</span>(probability_threshold, specificity, sensitivity)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 101 × 3
    probability_threshold specificity sensitivity
@@ -406,10 +406,10 @@ font-style: inherit;">select</span>(probability_threshold, specificity, sensitiv
 <section id="roc-curve" class="level2">
 <h2 class="anchored" data-anchor-id="roc-curve">ROC Curve</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true">yardstick</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false">rtichoke</a></li></ul>
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true" href="">yardstick</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false" href="">rtichoke</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" aria-labelledby="tabset-2-1-tab">
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">yardstick_roc <span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">yardstick_roc <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
 <span id="cb7-2">  <span class="fu" style="color: #4758AB;
@@ -419,7 +419,7 @@ background-color: null;
 font-style: inherit;">+</span></span>
 <span id="cb7-3">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">theme_classic</span>()</span></code></pre></div>
+font-style: inherit;">theme_classic</span>()</span></code></pre></div></div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
@@ -429,7 +429,7 @@ font-style: inherit;">theme_classic</span>()</span></code></pre></div>
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" aria-labelledby="tabset-2-2-tab">
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">svm_performance_data <span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">svm_performance_data <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
 <span id="cb8-2">  <span class="fu" style="color: #4758AB;
@@ -438,7 +438,7 @@ font-style: inherit;">plot_roc_curve</span>(<span class="at" style="color: #6574
 background-color: null;
 font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">350</span>)</span></code></pre></div>
+font-style: inherit;">350</span>)</span></code></pre></div></div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -467,7 +467,7 @@ font-style: inherit;">350</span>)</span></code></pre></div>
   <category>Trevor Hastie</category>
   <category>Rob Tibshirani</category>
   <guid>https://rtichoke-blog.netlify.app/posts/2022-10-02-ROC-for-SVM/</guid>
-  <pubDate>Sat, 01 Oct 2022 21:00:00 GMT</pubDate>
+  <pubDate>Sun, 02 Oct 2022 00:00:00 GMT</pubDate>
   <media:content url="https://rtichoke-blog.netlify.app/posts/2022-10-02-ROC-for-SVM/image.png" medium="image" type="image/png" height="150" width="144"/>
 </item>
 <item>
@@ -488,7 +488,7 @@ font-style: inherit;">350</span>)</span></code></pre></div>
 <section id="loading-the-data-with-hmisc" class="level3">
 <h3 class="anchored" data-anchor-id="loading-the-data-with-hmisc">Loading the Data with Hmisc</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(Hmisc)</span>
 <span id="cb1-2"><span class="fu" style="color: #4758AB;
@@ -509,13 +509,13 @@ font-style: inherit;">subset</span>(acath, <span class="sc" style="color: #5E5E5
 background-color: null;
 font-style: inherit;">!</span><span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">is.na</span>(choleste))</span></code></pre></div>
+font-style: inherit;">is.na</span>(choleste))</span></code></pre></div></div>
 </div>
 </section>
 <section id="fitting-logistic-regressions-with-rms" class="level3">
 <h3 class="anchored" data-anchor-id="fitting-logistic-regressions-with-rms">Fitting Logistic Regressions with rms</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(rms)</span>
 <span id="cb2-2"></span>
@@ -620,17 +620,17 @@ background-color: null;
 font-style: inherit;">value =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"post"</span>)</span>
-<span id="cb2-14">  )</span></code></pre></div>
+<span id="cb2-14">  )</span></code></pre></div></div>
 </div>
 </section>
 </section>
 <section id="conventional-decision-curve" class="level2">
 <h2 class="anchored" data-anchor-id="conventional-decision-curve">Conventional Decision Curve</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true">dcurves</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false">rtichoke</a></li></ul>
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">dcurves</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">rtichoke</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(dcurves)</span>
 <span id="cb3-2"></span>
@@ -686,7 +686,7 @@ font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"none"</span>)</span></code></pre></div>
+font-style: inherit;">"none"</span>)</span></code></pre></div></div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
@@ -696,7 +696,7 @@ font-style: inherit;">"none"</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(rtichoke)</span>
 <span id="cb4-2"><span class="fu" style="color: #4758AB;
@@ -787,7 +787,7 @@ font-style: inherit;">0.07</span>, <span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0.7</span>)</span>
 <span id="cb4-25">    )</span>
-<span id="cb4-26">  )</span></code></pre></div>
+<span id="cb4-26">  )</span></code></pre></div></div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -805,10 +805,10 @@ font-style: inherit;">0.7</span>)</span>
 <section id="specific-range-of-probability-thresholds" class="level2">
 <h2 class="anchored" data-anchor-id="specific-range-of-probability-thresholds">Specific Range of Probability Thresholds</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true">dcurves</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false">rtichoke</a></li></ul>
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true" href="">dcurves</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false" href="">rtichoke</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" aria-labelledby="tabset-2-1-tab">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(dcurves)</span>
 <span id="cb5-2"></span>
@@ -887,7 +887,7 @@ font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"none"</span>)</span></code></pre></div>
+font-style: inherit;">"none"</span>)</span></code></pre></div></div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
@@ -897,7 +897,7 @@ font-style: inherit;">"none"</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" aria-labelledby="tabset-2-2-tab">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">performance_data_dc <span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">performance_data_dc <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span> </span>
 <span id="cb6-2">  rtichoke<span class="sc" style="color: #5E5E5E;
@@ -953,7 +953,7 @@ background-color: null;
 font-style: inherit;">0.07</span>, <span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0.7</span>))</span>
-<span id="cb6-11">  ) </span></code></pre></div>
+<span id="cb6-11">  ) </span></code></pre></div></div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -971,10 +971,10 @@ font-style: inherit;">0.7</span>))</span>
 <section id="interventions-avoided" class="level2">
 <h2 class="anchored" data-anchor-id="interventions-avoided">Interventions Avoided</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" aria-controls="tabset-3-1" aria-selected="true">dcurves</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" aria-controls="tabset-3-2" aria-selected="false">rtichoke</a></li></ul>
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" aria-controls="tabset-3-1" aria-selected="true" href="">dcurves</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" aria-controls="tabset-3-2" aria-selected="false" href="">rtichoke</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" aria-labelledby="tabset-3-1-tab">
-<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">dca_prepost <span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">dca_prepost <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span></span>
 <span id="cb7-2">  <span class="fu" style="color: #4758AB;
@@ -1007,7 +1007,7 @@ font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">legend.position =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"none"</span>)</span></code></pre></div>
+font-style: inherit;">"none"</span>)</span></code></pre></div></div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
@@ -1017,7 +1017,7 @@ font-style: inherit;">"none"</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="tabset-3-2" class="tab-pane" aria-labelledby="tabset-3-2-tab">
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">performance_data_dc <span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">performance_data_dc <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span></span>
 <span id="cb8-2">  rtichoke<span class="sc" style="color: #5E5E5E;
@@ -1068,7 +1068,7 @@ background-color: null;
 font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">100</span>))</span>
-<span id="cb8-10">  )</span></code></pre></div>
+<span id="cb8-10">  )</span></code></pre></div></div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -1085,7 +1085,7 @@ font-style: inherit;">100</span>))</span>
 </section>
 <section id="conventional-and-interventions-avoided-combined-rtichoke-code" class="level2">
 <h2 class="anchored" data-anchor-id="conventional-and-interventions-avoided-combined-rtichoke-code">Conventional and Interventions Avoided Combined (rtichoke code)</h2>
-<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">performance_data_dc <span class="sc" style="color: #5E5E5E;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">performance_data_dc <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">|&gt;</span></span>
 <span id="cb9-2">  <span class="fu" style="color: #4758AB;
@@ -1111,7 +1111,7 @@ background-color: null;
 font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">500</span></span>
-<span id="cb9-7">  )</span></code></pre></div>
+<span id="cb9-7">  )</span></code></pre></div></div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -1135,7 +1135,7 @@ font-style: inherit;">500</span></span>
   <category>rms</category>
   <category>Hmisc</category>
   <guid>https://rtichoke-blog.netlify.app/posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/</guid>
-  <pubDate>Sat, 17 Sep 2022 21:00:00 GMT</pubDate>
+  <pubDate>Sun, 18 Sep 2022 00:00:00 GMT</pubDate>
   <media:content url="https://rtichoke-blog.netlify.app/posts/2022-09-18-dca-for-quantifying-the-additional-benefit-of-a-new-marker-by-emily-vertosick-and-andrew-vickers/image.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -1155,19 +1155,19 @@ font-style: inherit;">500</span></span>
 <p>The code is almost identical to the original code that can be found <a href="https://github.com/topepo/FES/blob/master/03_A_Review_of_the_Predictive_Modeling_Process/03_02_02_Classification_Metric.R">on github</a>.</p>
 <p>Alternatively you can download the caret object <a href="https://github.com/topepo/FES/blob/master/05_Encoding_Categorical_Predictors/05_06_Creating_Features_from_Text_Data/okc_glm_keyword.RData?raw">from here</a> and load it into the global environment by running the following command:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">load</span>(<span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"okc_glm_keyword.RData"</span>)</span></code></pre></div>
+font-style: inherit;">"okc_glm_keyword.RData"</span>)</span></code></pre></div></div>
 </div>
 <section id="creating-performance-metrics-curves-with-yardstick" class="level3">
 <h3 class="anchored" data-anchor-id="creating-performance-metrics-curves-with-yardstick">Creating Performance Metrics Curves with yardstick</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true">ROC</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false">Precision Recall</a></li></ul>
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">ROC</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">Precision Recall</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(yardstick)</span>
 <span id="cb2-2"><span class="fu" style="color: #4758AB;
@@ -1194,7 +1194,7 @@ background-color: null;
 font-style: inherit;">+</span></span>
 <span id="cb2-8">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">theme_classic</span>()</span></code></pre></div>
+font-style: inherit;">theme_classic</span>()</span></code></pre></div></div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
@@ -1204,7 +1204,7 @@ font-style: inherit;">theme_classic</span>()</span></code></pre></div>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(yardstick)</span>
 <span id="cb3-2"><span class="fu" style="color: #4758AB;
@@ -1231,7 +1231,7 @@ background-color: null;
 font-style: inherit;">+</span></span>
 <span id="cb3-8">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">theme_classic</span>()</span></code></pre></div>
+font-style: inherit;">theme_classic</span>()</span></code></pre></div></div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
@@ -1246,10 +1246,10 @@ font-style: inherit;">theme_classic</span>()</span></code></pre></div>
 <section id="creating-performance-metrics-curves-with-rtichoke" class="level3">
 <h3 class="anchored" data-anchor-id="creating-performance-metrics-curves-with-rtichoke">Creating Performance Metrics Curves with rtichoke</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true">ROC</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false">Precision Recall</a></li></ul>
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true" href="">ROC</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false" href="">Precision Recall</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" aria-labelledby="tabset-2-1-tab">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(rtichoke)</span>
 <span id="cb4-2"></span>
@@ -1285,7 +1285,7 @@ background-color: null;
 font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">350</span></span>
-<span id="cb4-9">)</span></code></pre></div>
+<span id="cb4-9">)</span></code></pre></div></div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -1298,7 +1298,7 @@ font-style: inherit;">350</span></span>
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" aria-labelledby="tabset-2-2-tab">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(rtichoke)</span>
 <span id="cb5-2"></span>
@@ -1334,7 +1334,7 @@ background-color: null;
 font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">350</span></span>
-<span id="cb5-9">)</span></code></pre></div>
+<span id="cb5-9">)</span></code></pre></div></div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -1363,7 +1363,7 @@ font-style: inherit;">350</span></span>
   <category>Feature Engineering by Max Kuhn and Kjell Johnson</category>
   <category>yardstick</category>
   <guid>https://rtichoke-blog.netlify.app/posts/2022-09-04-precision-recall/</guid>
-  <pubDate>Sat, 03 Sep 2022 21:00:00 GMT</pubDate>
+  <pubDate>Sun, 04 Sep 2022 00:00:00 GMT</pubDate>
   <media:content url="https://rtichoke-blog.netlify.app/posts/2022-09-04-precision-recall/image.png" medium="image" type="image/png" height="161" width="144"/>
 </item>
 <item>
@@ -1391,7 +1391,7 @@ font-style: inherit;">350</span></span>
 <section id="preparing-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="preparing-the-data">Preparing the Data</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(caret)</span>
 <span id="cb1-2"><span class="fu" style="color: #4758AB;
@@ -1500,13 +1500,13 @@ font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">select</span>(<span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">-</span>Case)</span></code></pre></div>
+font-style: inherit;">-</span>Case)</span></code></pre></div></div>
 </div>
 </section>
 <section id="training-the-models" class="level3">
 <h3 class="anchored" data-anchor-id="training-the-models">Training the Models</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">example_ctrl <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">example_ctrl <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> </span>
 <span id="cb2-2">  <span class="fu" style="color: #4758AB;
@@ -1580,13 +1580,13 @@ background-color: null;
 font-style: inherit;">"ROC"</span>,</span>
 <span id="cb2-17">                     <span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">trControl =</span> example_ctrl)</span></code></pre></div>
+font-style: inherit;">trControl =</span> example_ctrl)</span></code></pre></div></div>
 </div>
 </section>
 <section id="creating-predictions" class="level3">
 <h3 class="anchored" data-anchor-id="creating-predictions">Creating Predictions</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">original_probs <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">original_probs <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1618,13 +1618,13 @@ font-style: inherit;">$</span>Class <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">==</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"One"</span></span></code></pre></div>
+font-style: inherit;">"One"</span></span></code></pre></div></div>
 </div>
 </section>
 <section id="creating-roc-curve-with-yardstick" class="level3">
 <h3 class="anchored" data-anchor-id="creating-roc-curve-with-yardstick">Creating ROC Curve with yardstick</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">natural_dat <span class="ot" style="color: #003B4F;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">natural_dat <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span></span>
 <span id="cb4-2">  example_test <span class="sc" style="color: #5E5E5E;
@@ -1808,7 +1808,7 @@ font-style: inherit;">+</span></span>
 background-color: null;
 font-style: inherit;">theme_classic</span>()</span>
 <span id="cb4-32"></span>
-<span id="cb4-33">trans_roc_plot</span></code></pre></div>
+<span id="cb4-33">trans_roc_plot</span></code></pre></div></div>
 </div>
 <p><img src="https://rtichoke-blog.netlify.app/posts/2022-08-21-cox-box-transformation/trans_roc_plot.svg" class="img-fluid"></p>
 </section>
@@ -1818,10 +1818,10 @@ font-style: inherit;">theme_classic</span>()</span>
 <section id="creating-roc-curve-with-rtichoke" class="level3">
 <h3 class="anchored" data-anchor-id="creating-roc-curve-with-rtichoke">Creating ROC Curve with rtichoke</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true">By Probability Threshold</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false">By Percent Positives Conditional Rate</a></li></ul>
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true" href="">By Probability Threshold</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false" href="">By Percent Positives Conditional Rate</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
-<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(rtichoke)</span>
 <span id="cb5-2"></span>
@@ -1865,7 +1865,7 @@ background-color: null;
 font-style: inherit;">"grey"</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"black"</span>)</span>
-<span id="cb5-13">) </span></code></pre></div>
+<span id="cb5-13">) </span></code></pre></div></div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -1878,7 +1878,7 @@ font-style: inherit;">"black"</span>)</span>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">library</span>(rtichoke)</span>
 <span id="cb6-2"></span>
@@ -1927,7 +1927,7 @@ background-color: null;
 font-style: inherit;">"grey"</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"black"</span>)</span>
-<span id="cb6-14">) </span></code></pre></div>
+<span id="cb6-14">) </span></code></pre></div></div>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -1956,8 +1956,8 @@ font-style: inherit;">"black"</span>)</span>
   <category>Feature Engineering by Max Kuhn and Kjell Johnson</category>
   <category>caret</category>
   <guid>https://rtichoke-blog.netlify.app/posts/2022-08-21-cox-box-transformation/</guid>
-  <pubDate>Sat, 20 Aug 2022 21:00:00 GMT</pubDate>
-  <media:content url="https://rtichoke-blog.netlify.app/posts/2022-08-21-cox-box-transformation/image.png" medium="image" type="image/png" height="142" width="144"/>
+  <pubDate>Sun, 21 Aug 2022 00:00:00 GMT</pubDate>
+  <media:content url="https://rtichoke-blog.netlify.app/posts/2022-08-21-cox-box-transformation/image.png" medium="image" type="image/png"/>
 </item>
 </channel>
 </rss>

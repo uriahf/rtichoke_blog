@@ -5,3 +5,5 @@
 .DS_Store
 /.quarto/
 summary_report.html
+
+**/*.quarto_ipynb
