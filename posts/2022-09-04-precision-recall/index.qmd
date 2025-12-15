@@ -2,12 +2,8 @@
 title: "Precision Recall from Feature Engineering by Max Kuhn and Kjell Johnson"
 date: "2022-09-04"
 categories: 
-  - Replications
   - ROC
   - Precision Recall
-  - Max Kuhn
-  - Kjell Johnson
-  - Feature Engineering by Max Kuhn and Kjell Johnson
   - yardstick
 image: "image.png"
 draft: false
@@ -32,7 +28,7 @@ load("okc_glm_keyword.RData")
 
 ### Creating Performance Metrics Curves with yardstick
 
-::: panel-tabset
+::::: panel-tabset
 ## ROC
 
 ::: {layout-ncol="2"}
@@ -123,11 +119,11 @@ glm_keyword$pred  %>%
 
 ![](precision-recall-yardstick.svg)
 :::
-:::
+:::::
 
 ### Creating Performance Metrics Curves with rtichoke
 
-::: panel-tabset
+::::: panel-tabset
 #### ROC
 
 ::: {layout-ncol="2"}
@@ -210,4 +206,4 @@ create_precision_recall_curve(
 
 ```
 :::
-:::
+:::::

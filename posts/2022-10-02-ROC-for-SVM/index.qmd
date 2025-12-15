@@ -4,13 +4,6 @@ date: "2022-10-02"
 categories: 
   - ROC
   - Performance Data
-  - ISLR
-  - Replications
-  - yardstick
-  - Gareth James
-  - Daniela Witten
-  - Trevor Hastie
-  - Rob Tibshirani
 image: "image.png"
 draft: false
 ---
@@ -122,7 +115,7 @@ svm_performance_data |>
 
 ```
 
-::: panel-tabset
+::::: panel-tabset
 ### yardstick
 
 ::: {layout-ncol="2"}
@@ -160,4 +153,4 @@ svm_performance_data |>
   plot_roc_curve(size = 350) 
 ```
 :::
-:::
+:::::

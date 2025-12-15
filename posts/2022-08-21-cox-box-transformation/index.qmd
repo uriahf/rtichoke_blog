@@ -2,11 +2,7 @@
 title: "Box-Cox transformation from Feature Engineering by Max Kuhn and Kjell Johnson"
 date: "2022-08-21"
 categories: 
-  - Replications
   - ROC
-  - Max Kuhn
-  - Kjell Johnson
-  - Feature Engineering by Max Kuhn and Kjell Johnson
   - caret
 image: "image.png"
 ---
@@ -171,7 +167,7 @@ trans_roc_plot
 
 ### Creating ROC Curve with rtichoke
 
-::: panel-tabset
+::::: panel-tabset
 ## By Probability Threshold
 
 ::: {layout-ncol="2"}
@@ -266,7 +262,7 @@ create_roc_curve(
 
 ```
 :::
-:::
+:::::
 
 ```{=html}
 <script src="https://utteranc.es/client.js"
