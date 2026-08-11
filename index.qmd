@@ -11,7 +11,7 @@ title-block: false
 ::: g-col-8
 # Welcome to rtichoke blog
 
-This blog is dedicated to reproducible examples by rtichoke in order to help new users to have a quick start. For more conventional documentation of the package please visit [rtichoke pkgdown website for R users](https://uriahf.github.io/rtichoke/) or [rtichoke quartodoc website for Python Users](https://uriahf.github.io/rtichoke_python/).
+This blog is dedicated to reproducible examples by rtichoke in order to help new users to have a quick start. For more conventional documentation of the package please visit [rtichoke pkgdown website for R users](https://uriahf.github.io/rtichoke/) or [rtichoke Great Docs website for Python users](https://uriahf.github.io/rtichoke_python/).
 
 Most of the posts are code replications in [R](posts.qmd) or [Python](https://uriahf.github.io/rtichoke_blog_python) of existing code that produces the same output as rtichoke by different packages.
 
